@@ -9,25 +9,35 @@ class Manager(object):
 
 
 
+def convert_entities(cursor, results):
+    #Get the column names out from the cursor
+    columns = [c[0] for c in cursor.description]
+
+    entities = []
+    for tuple_row in results:
+        #Creates a tuple of name,value pairs where name is the column name 
+        #and the value is the row value 
+        nvp = zip(columns, tuple_row)
+        named = {name : value for (name, value) in nvp}
+        entities.append(named)
+    return entities
+
 def entity_list():
     def select(fn):
         def wrapped(*args, **kwargs):
             cursor, results = fn(*args, **kwargs)
-
-            #Get the column names out from the cursor
-            columns = [c[0] for c in cursor.description]
-
-            entities = []
-            for tuple_row in results:
-                #Creates a tuple of name,value pairs where name is the column name 
-                #and the value is the row value 
-                nvp = zip(columns, tuple_row)
-                named = {name : value for (name, value) in nvp}
-                entities.append(named)
-
+            entities = convert_entities(cursor, results)
             return entities
+        return wrapped
+    return select
 
 
+def entity_single():
+    def select(fn):
+        def wrapped(*args, **kwargs):
+            cursor, results = fn(*args, **kwargs)
+            entities = convert_entities(cursor, results)
+            return entities[0]
         return wrapped
     return select
 
