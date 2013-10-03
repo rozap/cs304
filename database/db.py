@@ -3,6 +3,8 @@ import MySQLdb
 
 from users import UserManager
 from games import GameManager
+# from achievements import AchievementManager
+# from 
 
 class Database(object):
 
@@ -15,6 +17,8 @@ class Database(object):
 
         self.users = UserManager(self.db)
         self.games = GameManager(self.db)
+        # self.achievements = AchievementManager(self.db)
+        # self.items = ItemManager(self.db)
 
 
     def close(self):

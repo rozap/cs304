@@ -21,7 +21,7 @@ class LazyView(object):
 
 def json_view(fn):
 	def wrapped(*args, **kwargs):
-		result = fn(*args, **kwargs)
-		js = json.dumps(result)
-		return Response(js, mimetype="application/json", )
+		root, result = fn(*args, **kwargs)
+		js = json.dumps({root : result})
+		return Response(js, mimetype="application/json")
 	return wrapped

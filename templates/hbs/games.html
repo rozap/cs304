@@ -1,0 +1,14 @@
+
+{% raw %}
+<h1>list of games</h1>
+
+	{{#each item in controller}}
+		<div class="col-md-3 game-item">
+			<h4>{{item.title}}</h4>
+
+		</div>
+	{{/each}}
+
+
+
+{% endraw %}

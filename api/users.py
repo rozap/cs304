@@ -1,10 +1,17 @@
 from flask import g
+from flask import abort
+from api import json_view
 
 
+@json_view
 def list_users():
-	print g.db
-	return "Hi:)"
+	users = g.db.users.get_users()
+	return users
 
-
-def detail_user(username):
-	return username
+@json_view
+def detail_user(user_id):
+	try:
+		user = g.db.users.get_user(user_id)
+	except IndexError:
+		abort(404)
+	return user
