@@ -101,9 +101,10 @@ DROP TABLE IF EXISTS `game`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `game` (
   `title` varchar(511) DEFAULT NULL,
-  `price` int(8) DEFAULT NULL,
+  `price` float(5,2) DEFAULT NULL,
   `description` text,
   `developer` varchar(255) DEFAULT NULL,
+  `image` varchar(255),
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `genre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -114,11 +115,6 @@ CREATE TABLE `game` (
 -- Dumping data for table `game`
 --
 
-LOCK TABLES `game` WRITE;
-/*!40000 ALTER TABLE `game` DISABLE KEYS */;
-INSERT INTO `game` VALUES ('test game',45,'description for game','atari',1,'racing'),('test game another',5,'daksjf lkaj fsescription for game','atari',2,'racing'),('some new game',7,'some new game description','nintendo',27,'adventure'),('some new game',7,'some new game description','nintendo',28,'adventure'),('some new game',7,'some new game description','nintendo',29,'adventure');
-/*!40000 ALTER TABLE `game` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `game_achievement`

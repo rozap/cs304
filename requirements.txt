@@ -1,2 +1,4 @@
 flask
 mysql-python
+requests
+BeautifulSoup

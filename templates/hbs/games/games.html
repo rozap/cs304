@@ -1,0 +1,13 @@
+{% raw %}
+
+<h1>list of games</h1>
+{{#each item in controller}}
+	<div class="col-md-3 game-item">
+		<h4>
+			{{#link-to 'game' item}}{{item.title}}{{/link-to}}
+		</h4>
+
+	</div>
+{{/each}}
+
+{% endraw %}

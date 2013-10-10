@@ -22,6 +22,9 @@ def convert_entities(cursor, results):
         entities.append(named)
     return entities
 
+
+
+
 def entity_list():
     def select(fn):
         def wrapped(*args, **kwargs):
@@ -32,6 +35,7 @@ def entity_list():
     return select
 
 
+
 def entity_single():
     def select(fn):
         def wrapped(*args, **kwargs):
@@ -40,6 +44,9 @@ def entity_single():
             return entities[0]
         return wrapped
     return select
+
+
+
 
 def entity_write():
     def write(fn):

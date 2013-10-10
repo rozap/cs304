@@ -35,13 +35,14 @@ class GameManager(Manager):
 	def insert_game(self, vals):
 		cursor = self.db.cursor()
 		cursor.execute("""
-			INSERT INTO game(title, price, description, developer, genre)
-			VALUES(%s, %s, %s, %s, %s)
+			INSERT INTO game(title, price, description, developer, image, genre)
+			VALUES(%s, %s, %s, %s, %s, %s)
 			""", (
 				vals['title'],
 				vals['price'],
 				vals['description'],
 				vals['developer'],
+				vals['image'],
 				vals['genre']
 				)
 			)

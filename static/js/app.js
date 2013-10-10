@@ -15,3 +15,10 @@ App.GamesController = Ember.ArrayController.extend({
 
 
 });
+
+
+App.GameController = Ember.ObjectController.extend({
+
+	wot: "FOOOOO"
+
+});
