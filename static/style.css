@@ -5906,3 +5906,34 @@ td.visible-print {
     display: none !important;
   }
 }
+.game-item {
+  height: 210px;
+  position: relative;
+}
+.game-item .game-image {
+  margin: 0px;
+  width: 100%;
+}
+.game-item .game-image img {
+  width: 100%;
+}
+.game-item h4 {
+  height: 18px;
+  overflow: hidden;
+}
+.game-item .description {
+  opacity: 0;
+  transition: opacity .5s;
+  position: absolute;
+  top: 98px;
+}
+.game-item .description .description-text {
+  padding: 0px 10px;
+  background: rgba(255, 255, 255, 0.8);
+  height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.game-item:hover .description {
+  opacity: 1;
+}

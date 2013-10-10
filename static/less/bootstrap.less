@@ -57,3 +57,70 @@
 // Utility classes
 @import "utilities.less";
 @import "responsive-utilities.less";
+
+////// Just put all the custom CSS here, not very organized but #yolo
+
+.game-item {
+	height: 210px;
+	position: relative;
+
+	.game-image {
+		margin:0px;
+		width:100%;
+		img {
+			width: 100%;
+		}
+	}
+
+	h4 {
+			height: ceil(@font-size-base * 1.25);
+			overflow: hidden;
+	}
+
+	.description {
+		opacity: 0;
+		transition:opacity .5s;
+		position: absolute;
+		top:98px;
+
+		.description-text {
+			padding: 0px @line-height-computed/2;
+			background:fadeout(lighten(@gray-lighter, 10%), 20%);
+			height: 100px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+		}
+	}
+
+}
+.game-item:hover {
+	.description {
+		opacity: 1;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

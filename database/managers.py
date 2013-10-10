@@ -7,6 +7,12 @@ class Manager(object):
         self.db = db
 
 
+def sanitize_value(value):
+    if(type(value) == str):
+        return unicode(value, errors = 'ignore')
+
+    return value
+
 
 
 def convert_entities(cursor, results):
@@ -18,7 +24,7 @@ def convert_entities(cursor, results):
         #Creates a tuple of name,value pairs where name is the column name 
         #and the value is the row value 
         nvp = zip(columns, tuple_row)
-        named = {name : value for (name, value) in nvp}
+        named = {name : sanitize_value(value) for (name, value) in nvp}
         entities.append(named)
     return entities
 

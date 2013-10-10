@@ -11,7 +11,7 @@ class GameManager(Manager):
 		cursor = self.db.cursor()
 		cursor.execute("""
 			SELECT 
-				id, title, price, description, developer, genre
+				id, title, price, description, developer, genre, image
 			FROM
 				game 
 		""")
@@ -23,7 +23,7 @@ class GameManager(Manager):
 		cursor = self.db.cursor()
 		cursor.execute("""
 			SELECT 
-				id, title, price, description, developer, genre
+				id, title, price, description, developer, genre, image
 			FROM
 				game 
 			WHERE id = %s

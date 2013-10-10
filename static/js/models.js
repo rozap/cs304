@@ -8,4 +8,5 @@ App.Game = DS.Model.extend({
 	price: DS.attr('number'),
 	genre: DS.attr('string'),
 	developer: DS.attr('string'),
+	image: DS.attr('string')
 });
