@@ -1,0 +1,3 @@
+# Ignore python compiled shit.
+*.pyc
+*.pyo
