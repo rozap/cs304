@@ -307,7 +307,7 @@ DROP TABLE IF EXISTS `group_members`;
 CREATE TABLE `group_members` (
   `id` int(50) NOT NULL,
   `username` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`, `username`)
+  PRIMARY KEY (`id`, `username`),
   CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`id`) REFERENCES `group` (`id`), 
   CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
