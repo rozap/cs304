@@ -298,6 +298,31 @@ LOCK TABLES `group` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `group_members`
+--
+
+DROP TABLE IF EXISTS `group_members`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `group_members` (
+  `id` int(50) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`, `username`)
+  CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`id`) REFERENCES `group` (`id`), 
+  CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group_members`
+--
+
+LOCK TABLES `group_members` WRITE;
+/*!40000 ALTER TABLE `group_members` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_members` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `discussion`
 --
 
@@ -352,6 +377,32 @@ CREATE TABLE `comment` (
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game_purchase`
+--
+
+DROP TABLE IF EXISTS `game_purchase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `game_purchase` (
+  `user` varchar(255) DEFAULT NULL,
+  `game` int(50) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  PRIMARY KEY (`user`, `game`),
+  CONSTRAINT `game_purchase_ibfk_1` FOREIGN KEY (`game`) REFERENCES `game` (`id`),
+  CONSTRAINT `game_purchase_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game_purchase`
+--
+
+LOCK TABLES `game_purchase` WRITE;
+/*!40000 ALTER TABLE `game_purchase` DISABLE KEYS */;
+/*!40000 ALTER TABLE `game_purchase` ENABLE KEYS */;
 UNLOCK TABLES;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
