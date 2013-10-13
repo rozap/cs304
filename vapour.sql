@@ -183,12 +183,12 @@ DROP TABLE IF EXISTS `game`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `game` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
   `title` varchar(511) DEFAULT NULL,
   `price` float(5,2) DEFAULT NULL,
   `description` text,
   `developer` varchar(255) DEFAULT NULL,
   `image` varchar(255),
-  `id` int(50) NOT NULL AUTO_INCREMENT,
   `genre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
@@ -211,7 +211,7 @@ DROP TABLE IF EXISTS `game_purchase`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `game_purchase` (
-  `user` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `game` int(50) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`user`, `game`),
