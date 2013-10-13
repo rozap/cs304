@@ -341,6 +341,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `is_banned` tinyint(1) DEFAULT NULL,
   `cc_num` varchar(255) DEFAULT NULL,
   `join_date` datetime DEFAULT NULL,
