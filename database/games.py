@@ -7,14 +7,17 @@ class GameManager(Manager):
 
 
 	@entity_list()
-	def get_games(self):
+	def get_games(self, limit = 40, page = 0):
 		cursor = self.db.cursor()
 		cursor.execute("""
 			SELECT 
 				id, title, price, description, developer, genre, image
 			FROM
 				game 
-		""")
+			LIMIT %s
+			OFFSET %s
+
+		""", (limit, limit*page))
 		results = cursor.fetchall()
 		return cursor, results
 

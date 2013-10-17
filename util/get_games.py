@@ -1,9 +1,11 @@
 from database import Database
-import requests
 import json
 from BeautifulSoup import BeautifulSoup
 import re
-
+import gevent
+from gevent import pool, monkey; monkey.patch_all() 
+import requests
+from urllib2 import urlopen
 
 class GameGetter(object):
 
@@ -19,14 +21,18 @@ class GameGetter(object):
 
 
     def get_games_pages(self, games):
+        thread_pool = pool.Pool(64)
+        games = [g for g in games if not 'Trailer' in g['name'] and not 'Demo' in g['name']]
         for g in games:
             try:
                 existing = self.db.games.get_game_by_title(g['name'])
                 print '%s exists' % g['name']
             except:
                 #Doesn't exist yet, go get it
-                print "Getting %s" % g['name']
-                self.get_game_info(g['appid'], g['name'])
+                thread_pool.spawn(self.get_game_info, g['appid'], g['name'])
+
+
+
 
 
 
@@ -35,9 +41,10 @@ class GameGetter(object):
             vals = {
                 'title' : name,
             }
+            print "Requesting...%s" % name
             url = 'http://store.steampowered.com/app/%s' % game_id
-            page = requests.get(url)
-            soup = BeautifulSoup(page.text)
+            page = urlopen(url).read()
+            soup = BeautifulSoup(page)
 
             images = soup.findAll('img', attrs = {'class' : 'game_header_image'})
             if images:

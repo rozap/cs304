@@ -1,5 +1,4 @@
-from flask import g
-from flask import abort
+from flask import g, abort
 from api import json_view
 
 

@@ -1,4 +1,4 @@
-
+from datetime import datetime
 
 
 class Manager(object):
@@ -10,7 +10,8 @@ class Manager(object):
 def sanitize_value(value):
     if(type(value) == str):
         return unicode(value, errors = 'ignore')
-
+    elif type(value) == datetime:
+        return datetime.strftime(value, '%d/%m/%y %H:%M')
     return value
 
 
