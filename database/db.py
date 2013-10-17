@@ -23,3 +23,5 @@ class Database(object):
 
     def close(self):
         self.db.close()
+
+

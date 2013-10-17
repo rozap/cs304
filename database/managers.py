@@ -6,6 +6,25 @@ class Manager(object):
     def __init__(self, db):
         self.db = db
 
+    def create_filters(self, *args, **kwargs):
+        where_args = ''
+        for i, k in enumerate(kwargs.keys()):
+            try:
+                float(kwargs[k][0])
+                if i == 0:
+                    template = 'WHERE `%s` = %s'
+                else:
+                    template = ' AND `%s` = %s'
+            except ValueError:
+                #Its a string
+                if i == 0:
+                    template = 'WHERE `%s` = \'%s\''
+                else:
+                    template = ' AND `%s` = \'%s\''
+
+            where_args = where_args + (template % (k, kwargs[k][0]))
+        return where_args
+
 
 def sanitize_value(value):
     if(type(value) == str):

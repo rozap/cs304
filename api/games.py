@@ -1,11 +1,10 @@
-from flask import g
-from flask import abort
+from flask import g, abort, request
 from api import json_view
 
 
 @json_view
 def list_games():
-    games = g.db.games.get_games()
+    games = g.db.games.get_games(**request.args)
     return 'games', games
 
 
