@@ -31,6 +31,31 @@ class GameManager(Manager):
 		results = cursor.fetchall()
 		return cursor, results
 
+
+	@entity_single()
+	def get_game_by_title(self, title):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT 
+				id, title, price, description, developer, genre, image
+			FROM
+				game 
+			WHERE title = %s
+		""", (title,))
+		results = cursor.fetchall()
+		return cursor, results
+
+	@entity_write()
+	def delete_game(self, id):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			DELETE 
+			FROM
+				game 
+			WHERE id = %s
+		""", (id,))
+		return self.db, cursor
+
 	@entity_write()
 	def insert_game(self, vals):
 		cursor = self.db.cursor()

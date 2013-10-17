@@ -184,7 +184,7 @@ DROP TABLE IF EXISTS `game`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `game` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
-  `title` varchar(511) DEFAULT NULL,
+  `title` varchar(511) UNIQUE DEFAULT NULL,
   `price` float(5,2) DEFAULT NULL,
   `description` text,
   `developer` varchar(255) DEFAULT NULL,
@@ -198,10 +198,6 @@ CREATE TABLE `game` (
 -- Dumping data for table `game`
 --
 
-LOCK TABLES `game` WRITE;
-/*!40000 ALTER TABLE `game` DISABLE KEYS */;
-/*!40000 ALTER TABLE `game` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `game_purchase`
@@ -211,7 +207,7 @@ DROP TABLE IF EXISTS `game_purchase`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `game_purchase` (
-  `username` varchar(255) DEFAULT NULL,
+  `user` varchar(255) DEFAULT NULL,
   `game` int(50) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`user`, `game`),

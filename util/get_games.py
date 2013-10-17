@@ -20,7 +20,13 @@ class GameGetter(object):
 
     def get_games_pages(self, games):
         for g in games:
-            self.get_game_info(g['appid'], g['name'])
+            try:
+                existing = self.db.games.get_game_by_title(g['name'])
+                print '%s exists' % g['name']
+            except:
+                #Doesn't exist yet, go get it
+                print "Getting %s" % g['name']
+                self.get_game_info(g['appid'], g['name'])
 
 
 
@@ -56,10 +62,12 @@ class GameGetter(object):
                 if groups:
                     vals['price'] = float(groups.group(0))
 
+            vals['price'] = vals.get('price', 0)
+            vals['description'] = vals.get('description', '')
 
             if len(vals.keys()) == 6:
                 self.db.games.insert_game(vals)
-                print vals
+                print vals['title']
         except:
             pass
 
