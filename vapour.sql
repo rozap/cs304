@@ -102,12 +102,14 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `discussion_id` int(50) NOT NULL,
+  `group_id` int(50) NOT NULL,
   `username` varchar(255) NOT NULL,
   `body` text DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`, `discussion_id`),
+  PRIMARY KEY (`id`, `discussion_id`, `group_id`),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`),
-  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`),
+  CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
