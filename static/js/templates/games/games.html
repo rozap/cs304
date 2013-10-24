@@ -1,0 +1,24 @@
+
+<h1>list of games</h1>
+<% collection.each(function(game) { %> 
+	<div class="col-md-4 game-item">
+		<div class="row">
+			<div class="col-md-12">
+				<h4>
+					<a href="#/games/<%- game.get('id') %>"><%- game.get('title') %></a>
+				</h4>
+			</div>
+
+			<div class="col-md-12 game-image">
+				<img src="<%- game.get('image') %>"/>	
+			</div>
+
+			<div class="description col-md-12">
+				<p class="description-text"><%- game.get('description') %></p>
+			</div>
+		</div>
+
+	</div>
+<% }) %>
+
+

@@ -17,7 +17,7 @@ def detail_game(game_id):
         game['users'] = g.db.users.get_games_users(game_id)
     except IndexError:
         abort(404)
-    return 'games', game
+    return False, game
 
 
 

@@ -1,31 +1,51 @@
-App.Router.map(function() {
-	this.resource('games', {
-		path: '/games'
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'views/games'
+
+
+], function($, _, Backbone, GameViews) {
+
+
+
+	var Router = Backbone.Router.extend({
+
+		routes: {
+			"": "home",
+			"games": "gameList",
+			"games/:id": "game"
+		},
+
+		initialize: function(opts) {
+			this.app = opts.app;
+			this.app.router = this;
+			this.app.context = {};
+		},
+
+		gameList: function() {
+			new GameViews.GameListView(this.app);
+		},
+
+		game: function(id) {
+			this.app.context.game = {
+				id: id
+			};
+			new GameViews.GameView(this.app);
+		}
+
+
 	});
-	this.resource('game', {
-		path: '/games/:game_id'
-	});
-	// put your routes here
-});
 
-App.GamesRoute = Ember.Route.extend({
-
-	setupController: function(controller, model) {
-		controller.set('content', model);
-	},
-
-	model: function(params) {
-		return this.store.findAll('game');
+	return {
+		initialize: function(app) {
+			var router = new Router({
+				app: app
+			});
+			Backbone.history.start();
+			return router;
+		}
 	}
-});
 
 
-App.GameRoute = Ember.Route.extend({
-	setupController: function(controller, game) {
-		controller.set('model', game);
-	},
-
-	model: function(params) {
-		return this.store.find('game', params.game_id);
-	}
 })

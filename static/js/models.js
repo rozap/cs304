@@ -1,14 +1,21 @@
-App.ApplicationAdapter = DS.RESTAdapter.extend({
-	namespace: 'api'
-});
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+
+], function($, _, Backbone) {
+
+	var AbstractModel = Backbone.Model.extend({})
+
+	var Game = AbstractModel.extend({
+		url: function() {
+			return '/api/games' + (this.get('id') ? '/' + this.get('id') : '');
+		}
+	})
+
+	return {
+		Game: Game
+	}
 
 
-
-App.Game = DS.Model.extend({
-	title: DS.attr('string'),
-	description: DS.attr('string'),
-	price: DS.attr('number'),
-	genre: DS.attr('string'),
-	developer: DS.attr('string'),
-	image: DS.attr('string'),
 });

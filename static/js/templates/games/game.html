@@ -1,0 +1,57 @@
+<div class="row">
+	<div class="col-md-8">
+		<h1><%- model.get('title') %></h1>
+	</div>
+	<div class="col-md-4">
+		<img src="<%- model.get('image') %>"></div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<p><%- model.get('description') %></p>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-6">
+		<h5>Users who play this game</h5>
+		<ul class="nav nav-pills nav-stacked">
+			<% _.each(model.get('users'), function(item) { %>
+				<li>
+					<a href="javascript:void(0)">
+						<%- item.username %>
+					</a>
+				</li>
+			<% }); %>
+		</ul>
+	</div>
+
+
+	<div class="col-md-3">
+		<h5>Items</h5>
+		<ul class="nav nav-pills nav-stacked">
+			<% _.each(model.get('items'), function(item) { %>
+				<li>
+					<a href="javascript:void(0)">
+						<%- item.title %>
+					</a>
+				</li>
+			<% }); %>
+		</ul>
+	</div>
+
+
+	<div class="col-md-3">
+		<h5>Achievements</h5>
+		<ul class="nav nav-pills nav-stacked">
+			<% _.each(model.get('achievements'), function(item) { %>
+				<li>
+					<a href="javascript:void(0)">
+						<%- item.title %>
+					</a>
+				</li>
+			<% }); %>
+		</ul>
+	</div>
+
+</div>
