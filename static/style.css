@@ -5937,3 +5937,6 @@ td.visible-print {
 .game-item:hover .description {
   opacity: 1;
 }
+body {
+  background: url('../static/img/bg.png');
+}
