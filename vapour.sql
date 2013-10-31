@@ -102,13 +102,11 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `discussion_id` int(50) NOT NULL,
-  `group_id` int(50) NOT NULL,
   `username` varchar(255) NOT NULL,
   `body` text DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`, `discussion_id`, `group_id`),
+  PRIMARY KEY (`id` ),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`),
-  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`),
   CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -131,13 +129,13 @@ DROP TABLE IF EXISTS `discussion`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `discussion` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
-  `group_id` int(50) NOT NULL,
+  `game_id` int(50) NOT NULL,
   `username` varchar(255) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `body` text DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`, `group_id`),
-  CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`),
+  PRIMARY KEY (`id`, `game_id`),
+  CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
   CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -228,55 +226,6 @@ LOCK TABLES `game_purchase` WRITE;
 /*!40000 ALTER TABLE `game_purchase` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `group`
---
-
-DROP TABLE IF EXISTS `group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `group` (
-  `id` int(50) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`) 
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `group`
---
-
-LOCK TABLES `group` WRITE;
-/*!40000 ALTER TABLE `group` DISABLE KEYS */;
-/*!40000 ALTER TABLE `group` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `group_members`
---
-
-DROP TABLE IF EXISTS `group_members`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `group_members` (
-  `id` int(50) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`, `username`),
-  CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`id`) REFERENCES `group` (`id`), 
-  CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)  
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `group_members`
---
-
-LOCK TABLES `group_members` WRITE;
-/*!40000 ALTER TABLE `group_members` DISABLE KEYS */;
-/*!40000 ALTER TABLE `group_members` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `item`

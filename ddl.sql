@@ -37,7 +37,7 @@ CREATE TABLE `comment` (
   `username` varchar(255) NOT NULL,
   `body` text DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`, `discussion_id`),
+  PRIMARY KEY (`id` ),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`),
   CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -46,13 +46,13 @@ CREATE TABLE `comment` (
 
 CREATE TABLE `discussion` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
-  `group_id` int(50) NOT NULL,
+  `game_id` int(50) NOT NULL,
   `username` varchar(255) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `body` text DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`, `group_id`),
-  CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`),
+  PRIMARY KEY (`id`),
+  CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
   CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -94,22 +94,6 @@ CREATE TABLE `game_purchase` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `group` (
-  `id` int(50) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`) 
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-CREATE TABLE `group_members` (
-  `id` int(50) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`, `username`),
-  CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`id`) REFERENCES `group` (`id`), 
-  CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)  
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE `item` (
