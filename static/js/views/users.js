@@ -32,6 +32,21 @@ define([
 		template: _.template(RegisterViewTemplate),
 
 		el: '#main',
+		events: {
+			"click	.register": "register"
+		},
+
+		register: function(event) {
+			var user = this.hydrate();
+			console.log(user.toJSON());
+		},
+
+		hydrate: function() {
+			var $form = this.$el.find('#register-form'),
+				data = $form.serializeObject(true);
+			var user = new Models.Register(data);
+			return user;
+		},
 
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);

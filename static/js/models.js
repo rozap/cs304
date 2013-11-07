@@ -26,6 +26,12 @@ define([
 		}
 	});
 
+	var Register = AbstractModel.extend({
+		url: function() {
+			return '/api/register'
+		}
+	});
+
 	var Session = AbstractModel.extend({
 		url: function() {
 			return '/api/login'
@@ -36,6 +42,7 @@ define([
 		Discussion: Discussion,
 		Game: Game,
 		Comment: Comment,
+		Register: Register,
 		Session: Session
 	}
 });
