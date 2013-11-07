@@ -1,0 +1,8 @@
+<h5>Discussions</h5>
+<ul class="nav nav-pulls nav-stacked">
+<% collection.each(function(discussion) { %>
+	<li>
+		<a href="#/games/<%- app.context.game.id %>/discussions/<%- discussion.get('id') %>"><%- discussion.get('title') %></a>
+	</li>
+<% }); %>
+</ul>

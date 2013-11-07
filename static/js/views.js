@@ -16,7 +16,6 @@ define([
 			ctx.app = this.app;
 			this.collection && (ctx.collection = this.collection);
 			this.model && (ctx.model = this.model);
-			console.log(this.model);
 			return ctx;
 		},
 

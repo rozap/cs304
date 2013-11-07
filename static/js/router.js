@@ -2,10 +2,11 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'views/games'
+	'views/games',
+	'views/discussion'
 
 
-], function($, _, Backbone, GameViews) {
+], function($, _, Backbone, GameViews, DiscussionViews) {
 
 
 
@@ -14,7 +15,9 @@ define([
 		routes: {
 			"": "home",
 			"games": "gameList",
-			"games/:id": "game"
+			"games/:id": "game",
+			"games/:id/discussions/:discussion_id": "discussion"
+
 		},
 
 		initialize: function(opts) {
@@ -32,6 +35,17 @@ define([
 				id: id
 			};
 			new GameViews.GameView(this.app);
+		},
+
+		discussion: function(id, discussion) {
+			this.app.context.game = {
+				id: id
+			};
+			this.app.context.discussion = {
+				id: id
+			};
+			new DiscussionViews.DiscussionView(this.app);
+
 		}
 
 
