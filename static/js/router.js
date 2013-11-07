@@ -3,10 +3,10 @@ define([
 	'underscore',
 	'backbone',
 	'views/games',
-	'views/discussion'
+	'views/discussions',
+	'views/users'
 
-
-], function($, _, Backbone, GameViews, DiscussionViews) {
+], function($, _, Backbone, GameViews, DiscussionViews, UserViews) {
 
 
 
@@ -16,8 +16,9 @@ define([
 			"": "home",
 			"games": "gameList",
 			"games/:id": "game",
-			"games/:id/discussions/:discussion_id": "discussion"
-
+			"games/:id/discussions/:discussion_id": "discussion",
+			"login": "login",
+			"register": "register"
 		},
 
 		initialize: function(opts) {
@@ -46,6 +47,14 @@ define([
 			};
 			new DiscussionViews.DiscussionView(this.app);
 
+		},
+
+		login: function() {
+			new UserViews.LoginView(this.app);
+		},
+
+		register: function() {
+			new UserViews.RegisterView(this.app);
 		}
 
 

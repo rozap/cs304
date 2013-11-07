@@ -20,10 +20,15 @@ define([
 		}
 	});
 
+	var Session = AbstractModel.extend({
+		url: function() {
+			return '/api/login'
+		}
+	});
+
 	return {
 		Discussion: Discussion,
-		Game: Game
+		Game: Game,
+		Session: Session
 	}
-
-
 });
