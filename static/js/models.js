@@ -11,9 +11,17 @@ define([
 		url: function() {
 			return '/api/games' + (this.get('id') ? '/' + this.get('id') : '');
 		}
-	})
+	});
+
+
+	var Discussion = AbstractModel.extend({
+		url: function() {
+			return '/api/discussion' + (this.get('id') ? '/' + this.get('id') : '');
+		}
+	});
 
 	return {
+		Discussion: Discussion,
 		Game: Game
 	}
 

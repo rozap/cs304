@@ -5,11 +5,12 @@ define([
 	'collections',
 	'models',
 	'views',
+	'views/discussions',
 
 	'text!templates/games/games.html',
 	'text!templates/games/game.html'
 
-], function($, _, Backbone, Collections, Models, Views, GameListViewTemplate, GameViewTemplate) {
+], function($, _, Backbone, Collections, Models, Views, Discussions, GameListViewTemplate, GameViewTemplate) {
 
 
 	var GameView = Views.AbstractView.extend({
@@ -25,6 +26,13 @@ define([
 			this.listenTo(this.model, 'sync', this.render);
 			this.model.fetch();
 		},
+
+
+		render: function(ctx) {
+			Views.AbstractView.prototype.render.call(this, ctx);
+			this.discussionView = new Discussions.DiscussionsView(this.app, this);
+		}
+
 
 
 	});
