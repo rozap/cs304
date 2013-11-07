@@ -110,8 +110,36 @@ body {
 
 
 
+.comment {
+	padding:@grid-gutter-width/2 0px;
+	border:1px solid lighten(@gray-lighter, 2%);
 
+	.avatar {
+		img {
+			max-height:90px;
+			
+		}
+	}
+}
 
+.discussion-thing {
+	padding:@grid-gutter-width 0px;
+	border-bottom: 1px solid @gray-lighter;
+}
+.discussion-actions {
+	padding: @grid-gutter-width/2 0px;
+}
+
+#new-comment-container {
+	.input-group {
+		width:100%;
+		
+	}
+}
+
+.space-top {
+	margin-top: @grid-gutter-width;
+}
 
 
 

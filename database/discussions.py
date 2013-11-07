@@ -47,7 +47,6 @@ class DiscussionManager(Manager):
                 vals['date']
                 )
             )
-
         return self.db, cursor
 
 
@@ -63,3 +62,34 @@ class DiscussionManager(Manager):
         """, (discussion_id,))
         results = cursor.fetchall()
         return cursor, results
+
+    @entity_single()
+    def get_comment(self, c_id):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                id, discussion_id, username, body, date
+            FROM
+                comment
+            WHERE id = %s
+        """, (c_id,))
+        results = cursor.fetchall()
+        return cursor, results
+
+    @entity_write()
+    def insert_comment(self, vals):
+        if not vals.get('date', False):
+            vals['date'] = datetime.now()
+
+        cursor = self.db.cursor()
+        cursor.execute("""
+            INSERT INTO comment(discussion_id, username, body, date)
+            VALUES(%s, %s, %s, %s)
+            """, (
+                vals['discussion_id'],
+                vals['username'],
+                vals['body'],
+                vals['date']
+                )
+            )
+        return self.db, cursor

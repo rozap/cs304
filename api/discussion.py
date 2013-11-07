@@ -8,7 +8,6 @@ def list_discussions():
         #Create the new discussion
         g.db.discussions.insert_discussion(request.json)
 
-
     game_id = request.args.get('game', 'None')
     print game_id
     try:
@@ -28,7 +27,17 @@ def detail_discussion(discussion_id):
 
 @json_view
 def list_comments():
-    discussion_id = request.args.get('discussion', 'None')
+    if request.method == 'POST':
+        comment_dict = request.json
+        #TODO: get the real username here
+        comment_dict['username'] = 'a'
+        #Create the new comment
+        c_id = g.db.discussions.insert_comment(comment_dict)
+        comment = g.db.discussions.get_comment(c_id)
+        return False, comment
+
+    elif request.method == 'GET':
+        discussion_id = request.args.get('discussion', 'None')
     try:
         discussion_id = int(discussion_id)
     except ValueError:

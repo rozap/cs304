@@ -7,8 +7,11 @@ define([
 	'views',
 
 	'text!templates/discussions/discussions.html',
+	'text!templates/discussions/discussion.html',
+	'text!templates/discussions/new-comment.html',
 
-], function($, _, Backbone, Collections, Models, Views, DiscussionListViewTemplate) {
+], function($, _, Backbone, Collections, Models, Views, DiscussionListViewTemplate,
+	DiscussionViewTemplate, NewCommentViewTemplate) {
 
 
 	var DiscussionsView = Views.AbstractView.extend({
@@ -22,11 +25,50 @@ define([
 			this.listenTo(this.collection, 'sync', this.render);
 			this.collection.fetch();
 		},
+	});
 
-		render: function(ctx) {
-			ctx.collection = this.collection;
-			return Views.AbstractView.prototype.render.call(this, ctx);
-		}
+
+	var NewCommentView = Views.AbstractView.extend({
+
+		el: '#new-comment-container',
+
+		template: _.template(NewCommentViewTemplate),
+
+		events: {
+			'click .save-comment': 'save',
+			'click .cancel-comment': 'cancel',
+		},
+
+		initialize: function(app, parent) {
+			Views.AbstractView.prototype.initialize.call(this, app, parent);
+			this.render();
+		},
+
+		hydrate: function() {
+			var $form = this.$el.find('#comment-form'),
+				data = $form.serializeObject(true);
+			var comment = new Models.Comment(data);
+			comment.set('discussion_id', this.app.context.discussion.id);
+			return comment;
+		},
+
+		save: function() {
+			var comment = this.hydrate(),
+				that = this;
+			this.parent.collection.create(comment, {
+				wait: true,
+				success: function(comments) {
+					console.log(comments.toJSON());
+					// that.parent.collection.add();
+				},
+				error: function() {
+					console.log('fuck');
+				}
+			});
+		},
+
+		cancel: function() {}
+
 	});
 
 
@@ -34,16 +76,29 @@ define([
 	var DiscussionView = Views.AbstractView.extend({
 		el: '#main',
 
-		initialize: function(app, parent) {
-			Views.AbstractView.prototype.initialize.call(this, app);
+		template: _.template(DiscussionViewTemplate),
 
-			this.model = new Models.Discussion(app);
-			this.listenTo(this.model, 'sync', this.render);
-			this.collection.fetch();
-
+		events: {
+			'click .new-comment-btn': 'newComment'
 		},
 
-		render: function(ctx) {
+		initialize: function(app, parent) {
+			Views.AbstractView.prototype.initialize.call(this, app);
+			this.model = new Models.Discussion({
+				id: app.context.discussion.id
+			}, app);
+			this.collection = new Collections.Comments(app);
+			this.listenTo(this.model, 'sync', this.render);
+			this.listenTo(this.collection, 'sync', this.render);
+			//this will call render twice but #yolo this is a school project
+			this.model.fetch();
+			this.collection.fetch();
+			window.thing = this;
+		},
+
+
+		newComment: function() {
+			this.newCommentView = new NewCommentView(this.app, this);
 
 		}
 	});
@@ -51,6 +106,7 @@ define([
 
 
 	return {
+		DiscussionView: DiscussionView,
 		DiscussionsView: DiscussionsView
 	}
 

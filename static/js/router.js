@@ -3,7 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'views/games',
-	'views/discussion'
+	'views/discussions'
 
 
 ], function($, _, Backbone, GameViews, DiscussionViews) {
@@ -14,9 +14,9 @@ define([
 
 		routes: {
 			"": "home",
-			"games": "gameList",
+			"games/:id/discussions/:discussion_id": "discussion",
 			"games/:id": "game",
-			"games/:id/discussions/:discussion_id": "discussion"
+			"games": "gameList",
 
 		},
 

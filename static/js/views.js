@@ -7,8 +7,9 @@ define([
 
 	var AbstractView = Backbone.View.extend({
 
-		initialize: function(app) {
+		initialize: function(app, parent) {
 			this.app = app;
+			this.parent = parent;
 		},
 
 		context: function(ctx) {

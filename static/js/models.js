@@ -16,13 +16,20 @@ define([
 
 	var Discussion = AbstractModel.extend({
 		url: function() {
-			return '/api/discussion' + (this.get('id') ? '/' + this.get('id') : '');
+			return '/api/discussions' + (this.get('id') ? '/' + this.get('id') : '');
+		}
+	});
+
+	var Comment = AbstractModel.extend({
+		url: function() {
+			return '/api/comments' + (this.get('id') ? '/' + this.get('id') : '');
 		}
 	});
 
 	return {
 		Discussion: Discussion,
-		Game: Game
+		Game: Game,
+		Comment: Comment
 	}
 
 

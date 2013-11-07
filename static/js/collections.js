@@ -46,9 +46,24 @@ define([
 		}
 	});
 
+
+	var Comments = AbstractCollection.extend({
+		objName: 'comments',
+		_url: '/api/comments',
+		model: Models.Comment,
+
+		initialize: function(app) {
+			this.filters = {
+				discussion: app.context.discussion.id
+			}
+		}
+	});
+
+
 	return {
 		Games: Games,
-		Discussions: Discussions
+		Discussions: Discussions,
+		Comments: Comments
 	}
 
 
