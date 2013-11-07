@@ -30,7 +30,7 @@ def list_comments():
     if request.method == 'POST':
         comment_dict = request.json
         #TODO: get the real username here
-        comment_dict['username'] = 'a'
+        comment_dict['username'] = 'f'
         #Create the new comment
         c_id = g.db.discussions.insert_comment(comment_dict)
         comment = g.db.discussions.get_comment(c_id)

@@ -18,6 +18,7 @@ app.add_url_rule('/api/discussions', view_func=LazyView('api.discussion.list_dis
 app.add_url_rule('/api/discussions/<int:discussion_id>', view_func=LazyView('api.discussion.detail_discussion'), methods = ('GET', 'POST', 'PUT'))
 
 app.add_url_rule('/api/comments', view_func=LazyView('api.discussion.list_comments'), methods = ('GET', 'POST', 'PUT'))
+app.add_url_rule('/api/avatars', view_func=LazyView('api.avatars.list_avatars'), methods = ('GET',))
 
 
 @app.route('/')

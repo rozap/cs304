@@ -5945,7 +5945,8 @@ body {
   border: 1px solid #f4f4f4;
 }
 .comment .avatar img {
-  max-height: 90px;
+  max-height: 120px;
+  max-width: 120px;
 }
 .discussion-thing {
   padding: 30px 0px;

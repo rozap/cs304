@@ -19,7 +19,10 @@ define([
 				}
 				str += key + '=' + obj[key];
 			}
-			return '?' + str;
+			if (str.length > 2) {
+				return '?' + str;
+			}
+			return ''
 		},
 
 
@@ -59,11 +62,22 @@ define([
 		}
 	});
 
+	var Avatars = AbstractCollection.extend({
+		objName: 'avatars',
+		_url: '/api/avatars',
+
+		//Make the avatars random
+		comparator: function(a, b) {
+			return Math.random() > .5 ? 1 : 0;
+		}
+	});
+
 
 	return {
 		Games: Games,
 		Discussions: Discussions,
-		Comments: Comments
+		Comments: Comments,
+		Avatars: Avatars
 	}
 
 
