@@ -3,7 +3,7 @@ from managers import Manager, entity_list, entity_write, entity_single
 class SessionManager(Manager):
 
 	@entity_list()
-	def get_session_by_user(self, user):
+	def get_session_with_user(self, user):
 		cursor = self.db.cursor()
 		cursor.execute("""
 			SELECT 

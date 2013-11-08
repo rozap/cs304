@@ -39,6 +39,15 @@ define([
 		register: function(event) {
 			var user = this.hydrate();
 			console.log(user.toJSON());
+			this.collection.create(user, {
+				wait: true,
+				success: function(user) {
+					console.log(user.toJSON());
+				},
+				error: function() {
+					console.log('fuck');
+				}
+			});
 		},
 
 		hydrate: function() {
@@ -50,9 +59,8 @@ define([
 
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
-			this.model = new Models.Session({
-			});
-			this.listenTo(this.model, 'sync', this.render);
+			this.collection = new Collections.Register(app);
+			this.listenTo(this.collection, 'sync', this.render);
 			console.log("Register");
 			this.render();
 		},

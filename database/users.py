@@ -4,7 +4,39 @@ from managers import Manager, entity_list, entity_write, entity_single
 
 
 class UserManager(Manager):
-	
+
+	@entity_write()
+	def insert_user(self, vals):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			INSERT INTO user(username, password)
+			VALUES(%s, %s)	
+			""", (vals['username'], vals['password']))
+		return self.db, cursor
+
+	@entity_single()
+	def get_user_with_login(self, vals):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT u.username 
+			FROM user u
+			WHERE u.username = %s
+			AND u.password = %s
+			""", (vals['username'], vals['password']))
+		results = cursor.fetchall()
+		return cursor, results
+
+	@entity_single()
+	def get_user(self, vals):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT u.username 
+			FROM user u
+			WHERE u.username = %s
+			""", (vals['username'],))
+		results = cursor.fetchall()
+		return cursor, results
+
 	@entity_list()
 	def get_users(self):
 		return []
