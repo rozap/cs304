@@ -5954,8 +5954,11 @@ body {
 }
 .discussion-actions {
   padding: 15px 0px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eeeeee;
 }
-#new-comment-container .input-group {
+#new-comment-container .input-group,
+#new-discussion-container .input-group {
   width: 100%;
 }
 .space-top {

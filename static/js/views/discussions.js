@@ -9,9 +9,40 @@ define([
 	'text!templates/discussions/discussions.html',
 	'text!templates/discussions/discussion.html',
 	'text!templates/discussions/new-comment.html',
+	'text!templates/discussions/new-discussion.html',
 
 ], function($, _, Backbone, Collections, Models, Views, DiscussionListViewTemplate,
-	DiscussionViewTemplate, NewCommentViewTemplate) {
+	DiscussionViewTemplate, NewCommentViewTemplate, NewDiscussionViewTemplate) {
+
+
+	var NewDiscussionView = Views.AbstractView.extend({
+
+		el: '#new-discussion-container',
+
+		template: _.template(NewDiscussionViewTemplate),
+
+		events: {
+			'click .save-discussion': 'save',
+		},
+
+		hydrate: function() {
+			var data = this.$el.find('#discussion-form').serializeObject();
+			data.game_id = this.app.context.game.id;
+			return data;
+		},
+
+		save: function() {
+			var disc = this.hydrate();
+			this.parent.collection.create(disc, {
+				wait: true,
+				success: function() {},
+				error: function() {}
+			})
+		}
+
+
+
+	});
 
 
 	var DiscussionsView = Views.AbstractView.extend({
@@ -19,12 +50,21 @@ define([
 
 		el: '#discussions',
 
+		events: {
+			'click .new-discussion-btn': 'newDiscussion'
+		},
+
 		initialize: function(app, parent) {
 			Views.AbstractView.prototype.initialize.call(this, app);
 			this.collection = new Collections.Discussions(app);
 			this.listenTo(this.collection, 'sync', this.render);
 			this.collection.fetch();
 		},
+
+
+		newDiscussion: function() {
+			this.addSubview('newDiscussionView', new NewDiscussionView(this.app, this)).render();
+		}
 	});
 
 

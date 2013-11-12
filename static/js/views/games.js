@@ -30,7 +30,7 @@ define([
 
 		render: function(ctx) {
 			Views.AbstractView.prototype.render.call(this, ctx);
-			this.discussionView = new Discussions.DiscussionsView(this.app, this);
+			this.addSubview('discussionsView', new Discussions.DiscussionsView(this.app, this));
 		}
 
 

@@ -46,6 +46,10 @@ define([
 			this.filters = {
 				game: app.context.game.id
 			}
+		},
+
+		comparator: function(d1, d2) {
+			return d1.get('id') < d2.get('id');
 		}
 	});
 

@@ -5,8 +5,14 @@ from api import json_view
 @json_view
 def list_discussions():
     if request.method == 'POST':
+        discussion_dict = request.json
+        #TODO: get the real username here
+        discussion_dict['username'] = 'a'
+        print discussion_dict
         #Create the new discussion
-        g.db.discussions.insert_discussion(request.json)
+        discussion_id = g.db.discussions.insert_discussion(discussion_dict)
+        discussion = g.db.discussions.get_discussion(discussion_id)
+        return False, discussion
 
     game_id = request.args.get('game', 'None')
     print game_id
