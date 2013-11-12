@@ -308,6 +308,13 @@ LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `session`;
+CREATE TABLE `session` (
+  `session_id` varchar(255) NOT NULL,
+  `user` varchar(255) NOT NULL,
+  PRIMARY KEY (`session_id`),
+  CONSTRAINT FOREIGN KEY (`user`) REFERENCES `user` (`username`)
+);
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
