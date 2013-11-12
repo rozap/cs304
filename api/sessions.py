@@ -3,16 +3,17 @@ from api import json_view
 
 @json_view
 def list_session():
-	print request.json
+	print 'test'
 	if request.method == 'POST':
 		g.db.users.insert_user(request.json)
 	user = g.db.users.get_user_with_login(request.json)
 	# todo: generate some token 
 	# session = g.db.users.insert_session(user, token)
-	return user #session
+	return 'user', user #sessionsion
 
 @json_view
 def detail_session():
+	print '123'
 	try:
 		user = g.db.users.get_user_login(request.json)
 		if not user:

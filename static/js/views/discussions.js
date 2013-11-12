@@ -54,7 +54,7 @@ define([
 
 		save: function() {
 			var comment = this.hydrate(),
-				that = this;
+				that = this; // lol i have no idea what this doessss
 			this.parent.collection.create(comment, {
 				wait: true,
 				success: function(comments) {

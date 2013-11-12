@@ -70,7 +70,7 @@ define([
 		Games: Games,
 		Discussions: Discussions,
 		Comments: Comments,
-		Register: Register,
+		Register: Register
 	}
 
 

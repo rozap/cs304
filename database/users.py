@@ -7,6 +7,7 @@ class UserManager(Manager):
 
 	@entity_write()
 	def insert_user(self, vals):
+		print 'inserting user'
 		cursor = self.db.cursor()
 		cursor.execute("""
 			INSERT INTO user(username, password)
