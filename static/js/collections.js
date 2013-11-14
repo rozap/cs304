@@ -7,6 +7,18 @@ define([
 ], function($, _, Backbone, Models) {
 
 	var AbstractCollection = Backbone.Collection.extend({
+
+		PAGE_SIZE: 10,
+
+
+		initialize: function(models, attrs) {
+			Backbone.Collection.prototype.initialize.call(this, models, attrs);
+			this.filters = {
+				offset: 0
+			}
+
+		},
+
 		parse: function(obj) {
 			return obj[this.objName]
 		},
@@ -27,8 +39,27 @@ define([
 
 
 		url: function() {
-			this.filters = this.filters || {};
 			return this._url + this._toGetParams(this.filters);
+		},
+
+		nextPage: function() {
+			var off = this.filters.offset || 0;
+			this.filters.offset = off + this.PAGE_SIZE;
+			this.fetch();
+		},
+
+		previousPage: function() {
+			var off = (this.filters.offset || 0) - this.PAGE_SIZE
+			this.filters.offset = off;
+			this.fetch();
+		},
+
+		hasNext: function() {
+			return this.length >= this.PAGE_SIZE;
+		},
+
+		hasPrevious: function() {
+			return this.filters.offset != 0;
 		}
 
 	});
@@ -42,10 +73,11 @@ define([
 		objName: 'discussions',
 		_url: '/api/discussions',
 
-		initialize: function(app) {
-			this.filters = {
+		initialize: function(models, app) {
+			AbstractCollection.prototype.initialize.call(this, models, app);
+			this.filters = _.extend(this.filters, {
 				game: app.context.game.id
-			}
+			})
 		},
 
 		comparator: function(d1, d2) {
@@ -88,7 +120,7 @@ define([
 		Games: Games,
 		Discussions: Discussions,
 		Comments: Comments,
-		Avatars: Avatars
+		Avatars: Avatars,
 		Register: Register
 	}
 

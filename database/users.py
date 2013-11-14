@@ -1,5 +1,5 @@
 from managers import Manager, entity_list, entity_write, entity_single
-
+from datetime import datetime
 
 
 
@@ -10,9 +10,9 @@ class UserManager(Manager):
 		print 'inserting user'
 		cursor = self.db.cursor()
 		cursor.execute("""
-			INSERT INTO user(username, password)
-			VALUES(%s, %s)	
-			""", (vals['username'], vals['password']))
+			INSERT INTO user(username, password, join_date)
+			VALUES(%s, %s, %s)	
+			""", (vals['username'], vals['password'], datetime.now()))
 		return self.db, cursor
 
 	@entity_single()

@@ -5964,3 +5964,13 @@ body {
 .space-top {
   margin-top: 30px;
 }
+.game-title {
+  margin-bottom: 30px;
+}
+.game-title img {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  float: right;
+}

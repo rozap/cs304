@@ -14,13 +14,12 @@ def list_discussions():
         discussion = g.db.discussions.get_discussion(discussion_id)
         return False, discussion
 
-    game_id = request.args.get('game', 'None')
-    print game_id
     try:
-        game_id = int(game_id)
+        offset = int(request.args.get('offset', 0))
+        game_id = int(request.args.get('game', 'None'))
     except ValueError:
         abort(400)
-    discussions = g.db.discussions.get_discussions_for_game(game_id)
+    discussions = g.db.discussions.get_discussions_for_game(game_id, offset = offset)
     return 'discussions', discussions
 
 
@@ -36,7 +35,7 @@ def list_comments():
     if request.method == 'POST':
         comment_dict = request.json
         #TODO: get the real username here
-        comment_dict['username'] = 'f'
+        comment_dict['username'] = 'b'
         #Create the new comment
         c_id = g.db.discussions.insert_comment(comment_dict)
         comment = g.db.discussions.get_comment(c_id)

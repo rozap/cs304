@@ -45,8 +45,12 @@ define([
 				that.subviews[k].cleanup();
 			});
 			this._cleanup();
-
 		},
+
+		cancel: function() {
+			this.$el.html('');
+			this.cleanup();
+		}
 
 
 	})

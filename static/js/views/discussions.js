@@ -23,6 +23,7 @@ define([
 
 		events: {
 			'click .save-discussion': 'save',
+			'click .cancel-discussion': 'cancel',
 		},
 
 		hydrate: function() {
@@ -51,12 +52,14 @@ define([
 		el: '#discussions',
 
 		events: {
-			'click .new-discussion-btn': 'newDiscussion'
+			'click .new-discussion-btn': 'newDiscussion',
+			'click .next-discussion-page': 'next',
+			'click .previous-discussion-page': 'previous'
 		},
 
 		initialize: function(app, parent) {
 			Views.AbstractView.prototype.initialize.call(this, app);
-			this.collection = new Collections.Discussions(app);
+			this.collection = new Collections.Discussions([], app);
 			this.listenTo(this.collection, 'sync', this.render);
 			this.collection.fetch();
 		},
@@ -64,6 +67,14 @@ define([
 
 		newDiscussion: function() {
 			this.addSubview('newDiscussionView', new NewDiscussionView(this.app, this)).render();
+		},
+
+		next: function() {
+			this.collection.nextPage();
+		},
+
+		previous: function() {
+			this.collection.previousPage();
 		}
 	});
 

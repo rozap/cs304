@@ -47,7 +47,7 @@ define([
 
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
-			this.collection = new Collections.Games();
+			this.collection = new Collections.Games([], app);
 			this.listenTo(this.collection, 'sync', this.render);
 			this.collection.fetch();
 		},

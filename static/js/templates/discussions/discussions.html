@@ -24,6 +24,14 @@
 			</li>
 		<% }); %>
 		</ul>
+		<ul class="pager">
+			<% if(collection.hasPrevious()) { %>
+				<li class="previous previous-discussion-page"><a href="javascript:void(0)">&larr; Newer</a></li>
+			<% } %>
+			<% if(collection.hasNext()) { %>
+				<li class="next next-discussion-page"><a href="javascript:void(0)">Older &rarr;</a></li>
+			<% } %>
+		</ul>
 	</div>
 </div>
 
