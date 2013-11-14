@@ -7,9 +7,29 @@ define([
 	'views',
 
 	'text!templates/users/login.html',
-	'text!templates/users/register.html'
+	'text!templates/users/register.html',
+	'text!templates/users/profile.html'
 
-], function($, _, Backbone, Collections, Models, Views, LoginViewTemplate, RegisterViewTemplate) {
+], function($, _, Backbone, Collections, Models, Views, LoginViewTemplate, RegisterViewTemplate, ProfileViewTemplate) {
+
+	var ProfileView = Views.AbstractView.extend({
+		template: _.template(ProfileViewTemplate),
+
+		el: '#main',
+
+		initialize: function(app) {
+			Views.AbstractView.prototype.initialize.call(this, app);
+			this.model = new Models.User({}, app);
+			this.render();
+		},
+
+		render: function(ctx) {
+			ctx = this.context(ctx);
+			this.$el.html(this.template(ctx));
+		}
+
+	});
+
 	var RegisterView = Views.AbstractView.extend({
 		template: _.template(RegisterViewTemplate),
 
@@ -82,9 +102,7 @@ define([
 			this.model.set(this.hydrate());
 			this.model.sync('create', this.model, {
 				success: function(user) {
-					that.render({
-						success: 'Welcome dickweasel.'
-					});
+					window.location = '/#/games'
 				},
 				error: function() {
 					that.render({
@@ -104,6 +122,7 @@ define([
 
 	return {
 		LoginView: LoginView,
-		RegisterView: RegisterView
+		RegisterView: RegisterView,
+		ProfileView: ProfileView
 	}
 })

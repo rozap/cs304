@@ -19,7 +19,8 @@ define([
 			"games": "gameList",
 			"games/:id/discussions/:discussion_id": "discussion",
 			"login": "login",
-			"register": "register"
+			"register": "register",
+			"user/:username": "user"
 		},
 
 
@@ -66,6 +67,10 @@ define([
 
 		register: function() {
 			new UserViews.RegisterView(this.app);
+		},
+
+		user: function() {
+			new UserViews.ProfileView(this.app);
 		}
 
 

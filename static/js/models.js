@@ -38,11 +38,18 @@ define([
 		}
 	});
 
+	var User = AbstractModel.extend({
+		url: function() {
+			return '/api/user' + (this.get('username') ? '/' + this.get('username') : '');
+		}
+	});
+
 	return {
 		Discussion: Discussion,
 		Game: Game,
 		Comment: Comment,
 		Register: Register,
-		Login: Login
+		Login: Login,
+		User: User
 	}
 });
