@@ -4,7 +4,7 @@ from datetime import datetime
 class DiscussionManager(Manager):
 
     @entity_list()
-    def get_discussions_for_game(self, game_id):
+    def get_discussions_for_game(self, game_id, offset = 0, limit = 10):
         cursor = self.db.cursor()
         cursor.execute("""
             SELECT 
@@ -12,7 +12,11 @@ class DiscussionManager(Manager):
             FROM
                 discussion
             WHERE game_id = %s
-        """, (game_id,))
+            ORDER BY id DESC
+            LIMIT %s
+            OFFSET %s
+
+        """, (game_id, limit, offset))
         results = cursor.fetchall()
         return cursor, results
 
@@ -49,6 +53,23 @@ class DiscussionManager(Manager):
             )
         return self.db, cursor
 
+
+    @entity_write()
+    def update_discussion(self, vals, discussion_id):
+        if not vals.get('date', False):
+            vals['date'] = datetime.now()
+
+        cursor = self.db.cursor()
+        cursor.execute("""
+            UPDATE discussion SET title = %s,  body = %s
+            WHERE id = %s
+            """, (
+                vals['title'],
+                vals['body'],
+                discussion_id
+                )
+            )
+        return self.db, cursor
 
     @entity_list()
     def get_comments(self, discussion_id):

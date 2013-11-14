@@ -21,15 +21,13 @@ define([
 		register: function(event) {
 			var user = this.hydrate(),
 				that = this;
-			console.log(user.toJSON());
 			this.collection.create(user, {
-				wait: true,
 				success: function(user) {
-					console.log(user.toJSON());
+					that.render({
+						success: 'Registration succeeded! YAY!'
+					});
 				},
-				error: function() {
-					console.log('fuck');
-				}
+				error: function() {}
 			});
 		},
 
@@ -43,13 +41,15 @@ define([
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
 			this.collection = new Collections.Register(app);
-			this.listenTo(this.collection, 'sync', this.render);
-			console.log("Register");
 			this.render();
 		},
+
 		render: function(ctx) {
-			Views.AbstractView.prototype.render.call(this, ctx);
-		}
+			ctx = this.context(ctx);
+			ctx.success = ctx.success;
+			this.$el.html(this.template(ctx));
+		},
+
 	});
 
 	var LoginView = Views.AbstractView.extend({
@@ -59,10 +59,8 @@ define([
 
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
-			this.model = new Models.Session({
-			});
+			this.model = new Models.Session({});
 			this.listenTo(this.model, 'sync', this.render);
-			console.log("Login");
 			this.render();
 		},
 		render: function(ctx) {

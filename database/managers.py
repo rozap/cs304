@@ -3,12 +3,15 @@ from datetime import datetime
 
 class Manager(object):
 
+    exclude_filters = set(['offset', 'limit'])
+
     def __init__(self, db):
         self.db = db
 
     def create_filters(self, *args, **kwargs):
         where_args = ''
-        for i, k in enumerate(kwargs.keys()):
+        filters = list(set(kwargs.keys()) - self.exclude_filters)
+        for i, k in enumerate(filters):
             try:
                 float(kwargs[k][0])
                 if i == 0:
