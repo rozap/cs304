@@ -6,10 +6,7 @@ from api import json_view
 def list_discussions():
     if request.method == 'POST':
         discussion_dict = request.json
-        #TODO: get the real username here
-        discussion_dict['username'] = 'a'
-        print discussion_dict
-        #Create the new discussion
+        discussion_dict['username'] = g.user['username']
         discussion_id = g.db.discussions.insert_discussion(discussion_dict)
         discussion = g.db.discussions.get_discussion(discussion_id)
         return False, discussion
@@ -28,7 +25,7 @@ def list_discussions():
 @json_view
 def detail_discussion(discussion_id):
     if request.method == 'PUT':
-        g.db.discussions.update_discussion(request.json, discussion_id)
+        g.db.discussions.update_discussion(request.json, discussion_id, g.user['username'])
     discussion = g.db.discussions.get_discussion(discussion_id)
     return False, discussion
 
@@ -36,8 +33,7 @@ def detail_discussion(discussion_id):
 def list_comments():
     if request.method == 'POST':
         comment_dict = request.json
-        #TODO: get the real username here
-        comment_dict['username'] = 'b'
+        comment_dict['username'] = g.user['username']
         #Create the new comment
         c_id = g.db.discussions.insert_comment(comment_dict)
         comment = g.db.discussions.get_comment(c_id)

@@ -38,7 +38,6 @@ define([
 			disc.sync('create', disc, {
 				wait: true,
 				success: function(resp) {
-					console.log(resp);
 					disc.set(resp);
 					that.parent.collection.add(disc);
 					that.cancel();
@@ -136,9 +135,11 @@ define([
 		save: function() {
 			var comment = this.hydrate(),
 				that = this;
-			this.parent.collection.create(comment, {
-				wait: true,
-				success: function(comments) {
+			comment.sync('create', comment, {
+				success: function(resp) {
+					comment.set(resp);
+					that.parent.collection.add(comment);
+					that.parent.render();
 					that.cancel();
 				},
 				error: function() {}
