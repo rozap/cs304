@@ -11,8 +11,12 @@ define([
 		PAGE_SIZE: 10,
 
 
-		initialize: function(models, attrs) {
-			Backbone.Collection.prototype.initialize.call(this, models, attrs);
+		initialize: function(models, app) {
+			Backbone.Collection.prototype.initialize.call(this, models, app);
+			if (!app) {
+				throw new Error("No app!");
+			}
+
 			this.filters = {
 				offset: 0
 			}

@@ -9,7 +9,7 @@ from discussions import DiscussionManager
 
 class Database(object):
 
-    def __init__(self, app):
+    def __init__(self):
         self.db = MySQLdb.connect(
             host='localhost', # your host, usually localhost
             user='vapour', # your username

@@ -28,7 +28,7 @@ def index():
 
 @app.before_request
 def before_request():
-    g.db = Database(app)
+    g.db = Database()
 
 @app.teardown_request
 def teardown_request(exception):
