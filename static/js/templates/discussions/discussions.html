@@ -1,8 +1,37 @@
-<h5>Discussions</h5>
-<ul class="nav nav-pulls nav-stacked">
-<% collection.each(function(discussion) { %>
-	<li>
-		<a href="#/games/<%- app.context.game.id %>/discussions/<%- discussion.get('id') %>"><%- discussion.get('title') %></a>
-	</li>
-<% }); %>
-</ul>
+<div class="row discussion-actions">
+	<div class="col-md-10">
+		<h5>Discussions</h5>
+	</div>
+	<div class="col-md-2">
+		<a href="javascript:void(0)"
+			class="btn btn-primary new-discussion-btn">
+			New Discussion
+		</a>
+	</div>
+</div>
+<div class="row new-discussion" id="new-discussion-container">
+
+
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<ul class="nav nav-pulls nav-stacked">
+		<% collection.each(function(discussion) { %>
+			<li>
+				<a href="#/games/<%- app.context.game.id %>/discussions/<%- discussion.get('id') %>">
+					<%- discussion.get('title') %>
+				</a>
+			</li>
+		<% }); %>
+		</ul>
+		<ul class="pager">
+			<% if(collection.hasPrevious()) { %>
+				<li class="previous previous-discussion-page"><a href="javascript:void(0)">&larr; Newer</a></li>
+			<% } %>
+			<% if(collection.hasNext()) { %>
+				<li class="next next-discussion-page"><a href="javascript:void(0)">Older &rarr;</a></li>
+			<% } %>
+		</ul>
+	</div>
+</div>
+

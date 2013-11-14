@@ -22,31 +22,41 @@ define([
 			"register": "register"
 		},
 
+
+		cleanup: function() {
+			if (this.mainView) {
+				this.mainView.cleanup();
+			}
+		},
+
 		initialize: function(opts) {
+			this.cleanup();
 			this.app = opts.app;
 			this.app.router = this;
 			this.app.context = {};
 		},
 
 		gameList: function() {
-			new GameViews.GameListView(this.app);
+			this.mainView = new GameViews.GameListView(this.app);
 		},
 
 		game: function(id) {
+			this.cleanup();
 			this.app.context.game = {
 				id: id
 			};
-			new GameViews.GameView(this.app);
+			this.mainView = new GameViews.GameView(this.app);
 		},
 
 		discussion: function(id, discussion) {
+			this.cleanup();
 			this.app.context.game = {
 				id: id
 			};
 			this.app.context.discussion = {
-				id: id
+				id: discussion
 			};
-			new DiscussionViews.DiscussionView(this.app);
+			this.mainView = new DiscussionViews.DiscussionView(this.app);
 
 		},
 

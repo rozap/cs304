@@ -30,7 +30,7 @@ define([
 
 		render: function(ctx) {
 			Views.AbstractView.prototype.render.call(this, ctx);
-			this.discussionView = new Discussions.DiscussionsView(this.app, this);
+			this.addSubview('discussionsView', new Discussions.DiscussionsView(this.app, this));
 		}
 
 
@@ -47,7 +47,7 @@ define([
 
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
-			this.collection = new Collections.Games();
+			this.collection = new Collections.Games([], app);
 			this.listenTo(this.collection, 'sync', this.render);
 			this.collection.fetch();
 		},

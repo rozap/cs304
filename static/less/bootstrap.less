@@ -116,29 +116,42 @@ body {
 
 	.avatar {
 		img {
-			max-height:90px;
-			
+			max-height:120px;
+			max-width:120px;
 		}
 	}
 }
 
 .discussion-thing {
 	padding:@grid-gutter-width 0px;
+
 	border-bottom: 1px solid @gray-lighter;
 }
 .discussion-actions {
 	padding: @grid-gutter-width/2 0px;
+	margin-bottom:@grid-gutter-width/2;
+	border-bottom: 1px solid @gray-lighter;
+
 }
 
-#new-comment-container {
+#new-comment-container, #new-discussion-container, #edit-discussion-container {
 	.input-group {
-		width:100%;
-		
+		width:100%;	
 	}
 }
 
 .space-top {
 	margin-top: @grid-gutter-width;
+}
+
+.game-title {
+	margin-bottom: @grid-gutter-width;
+	img {
+		.border-top-radius(3px);
+		.border-bottom-radius(3px);
+		float: right;
+
+	}
 }
 
 

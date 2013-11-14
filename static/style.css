@@ -5945,7 +5945,8 @@ body {
   border: 1px solid #f4f4f4;
 }
 .comment .avatar img {
-  max-height: 90px;
+  max-height: 120px;
+  max-width: 120px;
 }
 .discussion-thing {
   padding: 30px 0px;
@@ -5953,10 +5954,24 @@ body {
 }
 .discussion-actions {
   padding: 15px 0px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eeeeee;
 }
-#new-comment-container .input-group {
+#new-comment-container .input-group,
+#new-discussion-container .input-group,
+#edit-discussion-container .input-group {
   width: 100%;
 }
 .space-top {
   margin-top: 30px;
+}
+.game-title {
+  margin-bottom: 30px;
+}
+.game-title img {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  float: right;
 }

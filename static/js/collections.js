@@ -7,6 +7,18 @@ define([
 ], function($, _, Backbone, Models) {
 
 	var AbstractCollection = Backbone.Collection.extend({
+
+		PAGE_SIZE: 10,
+
+
+		initialize: function(models, attrs) {
+			Backbone.Collection.prototype.initialize.call(this, models, attrs);
+			this.filters = {
+				offset: 0
+			}
+
+		},
+
 		parse: function(obj) {
 			return obj[this.objName]
 		},
@@ -19,13 +31,35 @@ define([
 				}
 				str += key + '=' + obj[key];
 			}
-			return '?' + str;
+			if (str.length > 2) {
+				return '?' + str;
+			}
+			return ''
 		},
 
 
 		url: function() {
-			this.filters = this.filters || {};
 			return this._url + this._toGetParams(this.filters);
+		},
+
+		nextPage: function() {
+			var off = this.filters.offset || 0;
+			this.filters.offset = off + this.PAGE_SIZE;
+			this.fetch();
+		},
+
+		previousPage: function() {
+			var off = (this.filters.offset || 0) - this.PAGE_SIZE
+			this.filters.offset = off;
+			this.fetch();
+		},
+
+		hasNext: function() {
+			return this.length >= this.PAGE_SIZE;
+		},
+
+		hasPrevious: function() {
+			return this.filters.offset != 0;
 		}
 
 	});
@@ -39,10 +73,15 @@ define([
 		objName: 'discussions',
 		_url: '/api/discussions',
 
-		initialize: function(app) {
-			this.filters = {
+		initialize: function(models, app) {
+			AbstractCollection.prototype.initialize.call(this, models, app);
+			this.filters = _.extend(this.filters, {
 				game: app.context.game.id
-			}
+			})
+		},
+
+		comparator: function(d1, d2) {
+			return d1.get('id') < d2.get('id');
 		}
 	});
 
@@ -59,6 +98,17 @@ define([
 		}
 	});
 
+	var Avatars = AbstractCollection.extend({
+		objName: 'avatars',
+		_url: '/api/avatars',
+
+		//Make the avatars random
+		comparator: function(a, b) {
+			return Math.random() > .5 ? 1 : 0;
+		}
+	});
+
+
 	var Register = AbstractCollection.extend({
 		objName: 'sessions',
 		_url: '/api/register',
@@ -70,6 +120,7 @@ define([
 		Games: Games,
 		Discussions: Discussions,
 		Comments: Comments,
+		Avatars: Avatars,
 		Register: Register
 	}
 

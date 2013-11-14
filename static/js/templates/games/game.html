@@ -1,20 +1,13 @@
-<div class="row">
+<div class="row game-title">
 	<div class="col-md-8">
 		<h1><%- model.get('title') %></h1>
+		<p><%- model.get('description') %></p>
 	</div>
 	<div class="col-md-4">
 		<img src="<%- model.get('image') %>"></div>
 </div>
-<div class="row">
-	<div class="col-md-12">
-		<p><%- model.get('description') %></p>
-	</div>
-</div>
 
 
-<div class="row">
-	<div id="discussions" class="col-md-12"></div>
-</div>
 
 <div class="row">
 	<div class="col-md-6">
@@ -58,4 +51,8 @@
 		</ul>
 	</div>
 
+</div>
+
+<div class="row">
+	<div id="discussions" class="col-md-12"></div>
 </div>

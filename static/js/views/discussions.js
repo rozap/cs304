@@ -9,9 +9,60 @@ define([
 	'text!templates/discussions/discussions.html',
 	'text!templates/discussions/discussion.html',
 	'text!templates/discussions/new-comment.html',
+	'text!templates/discussions/new-discussion.html',
 
 ], function($, _, Backbone, Collections, Models, Views, DiscussionListViewTemplate,
-	DiscussionViewTemplate, NewCommentViewTemplate) {
+	DiscussionViewTemplate, NewCommentViewTemplate, NewDiscussionViewTemplate) {
+
+
+	var NewDiscussionView = Views.AbstractView.extend({
+
+		el: '#new-discussion-container',
+
+		template: _.template(NewDiscussionViewTemplate),
+
+		events: {
+			'click .save-discussion': 'save',
+			'click .cancel-discussion': 'cancel',
+		},
+
+		hydrate: function() {
+			var data = this.$el.find('#discussion-form').serializeObject();
+			data.game_id = this.app.context.game.id;
+			return data;
+		},
+
+		save: function() {
+			var disc = this.hydrate();
+			this.parent.collection.create(disc, {
+				wait: true,
+			});
+		}
+	});
+
+	var EditDiscussionView = NewDiscussionView.extend({
+		el: '#edit-discussion-container',
+
+		initialize: function(opts, parent) {
+			NewDiscussionView.prototype.initialize.call(this, opts.app, parent);
+		},
+
+
+		save: function() {
+			var disc = this.hydrate(),
+				that = this;
+			this.model.set(disc);
+			this.model.sync('update', this.model, {
+				success: function(resp) {
+					console.log(resp);
+					that.parent.render();
+				},
+				error: function() {
+					console.log("error")
+				},
+			})
+		}
+	});
 
 
 	var DiscussionsView = Views.AbstractView.extend({
@@ -19,12 +70,32 @@ define([
 
 		el: '#discussions',
 
+		events: {
+			'click .new-discussion-btn': 'newDiscussion',
+			'click .next-discussion-page': 'next',
+			'click .previous-discussion-page': 'previous'
+		},
+
 		initialize: function(app, parent) {
 			Views.AbstractView.prototype.initialize.call(this, app);
-			this.collection = new Collections.Discussions(app);
+			this.collection = new Collections.Discussions([], app);
 			this.listenTo(this.collection, 'sync', this.render);
 			this.collection.fetch();
 		},
+
+
+		newDiscussion: function() {
+			this.addSubview('newDiscussionView', new NewDiscussionView(this.app, this)).render();
+		},
+
+		next: function() {
+			this.collection.nextPage();
+		},
+
+		previous: function() {
+			this.collection.previousPage();
+		},
+
 	});
 
 
@@ -57,17 +128,11 @@ define([
 				that = this; // lol i have no idea what this doessss
 			this.parent.collection.create(comment, {
 				wait: true,
-				success: function(comments) {
-					console.log(comments.toJSON());
-					// that.parent.collection.add();
-				},
-				error: function() {
-					console.log('fuck');
-				}
+				success: function(comments) {},
+				error: function() {}
 			});
 		},
 
-		cancel: function() {}
 
 	});
 
@@ -79,7 +144,8 @@ define([
 		template: _.template(DiscussionViewTemplate),
 
 		events: {
-			'click .new-comment-btn': 'newComment'
+			'click .new-comment-btn': 'newComment',
+			'click .edit-discussion-btn': 'edit'
 		},
 
 		initialize: function(app, parent) {
@@ -88,19 +154,63 @@ define([
 				id: app.context.discussion.id
 			}, app);
 			this.collection = new Collections.Comments(app);
-			this.listenTo(this.model, 'sync', this.render);
-			this.listenTo(this.collection, 'sync', this.render);
-			//this will call render twice but #yolo this is a school project
-			this.model.fetch();
-			this.collection.fetch();
-			window.thing = this;
+			this.avatars = new Collections.Avatars(app);
+			var that = this;
+			var done = _.after(3, function() {
+				that.render();
+
+				that.listenTo(that.model, 'sync', that.render);
+				that.listenTo(that.collection, 'sync', that.render);
+				that.listenTo(that.avatars, 'sync', that.render);
+			});
+			//this will call render thrice but #yolo this is a school project
+			this.model.fetch({
+				success: done
+			});
+			this.collection.fetch({
+				success: done
+			});
+			this.avatars.fetch({
+				success: done
+			});
+		},
+
+		render: function(ctx) {
+			var usernames = _.compact(_.uniq(this.collection.pluck('username')));
+
+			//VERY IMPORTANT
+			if (this.avatars.length && usernames.length) {
+				var that = this,
+					avs = this.avatars;
+				//assign a random avatar to a user, but make sure no one has the same av
+				_.each(usernames, function(name) {
+					var comments = that.collection.where({
+						username: name
+					});
+					var av = avs.pop();
+					if (av) {
+						_.each(comments, function(c) {
+							c.avatar = av;
+						});
+					}
+				});
+			}
+			Views.AbstractView.prototype.render.call(this, ctx);
 		},
 
 
 		newComment: function() {
-			this.newCommentView = new NewCommentView(this.app, this);
+			this.addSubview('newCommentView', new NewCommentView(this.app, this));
+		},
 
-		}
+		edit: function() {
+			var opts = {
+				app: this.app,
+				model: this.model
+			}
+			this.addSubview('editDiscussionView', new EditDiscussionView(opts, this)).render();
+		},
+
 	});
 
 
