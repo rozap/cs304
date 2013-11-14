@@ -36,13 +36,32 @@ define([
 			var disc = this.hydrate();
 			this.parent.collection.create(disc, {
 				wait: true,
-				success: function() {},
-				error: function() {}
+			});
+		}
+	});
+
+	var EditDiscussionView = NewDiscussionView.extend({
+		el: '#edit-discussion-container',
+
+		initialize: function(opts, parent) {
+			NewDiscussionView.prototype.initialize.call(this, opts.app, parent);
+		},
+
+
+		save: function() {
+			var disc = this.hydrate(),
+				that = this;
+			this.model.set(disc);
+			this.model.sync('update', this.model, {
+				success: function(resp) {
+					console.log(resp);
+					that.parent.render();
+				},
+				error: function() {
+					console.log("error")
+				},
 			})
 		}
-
-
-
 	});
 
 
@@ -75,7 +94,8 @@ define([
 
 		previous: function() {
 			this.collection.previousPage();
-		}
+		},
+
 	});
 
 
@@ -124,7 +144,8 @@ define([
 		template: _.template(DiscussionViewTemplate),
 
 		events: {
-			'click .new-comment-btn': 'newComment'
+			'click .new-comment-btn': 'newComment',
+			'click .edit-discussion-btn': 'edit'
 		},
 
 		initialize: function(app, parent) {
@@ -180,7 +201,16 @@ define([
 
 		newComment: function() {
 			this.addSubview('newCommentView', new NewCommentView(this.app, this));
-		}
+		},
+
+		edit: function() {
+			var opts = {
+				app: this.app,
+				model: this.model
+			}
+			this.addSubview('editDiscussionView', new EditDiscussionView(opts, this)).render();
+		},
+
 	});
 
 

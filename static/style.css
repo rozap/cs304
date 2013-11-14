@@ -5958,7 +5958,8 @@ body {
   border-bottom: 1px solid #eeeeee;
 }
 #new-comment-container .input-group,
-#new-discussion-container .input-group {
+#new-discussion-container .input-group,
+#edit-discussion-container .input-group {
   width: 100%;
 }
 .space-top {
