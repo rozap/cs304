@@ -5940,3 +5940,27 @@ td.visible-print {
 body {
   background: url('../static/img/bg.png');
 }
+.comment {
+  padding: 15px 0px;
+  border: 1px solid #f4f4f4;
+}
+.comment .avatar img {
+  max-height: 120px;
+  max-width: 120px;
+}
+.discussion-thing {
+  padding: 30px 0px;
+  border-bottom: 1px solid #eeeeee;
+}
+.discussion-actions {
+  padding: 15px 0px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eeeeee;
+}
+#new-comment-container .input-group,
+#new-discussion-container .input-group {
+  width: 100%;
+}
+.space-top {
+  margin-top: 30px;
+}

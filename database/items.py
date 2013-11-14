@@ -1,11 +1,6 @@
 from managers import Manager, entity_list, entity_write, entity_single
 
-
-
-
 class ItemManager(Manager):
-	
-
 	@entity_list()
 	def get_game_items(self, game_id):
 		cursor = self.db.cursor()

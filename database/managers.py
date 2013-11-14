@@ -81,6 +81,8 @@ def entity_write():
             #ugh, mysql needs commit to be called on the db, not the cursor..so we need
             #to have both returned .__.
             db.commit()
+            insert_id = cursor.lastrowid
             cursor.close()
+            return insert_id
         return wrapped
     return write
