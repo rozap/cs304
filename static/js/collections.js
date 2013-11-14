@@ -109,19 +109,11 @@ define([
 	});
 
 
-	var Register = AbstractCollection.extend({
-		objName: 'sessions',
-		_url: '/api/register',
-		model: Models.Register,
-	});
-
-
 	return {
 		Games: Games,
 		Discussions: Discussions,
 		Comments: Comments,
-		Avatars: Avatars,
-		Register: Register
+		Avatars: Avatars
 	}
 
 
