@@ -20,7 +20,7 @@ app.add_url_rule('/api/discussions/<int:discussion_id>', view_func=LazyView('api
 app.add_url_rule('/api/comments', view_func=LazyView('api.discussion.list_comments'), methods = ('GET', 'POST', 'PUT'))
 app.add_url_rule('/api/avatars', view_func=LazyView('api.avatars.list_avatars'), methods = ('GET',))
 app.add_url_rule('/api/register', view_func=LazyView('api.sessions.list_session'), methods = ('POST',))
-app.add_url_rule('/api/login', view_func=LazyView('api.sessions.detail_session'), methods = ('GET',))
+app.add_url_rule('/api/login', view_func=LazyView('api.sessions.detail_session'), methods = ('POST',))
 
 @app.route('/')
 def index():
@@ -28,7 +28,7 @@ def index():
 
 @app.before_request
 def before_request():
-    g.db = Database(app)
+    g.db = Database()
 
 @app.teardown_request
 def teardown_request(exception):

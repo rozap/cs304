@@ -1,24 +1,25 @@
 from flask import g, abort, request
 from api import json_view
+from uuid import uuid4
 
 @json_view
 def list_session():
-	print 'test'
 	if request.method == 'POST':
 		g.db.users.insert_user(request.json)
 	user = g.db.users.get_user_with_login(request.json)
-	# todo: generate some token 
-	# session = g.db.users.insert_session(user, token)
-	return 'user', user #sessionsion
+	token = str(uuid4())
+	session = g.db.sessions.insert_session(user['username'], token)
+	return 'session', session
 
 @json_view
 def detail_session():
-	print '123'
 	try:
-		user = g.db.users.get_user_login(request.json)
+		user = g.db.users.get_user_with_login(request.json)
+		print user
 		if not user:
 			abort(404)
-		session = g.db.sessions.get_session_with_user(user)
+		token = str(uuid4())
+		session = g.db.sessions.insert_session(user['username'], token)
 	except IndexError:
 		abort(404)
-	return user
+	return 'session', session

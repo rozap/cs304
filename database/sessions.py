@@ -16,10 +16,10 @@ class SessionManager(Manager):
 		return cursor, results
 
 	@entity_write()
-	def insert_session(self, vals):
-		cursor = self.db.cursor();
+	def insert_session(self, user, token):
+		cursor = self.db.cursor()
 		cursor.execute("""
 				INSERT INTO session(session_id, user)
 				VALUES(%s, %s)
-			"""), (vals['session_id'], vals['username']))
+			""", (token, user))
 		return self.db, cursor

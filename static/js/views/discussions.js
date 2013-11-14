@@ -33,12 +33,21 @@ define([
 		},
 
 		save: function() {
-			var disc = this.hydrate();
-			this.parent.collection.create(disc, {
+			var disc = new Models.Discussion(this.hydrate()),
+				that = this;
+			disc.sync('create', disc, {
 				wait: true,
-				success: function() {},
-				error: function() {}
-			})
+				success: function(resp) {
+					console.log(resp);
+					disc.set(resp);
+					that.parent.collection.add(disc);
+					that.cancel();
+					that.parent.render();
+				},
+				error: function() {
+
+				}
+			});
 		}
 	});
 
@@ -65,7 +74,6 @@ define([
 		}
 
 	});
-
 
 	var DiscussionsView = Views.AbstractView.extend({
 		template: _.template(DiscussionListViewTemplate),
@@ -96,7 +104,8 @@ define([
 
 		previous: function() {
 			this.collection.previousPage();
-		}
+		},
+
 	});
 
 
@@ -126,18 +135,17 @@ define([
 
 		save: function() {
 			var comment = this.hydrate(),
-				that = this; // lol i have no idea what this doessss
+				that = this;
 			this.parent.collection.create(comment, {
 				wait: true,
-				success: function(comments) {},
+				success: function(comments) {
+					that.cancel();
+				},
 				error: function() {}
 			});
 		},
 
-
 	});
-
-
 
 	var DiscussionView = Views.AbstractView.extend({
 		el: '#main',
@@ -154,8 +162,9 @@ define([
 			this.model = new Models.Discussion({
 				id: app.context.discussion.id
 			}, app);
-			this.collection = new Collections.Comments(app);
-			this.avatars = new Collections.Avatars(app);
+			console.log(app);
+			this.collection = new Collections.Comments([], app);
+			this.avatars = new Collections.Avatars([], app);
 			var that = this;
 			var done = _.after(3, function() {
 				that.render();
@@ -210,7 +219,8 @@ define([
 				model: this.model
 			}
 			this.addSubview('editDiscussionView', new EditDiscussionView(opts, this)).render();
-		}
+		},
+
 	});
 
 

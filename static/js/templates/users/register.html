@@ -9,6 +9,13 @@
       </div>
     </div>
     <% } %>
+    <% if(error) {%>
+    <div class="row">
+      <div class="alert alert-danger">
+        <%- error %>
+      </div>
+    </div>
+    <% } %>
     <div class="row">
       <div class="col-md-12">
         <form id="register-form" role="form">
