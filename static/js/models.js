@@ -32,7 +32,7 @@ define([
 		}
 	});
 
-	var Session = AbstractModel.extend({
+	var Login = AbstractModel.extend({
 		url: function() {
 			return '/api/login'
 		}
@@ -43,6 +43,6 @@ define([
 		Game: Game,
 		Comment: Comment,
 		Register: Register,
-		Session: Session
+		Login: Login
 	}
 });

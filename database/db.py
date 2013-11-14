@@ -6,6 +6,7 @@ from games import GameManager
 from achievements import AchievementManager
 from items import ItemManager 
 from discussions import DiscussionManager
+from sessions import SessionManager
 
 class Database(object):
 
@@ -21,6 +22,7 @@ class Database(object):
         self.achievements = AchievementManager(self.db)
         self.items = ItemManager(self.db)
         self.discussions = DiscussionManager(self.db)
+        self.sessions = SessionManager(self.db)
 
 
     def close(self):

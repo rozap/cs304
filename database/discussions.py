@@ -56,12 +56,9 @@ class DiscussionManager(Manager):
 
     @entity_write()
     def update_discussion(self, vals, discussion_id):
-        if not vals.get('date', False):
-            vals['date'] = datetime.now()
-
         cursor = self.db.cursor()
         cursor.execute("""
-            UPDATE discussion SET title = %s,  body = %s
+            UPDATE discussion SET title = %s, body = %s
             WHERE id = %s
             """, (
                 vals['title'],

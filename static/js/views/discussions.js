@@ -37,7 +37,9 @@ define([
 				that = this;
 			disc.sync('create', disc, {
 				wait: true,
-				success: function() {
+				success: function(resp) {
+					console.log(resp);
+					disc.set(resp);
 					that.parent.collection.add(disc);
 					that.cancel();
 					that.parent.render();
@@ -53,25 +55,26 @@ define([
 		el: '#edit-discussion-container',
 
 		initialize: function(opts, parent) {
+			this.model = opts.model;
 			NewDiscussionView.prototype.initialize.call(this, opts.app, parent);
 		},
 
-
 		save: function() {
-			var disc = this.hydrate(),
-				that = this;
-			this.model.set(disc);
+			var that = this;
+			this.model.set(this.hydrate());
+			console.log(this.model.toJSON());
 			this.model.sync('update', this.model, {
-				success: function(resp) {
-					console.log(resp);
+				success: function() {
+					that.cancel();
 					that.parent.render();
 				},
-				error: function() {
-					console.log("error")
-				},
-			})
+				error: function() {}
+			});
+
 		}
+
 	});
+
 	var DiscussionsView = Views.AbstractView.extend({
 		template: _.template(DiscussionListViewTemplate),
 
@@ -151,7 +154,7 @@ define([
 
 		events: {
 			'click .new-comment-btn': 'newComment',
-			'click .edit-discussion-btn': 'edit'
+			'click .edit-discussion-btn': 'edit',
 		},
 
 		initialize: function(app, parent) {
@@ -159,6 +162,7 @@ define([
 			this.model = new Models.Discussion({
 				id: app.context.discussion.id
 			}, app);
+			console.log(app);
 			this.collection = new Collections.Comments([], app);
 			this.avatars = new Collections.Avatars([], app);
 			var that = this;
