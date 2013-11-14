@@ -40,8 +40,29 @@ define([
 				error: function() {}
 			})
 		}
+	});
 
+	var EditDiscussionView = NewDiscussionView.extend({
+		el: '#edit-discussion-container',
 
+		initialize: function(opts, parent) {
+			this.model = opts.model;
+			NewDiscussionView.prototype.initialize.call(this, opts.app, parent);
+		},
+
+		save: function() {
+			var that = this;
+			this.model.set(this.hydrate());
+			console.log(this.model.toJSON());
+			this.model.sync('update', this.model, {
+				success: function() {
+					that.cancel();
+					that.parent.render();
+				},
+				error: function() {}
+			});
+
+		}
 
 	});
 
@@ -124,7 +145,8 @@ define([
 		template: _.template(DiscussionViewTemplate),
 
 		events: {
-			'click .new-comment-btn': 'newComment'
+			'click .new-comment-btn': 'newComment',
+			'click .edit-discussion-btn': 'edit',
 		},
 
 		initialize: function(app, parent) {
@@ -180,6 +202,14 @@ define([
 
 		newComment: function() {
 			this.addSubview('newCommentView', new NewCommentView(this.app, this));
+		},
+
+		edit: function() {
+			var opts = {
+				app: this.app,
+				model: this.model
+			}
+			this.addSubview('editDiscussionView', new EditDiscussionView(opts, this)).render();
 		}
 	});
 

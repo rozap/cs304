@@ -27,6 +27,8 @@ def list_discussions():
 
 @json_view
 def detail_discussion(discussion_id):
+    if request.method == 'PUT':
+        g.db.discussions.update_discussion(request.json, discussion_id)
     discussion = g.db.discussions.get_discussion(discussion_id)
     return False, discussion
 

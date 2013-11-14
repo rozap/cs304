@@ -54,6 +54,20 @@ class DiscussionManager(Manager):
         return self.db, cursor
 
 
+    @entity_write()
+    def update_discussion(self, vals, discussion_id):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            UPDATE discussion SET title = %s, body = %s
+            WHERE id = %s
+            """, (
+                vals['title'],
+                vals['body'],
+                discussion_id
+                )
+            )
+        return self.db, cursor
+
     @entity_list()
     def get_comments(self, discussion_id):
         cursor = self.db.cursor()
