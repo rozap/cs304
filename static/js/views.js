@@ -17,8 +17,8 @@ define([
 		context: function(ctx) {
 			ctx = ctx || {};
 			ctx.app = this.app;
-			this.collection && (ctx.collection = this.collection);
-			this.model && (ctx.model = this.model);
+			ctx.collection = this.collection;
+			ctx.model = this.model;
 			return ctx;
 		},
 
