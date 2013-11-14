@@ -10,7 +10,7 @@ from database import Database
 class GameGetter(object):
 
     def __init__(self):
-        self.db = Database(None)
+        self.db = Database()
 
     def get_games(self):
         games_resp = requests.get('http://api.steampowered.com/ISteamApps/GetAppList/v0001/')

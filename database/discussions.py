@@ -55,15 +55,16 @@ class DiscussionManager(Manager):
 
 
     @entity_write()
-    def update_discussion(self, vals, discussion_id):
+    def update_discussion(self, vals, discussion_id, username):
         cursor = self.db.cursor()
         cursor.execute("""
             UPDATE discussion SET title = %s, body = %s
-            WHERE id = %s
+            WHERE id = %s AND username = %s
             """, (
                 vals['title'],
                 vals['body'],
-                discussion_id
+                discussion_id,
+                username
                 )
             )
         return self.db, cursor
