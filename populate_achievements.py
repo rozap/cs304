@@ -1,7 +1,5 @@
 from database import Database
 
-
-
 def get_games(db):
     games = db.games.get_game_ids(limit=100000)
     return games
@@ -40,6 +38,6 @@ def add_achievements(db):
         add_achievement3(db, game_id)
 
 if __name__ == "__main__":
-    db = Database(None)
+    db = Database()
     add_achievements(db)
     db.close()
