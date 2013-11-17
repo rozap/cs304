@@ -43,7 +43,7 @@ class AchievementManager(Manager):
         return self.db, cursor
 
     @entity_write()
-    def insert_achievment(self, vals):
+    def insert_achievement(self, vals):
         cursor = self.db.cursor()
         cursor.execute("""
             INSERT INTO achievement(title, game_id, description)
