@@ -30,3 +30,9 @@ def login():
     except IndexError:
         abort(404)
     return 'session', s
+
+@json_view
+def logout():
+    # TODO: delete that shit from the database
+    session.pop(session['username'], none)
+    return none
