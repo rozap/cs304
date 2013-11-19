@@ -31,6 +31,20 @@ class AchievementManager(Manager):
         results = cursor.fetchall()
         return cursor, results
 
+    # Get the amount of users who have unlocked an achievement
+    @entity_list()
+    def get_amount_owners(self, title, game_id, user):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                count(user)
+            FROM
+                achievement_unlock
+            WHERE achievement = %s AND game_id = %s
+        """, (title, game_id))
+        results = cursor.fetchall()
+        return cursor, results
+
     @entity_write()
     def delete_achievement(self, title, game_id):
         cursor = self.db.cursor()

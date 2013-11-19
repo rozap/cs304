@@ -27,6 +27,20 @@ class ItemManager(Manager):
         results = cursor.fetchall()
         return cursor, results
 
+    # Get the amount of users who have unlocked an item
+    @entity_list()
+    def get_amount_owners(self, title, game_id, user):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                count(user)
+            FROM
+                item_unlock
+            WHERE item = %s AND game_id = %s
+        """, (title, game_id))
+        results = cursor.fetchall()
+        return cursor, results
+
     @entity_write()
     def delete_item(self, title, game_id):
         cursor = self.db.cursor()
