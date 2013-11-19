@@ -56,3 +56,45 @@ class UserManager(Manager):
 		""", (game_id,))
 		results = cursor.fetchall()
 		return cursor, results
+
+	@entity_list()
+	def get_users_games(self, user_id):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT * 
+			FROM
+				game_purchase gp, game g
+			WHERE 
+				gp.user = %s AND
+				g.id = gp.game
+			""", (user_id,))
+		results = cursor.fetchall()
+		return cursor, results
+
+	@entity_list()
+	def get_users_acheivements(self, user_id):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT *
+			FROM
+				achievement_unlock au, achievement a
+			WHERE
+				au.user = %s AND
+				au.achievement = a.achievement
+			""", (user_id,))
+		results = cursor.fetchall()
+		return cursor, results
+
+	@entity_list()
+	def get_users_items(self, user_id):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT *
+			FROM
+				item_unlock iu, item i 
+			WHERE
+				iu.user = %s AND
+				iu.item = i.title
+			""", (user_id,))
+		results = cursor.fetchall()
+		return cursor, results
