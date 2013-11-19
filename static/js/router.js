@@ -62,15 +62,19 @@ define([
 		},
 
 		login: function() {
-			new UserViews.LoginView(this.app);
+			this.mainView = new UserViews.LoginView(this.app);
 		},
 
 		register: function() {
-			new UserViews.RegisterView(this.app);
+			this.mainView = new UserViews.RegisterView(this.app);
 		},
 
-		user: function() {
-			new UserViews.ProfileView(this.app);
+		user: function(username) {
+			this.cleanup();
+			this.app.context.user = {
+				username: username
+			};
+			this.mainView = new UserViews.ProfileView(this.app);
 		}
 
 

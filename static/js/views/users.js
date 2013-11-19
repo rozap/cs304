@@ -19,13 +19,17 @@ define([
 
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
-			this.model = new Models.User({}, app);
-			this.render();
+			this.model = new Models.User({
+				username: this.app.context.user.username
+			});
+			this.listenTo(this.model, 'sync', this.render);
+			this.model.fetch();
 		},
 
 		render: function(ctx) {
 			ctx = this.context(ctx);
 			this.$el.html(this.template(ctx));
+			Views.AbstractView.prototype.render.call(this, ctx);
 		}
 
 	});
