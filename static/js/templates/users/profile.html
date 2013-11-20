@@ -7,20 +7,21 @@
     Show <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Games Purchased
+    <li class="show_games"><a href="javascript:void(0)">Games Purchased
 	    <span class="label label-default"><%- model.get('games_count') %></span>
 	</a></li>
-    <li><a href="#">Achievements Unlocked
+    <li class="show_achievements"><a href="javascript:void(0)">Achievements Unlocked
 	    <span class="label label-default"><%- model.get('achievements_count') %></span>
 	</a></li>
-    <li><a href="#">Items Unlocked
+    <li class="show_items"><a href="javascript:void(0)">Items Unlocked
 	    <span class="label label-default"><%- model.get('items_count') %></span>
 	</a></li>
   </ul>
 </div>
 
 <div class="row">
-	<div class="col-md-6">
+	<% if(showGamesOnly) {%>
+	<div class="col-md-3">
 		<h5>Games Purchased</h5>
 		<ul class="nav nav-pills nav-stacked">
 			<% _.each(model.get('games'), function(game) { %>
@@ -32,8 +33,9 @@
 			<% }); %>
 		</ul>
 	</div>
+	<% } %>
 
-
+	<% if(showItemsOnly) {%>
 	<div class="col-md-3">
 		<h5>Items Unlocked</h5>
 		<ul class="nav nav-pills nav-stacked">
@@ -46,8 +48,9 @@
 			<% }); %>
 		</ul>
 	</div>
+	<% } %>
 
-
+	<% if(showAchievementsOnly) {%>
 	<div class="col-md-3">
 		<h5>Achievements Unlocked</h5>
 		<ul class="nav nav-pills nav-stacked">
@@ -60,5 +63,6 @@
 			<% }); %>
 		</ul>
 	</div>
+	<% } %>
 
 </div>

@@ -17,6 +17,12 @@ define([
 
 		el: '#main',
 
+		events: {
+			"click .show_games": "showGamesOnly",
+			"click .show_items": "showItemsOnly",
+			"click .show_achievements": "showAchievementsOnly",
+		},
+
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
 			this.model = new Models.User({
@@ -24,11 +30,39 @@ define([
 			});
 			this.listenTo(this.model, 'sync', this.render);
 			this.model.fetch();
-			console.log(this.model);
 		},
 
 		render: function(ctx) {
-			Views.AbstractView.prototype.render.call(this, ctx);
+			ctx = this.context(ctx);
+			ctx.showGamesOnly = ctx.showGamesOnly;
+			ctx.showItemsOnly = ctx.showItemsOnly;
+			ctx.showAchievementsOnly = ctx.showAchievementsOnly;
+			this.$el.html(this.template(ctx));
+			//Views.AbstractView.prototype.render.call(this, ctx);
+		},
+
+		showGamesOnly: function(event) {
+			this.render({
+				showGamesOnly : true,
+				showItemsOnly : false,
+				showAchievementsOnly : false
+			});
+		},
+
+		showItemsOnly: function(event) {
+			this.render({
+				showGamesOnly : false,
+				showItemsOnly : true,
+				showAchievementsOnly : false
+			});
+		},
+
+		showAchievementsOnly: function(event) {
+			this.render({
+				showGamesOnly : false,
+				showItemsOnly : false,
+				showAchievementsOnly : true
+			});
 		}
 
 	});
