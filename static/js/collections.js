@@ -103,6 +103,11 @@ define([
 		}
 	});
 
+	var Users = AbstractCollection.extend({
+		objName: 'users',
+		_url: '/api/user',
+	});
+
 	var Avatars = AbstractCollection.extend({
 		objName: 'avatars',
 		_url: '/api/avatars',
@@ -118,7 +123,8 @@ define([
 		Games: Games,
 		Discussions: Discussions,
 		Comments: Comments,
-		Avatars: Avatars
+		Avatars: Avatars,
+		Users: Users,
 	}
 
 

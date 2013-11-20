@@ -1,4 +1,4 @@
-from flask import g, abort
+from flask import g, abort, request
 from api import json_view
 
 @json_view
@@ -6,7 +6,13 @@ def list_users():
 	if request.method == 'POST':
 		g.db.users.insert_user(request.json)
 	users = g.db.users.get_users()
+	print users
 	return 'users', users
+
+@json_view
+def get_community():
+	#lol
+	return list_users()
 
 @json_view
 def detail_user(username):

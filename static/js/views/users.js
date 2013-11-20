@@ -8,9 +8,24 @@ define([
 
 	'text!templates/users/login.html',
 	'text!templates/users/register.html',
-	'text!templates/users/profile.html'
+	'text!templates/users/profile.html',
+	'text!templates/users/community.html'
 
-], function($, _, Backbone, Collections, Models, Views, LoginViewTemplate, RegisterViewTemplate, ProfileViewTemplate) {
+], function($, _, Backbone, Collections, Models, Views, LoginViewTemplate, RegisterViewTemplate, ProfileViewTemplate, CommunityViewTemplate) {
+
+	// highscores
+	var CommunityView = Views.AbstractView.extend({
+		template: _.template(CommunityViewTemplate),
+
+		initialize: function(app) {
+			Views.AbstractView.prototype.initialize.call(this, app);
+			this.collection = new Collections.Users([], app);
+			this.listenTo(this.collection, 'sync', this.render);
+			this.collection.fetch();
+		},
+
+		el : '#main'
+	});
 
 	var ProfileView = Views.AbstractView.extend({
 		template: _.template(ProfileViewTemplate),
@@ -160,6 +175,7 @@ define([
 	return {
 		LoginView: LoginView,
 		RegisterView: RegisterView,
-		ProfileView: ProfileView
+		ProfileView: ProfileView,
+		CommunityView: CommunityView
 	}
 })

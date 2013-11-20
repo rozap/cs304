@@ -8,6 +8,7 @@ app.add_url_rule('/api/games', view_func=LazyView('api.games.list_games'))
 app.add_url_rule('/api/games/<int:game_id>', view_func=LazyView('api.games.detail_game'))
 app.add_url_rule('/api/user', view_func=LazyView('api.users.list_users'))
 app.add_url_rule('/api/user/<username>', view_func=LazyView('api.users.detail_user'))
+app.add_url_rule('/api/community', view_func=LazyView('api.users.get_community'))
 
 app.add_url_rule('/api/items', view_func=LazyView('api.items.list_items'))
 app.add_url_rule('/api/achievements', view_func=LazyView('api.achievements.list_achievements'))

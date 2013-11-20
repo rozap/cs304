@@ -20,7 +20,8 @@ define([
 			"games/:id/discussions/:discussion_id": "discussion",
 			"login": "login",
 			"register": "register",
-			"user/:username": "user"
+			"user/:username": "user",
+			"community" : "community"
 		},
 
 
@@ -75,8 +76,11 @@ define([
 				username: username
 			};
 			this.mainView = new UserViews.ProfileView(this.app);
-		}
+		},
 
+		community: function() {
+			this.mainView = new UserViews.CommunityView(this.app);
+		}
 
 	});
 
