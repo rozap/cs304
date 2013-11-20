@@ -17,6 +17,48 @@ class UserManager(Manager):
         return cursor, results
 
     @entity_list()
+    def get_users_who_own_all_games(self):
+        cursor = self.db.cursor()
+        cursor.execute(""" 
+            SELECT  
+                gp.user
+            FROM 
+                game_purchase gp 
+            WHERE 
+                gp.game IN (
+                    SELECT 
+                        id
+                    FROM
+                        game
+                ) 
+            GROUP BY
+                gp.user
+            HAVING COUNT(*) = ( SELECT 
+                                    COUNT(*) 
+                                FROM
+                                    game)
+            """,)
+        results = cursor.fetchall()
+        return cursor, results
+
+    @entity_single()
+    def get_users_game_counts(self, order):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                p.user, COUNT(*) as num
+            FROM 
+                game_purchase
+            GROUP BY 
+                p.user
+            ORDER BY
+                p.user %s
+            """, order)
+        results = cursor.fetchall()
+        return cursor, results
+
+
+    @entity_list()
     def get_users(self):
         cursor = self.db.cursor()
         cursor.execute(""" 

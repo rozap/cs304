@@ -1,8 +1,10 @@
 <h1>Community</h1>
 <% collection.each(function(user) { %> 
-	<div>
-		<p><%- user.get('username') %></p>
-	</div>
+	<li>
+		<a href="#/user/<%- user.get('username') %>">
+			<%- user.get('username') %>
+		</a>
+	</li>
 <% }) %>
 
 
