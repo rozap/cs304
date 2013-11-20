@@ -15,11 +15,15 @@ def detail_user(username):
 		user = g.db.users.get_user(user)
 		user['games'] = g.db.users.get_users_games(user['username'])
 		# I know for the counts we could count the stuff in the dict, but hey proj requreiments.
-		user['games_count'] = g.db.users.get_users_games_count(user['username'])
+		gc = g.db.users.get_users_games_count(user['username'])
+		user['games_count'] = gc[0]['COUNT(*)']
 		user['achievements'] = g.db.users.get_users_achievements(user['username'])
-		user['achievements_count'] = g.db.users.get_users_achievements_count(user['username'])
+		ac = g.db.users.get_users_achievements_count(user['username'])
+		user['achievements_count'] = ac[0]['COUNT(*)']
 		user['items'] = g.db.users.get_users_items(user['username'])
-		user['items_count'] = g.db.users.get_users_items_count(user['username'])
+		ic = g.db.users.get_users_items_count(user['username'])
+		user['items_count'] = ic[0]['COUNT(*)']
+		print user
 	except IndexError:
 		abort(404)
 	return False, user

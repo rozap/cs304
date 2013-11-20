@@ -31,7 +31,7 @@ class UserManager(Manager):
 	def get_user(self, vals):
 		cursor = self.db.cursor()
 		cursor.execute("""
-			SELECT *
+			SELECT u.username, u.is_banned, u.join_date, u.account_balance
 			FROM user u
 			WHERE u.username = %s
 			""", (vals['username'],))

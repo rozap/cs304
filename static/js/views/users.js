@@ -24,6 +24,7 @@ define([
 			});
 			this.listenTo(this.model, 'sync', this.render);
 			this.model.fetch();
+			console.log(this.model);
 		},
 
 		render: function(ctx) {
