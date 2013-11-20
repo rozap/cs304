@@ -105,7 +105,7 @@ define([
 
 	var Users = AbstractCollection.extend({
 		objName: 'users',
-		_url: '/api/community',
+		_url: '/api/user',
 	});
 
 	var Avatars = AbstractCollection.extend({

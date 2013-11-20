@@ -21,7 +21,7 @@ class UserManager(Manager):
         cursor = self.db.cursor()
         cursor.execute(""" 
             SELECT  
-                gp.user
+                gp.user as username
             FROM 
                 game_purchase gp 
             WHERE 
@@ -32,7 +32,7 @@ class UserManager(Manager):
                         game
                 ) 
             GROUP BY
-                gp.user
+                username
             HAVING COUNT(*) = ( SELECT 
                                     COUNT(*) 
                                 FROM
@@ -46,7 +46,7 @@ class UserManager(Manager):
         cursor = self.db.cursor()
         cursor.execute(""" 
             SELECT  
-                au.user
+                au.user as username
             FROM 
                 achievement_unlock au
             WHERE 
@@ -57,7 +57,7 @@ class UserManager(Manager):
                         achievement
                 ) 
             GROUP BY
-                au.user
+                username
             HAVING COUNT(*) = ( SELECT 
                                     COUNT(*) 
                                 FROM
@@ -71,7 +71,7 @@ class UserManager(Manager):
         cursor = self.db.cursor()
         cursor.execute(""" 
             SELECT  
-                iu.user
+                iu.user as username
             FROM 
                 item_unlock iu
             WHERE 
@@ -82,7 +82,7 @@ class UserManager(Manager):
                         item
                 ) 
             GROUP BY
-                iu.user
+                username
             HAVING COUNT(*) = ( SELECT 
                                     COUNT(*) 
                                 FROM
@@ -112,7 +112,7 @@ class UserManager(Manager):
     def get_users(self):
         cursor = self.db.cursor()
         cursor.execute(""" 
-            SELECT *
+            SELECT username
             FROM user
             ORDER BY username
             """,)

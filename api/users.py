@@ -12,11 +12,8 @@ def list_users():
 def get_community():
     users = {'users' : ''}
     users['users'] = g.db.users.get_users()
-    users['users_with_all_games'] = ''
     users['users_with_all_games'] = g.db.users.get_users_with_all_games()
-    users['users_with_all_achievements'] = ''
     users['users_with_all_achievements'] = g.db.users.get_users_with_all_achievements()
-    users['users_with_all_games'] = ''
     users['users_with_all_items'] = g.db.users.get_users_with_all_items()
     return False, users
 
