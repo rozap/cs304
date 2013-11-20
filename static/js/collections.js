@@ -118,6 +118,18 @@ define([
 		}
 	});
 
+	var Items = AbstractCollection.extend({
+		objName: 'items',
+		_url: '/api/items',
+
+		initialize: function(models, app) {
+			AbstractCollection.prototype.initialize.call(this, models, app);
+			this.filters = _.extend(this.filters, {
+				game: app.context.game.id
+			})
+		}
+	});
+
 
 	return {
 		Games: Games,
@@ -125,6 +137,7 @@ define([
 		Comments: Comments,
 		Avatars: Avatars,
 		Users: Users,
+		Items: Items
 	}
 
 

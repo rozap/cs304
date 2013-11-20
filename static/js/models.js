@@ -44,12 +44,19 @@ define([
 		}
 	});
 
+	var Item = AbstractModel.extend({
+		url: function() {
+			return 'api/items' + (this.get('id') ? '/' + this.get('id') : '');
+		}
+	});
+
 	return {
 		Discussion: Discussion,
 		Game: Game,
 		Comment: Comment,
 		Register: Register,
 		Login: Login,
-		User: User
+		User: User,
+		Item: Item
 	}
 });
