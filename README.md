@@ -14,7 +14,7 @@ http://byfat.xxx/if-hemingway-wrote-javascript
 | Requirement | Done? |
 |-------------|-------|
 | (1 point) Selection and projection query: pick one query of this category and provide an interface for the user to specify the selection condition and the attributes to be returned. | yep |
-| (1 point) Join query: pick one query of this category and provide an interface for the user to choose this query. | nope |
+| (1 point) Join query: pick one query of this category and provide an interface for the user to choose this query. | yep |
 | (1 point) Division query: pick one query of this category and provide an interface for the user to choose this query. | nope | 
 | (1 point) Aggregation query: pick one query that requires the use of aggregation (min, max, average, or count are all fine). | yep |
 | (2 points) Nested aggregation with group-by: pick one query that finds the average for each group and then finds either the minimum or maximum across all those averages. Provide an interface for the user to specify whether the minimum or maximum is requested. | nope |
