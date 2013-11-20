@@ -62,17 +62,17 @@
 	<div class="col-md-3">
 		<h5>Achievements</h5>
 		<ul class="nav nav-pills nav-stacked">
-			<% _.each(model.get('achievements'), function(item) { %>
+			<% _.each(model.get('achievements'), function(achievement) { %>
 				<!-- Modal -->
-				<div class="modal fade" id="<%- item.title.replace(/ /g,"_") %>" tabindex="-1" role="dialog" aria-labelledby="lol" aria-hidden="true">
+				<div class="modal fade" id="<%- achievement.title.replace(/ /g,"_") %>" tabindex="-1" role="dialog" aria-labelledby="lol" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				        <h4 class="modal-title" id="lol"><%- item.title %></h4>
+				        <h4 class="modal-title" id="lol"><%- achievement.title %></h4>
 				      </div>
 				      <div class="modal-body">
-				        <%- item.description %>
+				        <%- achievement.description %>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -82,8 +82,8 @@
 				</div><!-- /.modal -->
 
 				<li>
-					 <a href="javascript:void(0)" data-toggle="modal" data-target="#<%- item.title.replace(/ /g,"_") %>" >
-						<%- item.title %>
+					 <a href="javascript:void(0)" data-toggle="modal" data-target="#<%- achievement.title.replace(/ /g,"_") %>" >
+						<%- achievement.title %>
 					</a> 
 				</li>
 			<% }); %>
