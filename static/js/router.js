@@ -4,9 +4,10 @@ define([
 	'backbone',
 	'views/games',
 	'views/discussions',
-	'views/users'
+	'views/users',
+	'views/items'
 
-], function($, _, Backbone, GameViews, DiscussionViews, UserViews) {
+], function($, _, Backbone, GameViews, DiscussionViews, UserViews, ItemViews) {
 
 
 
@@ -18,7 +19,7 @@ define([
 			"games/:id": "game",
 			"games": "gameList",
 			"games/:id/discussions/:discussion_id": "discussion",
-			"games/:id/items/:item_id": "item",
+			"games/:id/items/:title": "item",
 			"login": "login",
 			"register": "register",
 			"user/:username": "user"
