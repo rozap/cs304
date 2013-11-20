@@ -72,7 +72,21 @@ class UserManager(Manager):
 		return cursor, results
 
 	@entity_list()
-	def get_users_acheivements(self, user_id):
+	def get_users_games_count(self, user_id):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT COUNT(*)
+			FROM
+				game_purchase gp, game g
+			WHERE 
+				gp.user = %s AND
+				g.id = gp.game
+			""", (user_id,))
+		results = cursor.fetchall()
+		return cursor, results
+
+	@entity_list()
+	def get_users_achievements(self, user_id):
 		cursor = self.db.cursor()
 		cursor.execute("""
 			SELECT *
@@ -80,7 +94,21 @@ class UserManager(Manager):
 				achievement_unlock au, achievement a
 			WHERE
 				au.user = %s AND
-				au.achievement = a.achievement
+				au.achievement = a.title
+			""", (user_id,))
+		results = cursor.fetchall()
+		return cursor, results
+
+	@entity_list()
+	def get_users_achievements_count(self, user_id):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT COUNT(*)
+			FROM
+				achievement_unlock au, achievement a
+			WHERE
+				au.user = %s AND
+				au.achievement = a.title
 			""", (user_id,))
 		results = cursor.fetchall()
 		return cursor, results
@@ -90,6 +118,20 @@ class UserManager(Manager):
 		cursor = self.db.cursor()
 		cursor.execute("""
 			SELECT *
+			FROM
+				item_unlock iu, item i 
+			WHERE
+				iu.user = %s AND
+				iu.item = i.title
+			""", (user_id,))
+		results = cursor.fetchall()
+		return cursor, results
+
+	@entity_list()
+	def get_users_items_count(self, user_id):
+		cursor = self.db.cursor()
+		cursor.execute("""
+			SELECT COUNT(*)
 			FROM
 				item_unlock iu, item i 
 			WHERE
