@@ -15,7 +15,7 @@ http://byfat.xxx/if-hemingway-wrote-javascript
 |-------------|-------|
 | (1 point) Selection and projection query: pick one query of this category and provide an interface for the user to specify the selection condition and the attributes to be returned. | yep |
 | (1 point) Join query: pick one query of this category and provide an interface for the user to choose this query. | yep |
-| (1 point) Division query: pick one query of this category and provide an interface for the user to choose this query. | nope | 
+| (1 point) Division query: pick one query of this category and provide an interface for the user to choose this query. | yep | 
 | (1 point) Aggregation query: pick one query that requires the use of aggregation (min, max, average, or count are all fine). | yep |
 | (2 points) Nested aggregation with group-by: pick one query that finds the average for each group and then finds either the minimum or maximum across all those averages. Provide an interface for the user to specify whether the minimum or maximum is requested. | nope |
 | (1 point) Delete operation: implement a cascade-on-delete situation. Provide an interface for the user to specify some input for the deletion operation.  Some input values would fail the cascade specification but others would successfully follow the cascade specification. Provide an interface for the user to display the relation instance after the operation. | nope |

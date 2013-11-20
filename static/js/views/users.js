@@ -17,14 +17,54 @@ define([
 	var CommunityView = Views.AbstractView.extend({
 		template: _.template(CommunityViewTemplate),
 
-		initialize: function(app) {
-			Views.AbstractView.prototype.initialize.call(this, app);
-			this.collection = new Collections.Users([], app);
-			this.listenTo(this.collection, 'sync', this.render);
-			this.collection.fetch();
+		el : '#main',
+		
+		events: {
+			"click .show_games": "showGamesOnly",
+			"click .show_items": "showItemsOnly",
+			"click .show_achievements": "showAchievementsOnly",
 		},
 
-		el : '#main'
+		initialize: function(app) {
+			Views.AbstractView.prototype.initialize.call(this, app);
+			this.model = new Models.Community({});
+			this.listenTo(this.model, 'sync', this.render);
+			this.model.fetch();
+			console.log(this.model);
+		},
+
+		render: function(ctx) {
+			ctx = this.context(ctx);
+			ctx.showGamesOnly = ctx.showGamesOnly;
+			ctx.showItemsOnly = ctx.showItemsOnly;
+			ctx.showAchievementsOnly = ctx.showAchievementsOnly;
+			this.$el.html(this.template(ctx));
+			//Views.AbstractView.prototype.render.call(this, ctx);
+		},
+
+		showGamesOnly: function(event) {
+			this.render({
+				showGamesOnly : true,
+				showItemsOnly : false,
+				showAchievementsOnly : false
+			});
+		},
+
+		showItemsOnly: function(event) {
+			this.render({
+				showGamesOnly : false,
+				showItemsOnly : true,
+				showAchievementsOnly : false
+			});
+		},
+
+		showAchievementsOnly: function(event) {
+			this.render({
+				showGamesOnly : false,
+				showItemsOnly : false,
+				showAchievementsOnly : true
+			});
+		}
 	});
 
 	var ProfileView = Views.AbstractView.extend({

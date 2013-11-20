@@ -17,10 +17,102 @@ class UserManager(Manager):
         return cursor, results
 
     @entity_list()
+    def get_users_with_all_games(self):
+        cursor = self.db.cursor()
+        cursor.execute(""" 
+            SELECT  
+                gp.user as username
+            FROM 
+                game_purchase gp 
+            WHERE 
+                gp.game IN (
+                    SELECT 
+                        id
+                    FROM
+                        game
+                ) 
+            GROUP BY
+                username
+            HAVING COUNT(*) = ( SELECT 
+                                    COUNT(*) 
+                                FROM
+                                    game)
+            """,)
+        results = cursor.fetchall()
+        return cursor, results
+
+    @entity_list()
+    def get_users_with_all_achievements(self):
+        cursor = self.db.cursor()
+        cursor.execute(""" 
+            SELECT  
+                au.user as username
+            FROM 
+                achievement_unlock au
+            WHERE 
+                au.achievement IN (
+                    SELECT 
+                        title
+                    FROM
+                        achievement
+                ) 
+            GROUP BY
+                username
+            HAVING COUNT(*) = ( SELECT 
+                                    COUNT(*) 
+                                FROM
+                                    achievement)
+            """,)
+        results = cursor.fetchall()
+        return cursor, results
+
+    @entity_list()
+    def get_users_with_all_items(self):
+        cursor = self.db.cursor()
+        cursor.execute(""" 
+            SELECT  
+                iu.user as username
+            FROM 
+                item_unlock iu
+            WHERE 
+                iu.item IN (
+                    SELECT 
+                        title
+                    FROM
+                        item
+                ) 
+            GROUP BY
+                username
+            HAVING COUNT(*) = ( SELECT 
+                                    COUNT(*) 
+                                FROM
+                                    item)
+            """,)
+        results = cursor.fetchall()
+        return cursor, results
+
+    @entity_single()
+    def get_users_game_counts(self, order):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                p.user, COUNT(*) as num
+            FROM 
+                game_purchase
+            GROUP BY 
+                p.user
+            ORDER BY
+                p.user %s
+            """, order)
+        results = cursor.fetchall()
+        return cursor, results
+
+
+    @entity_list()
     def get_users(self):
         cursor = self.db.cursor()
         cursor.execute(""" 
-            SELECT *
+            SELECT username
             FROM user
             ORDER BY username
             """,)

@@ -50,6 +50,12 @@ define([
 		}
 	});
 
+	var Community = AbstractModel.extend({
+		url: function() {
+			return '/api/community'
+		}
+	})
+
 	return {
 		Discussion: Discussion,
 		Game: Game,
@@ -57,6 +63,7 @@ define([
 		Register: Register,
 		Login: Login,
 		User: User,
-		Item: Item
+		Item: Item,
+		Community: Community
 	}
 });
