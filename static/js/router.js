@@ -18,6 +18,7 @@ define([
 			"games/:id": "game",
 			"games": "gameList",
 			"games/:id/discussions/:discussion_id": "discussion",
+			"games/:id/items/:item_id": "item",
 			"login": "login",
 			"register": "register",
 			"user/:username": "user"
@@ -58,6 +59,18 @@ define([
 				id: discussion
 			};
 			this.mainView = new DiscussionViews.DiscussionView(this.app);
+
+		},
+
+		item: function(id, item) {
+			this.cleanup();
+			this.app.context.game = {
+				id: id
+			};
+			this.app.context.item = {
+				id: item
+			};
+			this.mainView = new ItemViews.ItemView(this.app);
 
 		},
 
