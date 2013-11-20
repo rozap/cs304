@@ -44,6 +44,7 @@ class UserManager(Manager):
 
 	@entity_list()
 	def get_games_users(self, game_id):
+		print game_id
 		cursor = self.db.cursor()
 		cursor.execute("""
 			SELECT 
@@ -71,7 +72,7 @@ class UserManager(Manager):
 		results = cursor.fetchall()
 		return cursor, results
 
-	@entity_list()
+	@entity_single()
 	def get_users_games_count(self, user_id):
 		cursor = self.db.cursor()
 		cursor.execute("""
@@ -99,7 +100,7 @@ class UserManager(Manager):
 		results = cursor.fetchall()
 		return cursor, results
 
-	@entity_list()
+	@entity_single()
 	def get_users_achievements_count(self, user_id):
 		cursor = self.db.cursor()
 		cursor.execute("""
@@ -127,7 +128,7 @@ class UserManager(Manager):
 		results = cursor.fetchall()
 		return cursor, results
 
-	@entity_list()
+	@entity_single()
 	def get_users_items_count(self, user_id):
 		cursor = self.db.cursor()
 		cursor.execute("""

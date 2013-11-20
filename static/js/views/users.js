@@ -28,8 +28,6 @@ define([
 		},
 
 		render: function(ctx) {
-			ctx = this.context(ctx);
-			this.$el.html(this.template(ctx));
 			Views.AbstractView.prototype.render.call(this, ctx);
 		}
 

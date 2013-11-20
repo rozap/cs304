@@ -13,10 +13,10 @@
 	<div class="col-md-6">
 		<h5>Users who play this game</h5>
 		<ul class="nav nav-pills nav-stacked">
-			<% _.each(model.get('users'), function(item) { %>
+			<% _.each(model.get('users'), function(user) { %>
 				<li>
-					<a href="javascript:void(0)">
-						<%- item.username %>
+					<a href="#/user/<%- user.username %>">
+						<%- user.username %>
 					</a>
 				</li>
 			<% }); %>
