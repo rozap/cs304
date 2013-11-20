@@ -29,7 +29,7 @@
 		<ul class="nav nav-pills nav-stacked">
 			<% _.each(model.get('items'), function(item) { %>
 				<li>
-					<a href="javascript:void(0)">
+					<a href="#/games/<%- app.context.game.id %>/items/<%- item.get('id') %>">
 						<%- item.title %>
 					</a>
 				</li>
