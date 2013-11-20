@@ -17,7 +17,7 @@ class UserManager(Manager):
         return cursor, results
 
     @entity_list()
-    def get_users_who_own_all_games(self):
+    def get_users_with_all_games(self):
         cursor = self.db.cursor()
         cursor.execute(""" 
             SELECT  
@@ -37,6 +37,56 @@ class UserManager(Manager):
                                     COUNT(*) 
                                 FROM
                                     game)
+            """,)
+        results = cursor.fetchall()
+        return cursor, results
+
+    @entity_list()
+    def get_users_with_all_achievements(self):
+        cursor = self.db.cursor()
+        cursor.execute(""" 
+            SELECT  
+                au.user
+            FROM 
+                achievement_unlock au
+            WHERE 
+                au.achievement IN (
+                    SELECT 
+                        title
+                    FROM
+                        achievement
+                ) 
+            GROUP BY
+                au.user
+            HAVING COUNT(*) = ( SELECT 
+                                    COUNT(*) 
+                                FROM
+                                    achievement)
+            """,)
+        results = cursor.fetchall()
+        return cursor, results
+
+    @entity_list()
+    def get_users_with_all_items(self):
+        cursor = self.db.cursor()
+        cursor.execute(""" 
+            SELECT  
+                iu.user
+            FROM 
+                item_unlock iu
+            WHERE 
+                iu.item IN (
+                    SELECT 
+                        title
+                    FROM
+                        item
+                ) 
+            GROUP BY
+                iu.user
+            HAVING COUNT(*) = ( SELECT 
+                                    COUNT(*) 
+                                FROM
+                                    item)
             """,)
         results = cursor.fetchall()
         return cursor, results
