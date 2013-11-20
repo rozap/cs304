@@ -7,11 +7,62 @@
     Show <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Games Purchased</a>
-	    <span class="label label-default"><%- model.get('games_count') %></span></li>
-    <li><a href="#">Achievements Unlocked</a>
-	    <span class="label label-default"><%- model.get('achievements_count') %></span></li>
-    <li><a href="#">Items Unlocked</a>
-	    <span class="label label-default"><%- model.get('items_count') %></span></li>
+    <li class="show_games"><a href="javascript:void(0)">Games Purchased
+	    <span class="label label-default"><%- model.get('games_count') %></span>
+	</a></li>
+    <li class="show_achievements"><a href="javascript:void(0)">Achievements Unlocked
+	    <span class="label label-default"><%- model.get('achievements_count') %></span>
+	</a></li>
+    <li class="show_items"><a href="javascript:void(0)">Items Unlocked
+	    <span class="label label-default"><%- model.get('items_count') %></span>
+	</a></li>
   </ul>
+</div>
+
+<div class="row">
+	<% if(showGamesOnly) {%>
+	<div class="col-md-3">
+		<h5>Games Purchased</h5>
+		<ul class="nav nav-pills nav-stacked">
+			<% _.each(model.get('games'), function(game) { %>
+				<li>
+					<a href="#/games/<%- game.id %>">
+						<%- game.title %>
+					</a>
+				</li>
+			<% }); %>
+		</ul>
+	</div>
+	<% } %>
+
+	<% if(showItemsOnly) {%>
+	<div class="col-md-3">
+		<h5>Items Unlocked</h5>
+		<ul class="nav nav-pills nav-stacked">
+			<% _.each(model.get('items'), function(item) { %>
+				<li>
+					<a href="javascript:void(0)">
+						<%- item.title %>
+					</a>
+				</li>
+			<% }); %>
+		</ul>
+	</div>
+	<% } %>
+
+	<% if(showAchievementsOnly) {%>
+	<div class="col-md-3">
+		<h5>Achievements Unlocked</h5>
+		<ul class="nav nav-pills nav-stacked">
+			<% _.each(model.get('achievements'), function(achievement) { %>
+				<li>
+					<a href="javascript:void(0)">
+						<%- achievement.title %>
+					</a>
+				</li>
+			<% }); %>
+		</ul>
+	</div>
+	<% } %>
+
 </div>
