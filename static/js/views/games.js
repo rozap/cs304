@@ -34,15 +34,17 @@ define([
 		},
 
 		purchaseGame: function(ctx) {
-			var gp = new Models.GamePurchase({game : this.model.get('id')});
-				that = this;
+			var gp = new Models.GamePurchase({
+				game: this.model.get('id')
+			});
+			that = this;
 			console.log(gp);
 			gp.sync('create', gp, {
 				wait: true,
 				success: function(resp) {
 					gp.set(resp);
-					that.cancel();
-					this.render();
+					//heheheheh
+					that.model.fetch();
 				},
 				error: function() {
 					console.log('shit');

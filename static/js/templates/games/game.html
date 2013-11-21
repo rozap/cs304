@@ -1,16 +1,33 @@
 <div class="row game-title">
-	<div class="col-md-8">
+	<div class="col-lg-8">
 		<h1><%- model.get('title') %></h1>
 		<p><%- model.get('description') %></p>
 	</div>
-	<div class="col-md-4">
-		<img src="<%- model.get('image') %>"></div>
+	<div class="col-lg-4">
+		<img src="<%- model.get('image') %>">
+	</div>
+	<div class="col-lg-12">
+		<% if(! _.contains(_.pluck(model.get('users'), 'name'), user.name)) {%>
+			<% if(user) { %>
+				<a href="javascript:void(0)"
+					class="btn btn-info btn-small min-space-top pull-right purchase">
+					Add to Library
+				</a>
+			<% } else { %>
+				<a href="/#/login"
+					class="btn btn-default btn-small min-space-top pull-right">
+					Login to Purchase this Game
+				</a>
+			<% } %>
+
+		<% } else { %>
+			<span class="pull-right min-space-top label label-primary">You own this game</span>
+
+		<% } %>
+
+	</div>
 </div>
 
-<a href="javascript:void(0)"
-	class="btn btn-info btn-small purchase">
-	Add to Library
-</a>
 
 
 <div class="row">

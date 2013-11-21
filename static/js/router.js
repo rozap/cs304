@@ -40,6 +40,7 @@ define([
 		},
 
 		home: function() {
+			this.cleanup();
 			this.mainView = new GameViews.GameListView(this.app);
 		},
 

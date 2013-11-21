@@ -25,6 +25,12 @@ def list_discussions():
 @json_view
 def detail_discussion(discussion_id):
     if request.method == 'PUT':
+        #lololol here's our validator
+        title = request.json.get('title', '')
+        body = request.json.get('body', '')
+        if len(title) < 1 or len(body) < 1:
+            return 
+
         g.db.discussions.update_discussion(request.json, discussion_id, g.user['username'])
     discussion = g.db.discussions.get_discussion(discussion_id)
     return False, discussion

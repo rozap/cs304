@@ -161,12 +161,15 @@ class UserManager(Manager):
     def get_users_games(self, user_id):
         cursor = self.db.cursor()
         cursor.execute("""
-            SELECT * 
+            SELECT p.user, p.game, p.date, 
+                g.title, g.price, g.description, g.developer,
+                g.image, g.genre
             FROM
-                game_purchase gp, game g
+                game_purchase p
+            INNER JOIN game g
+                ON g.id = p.game
             WHERE 
-                gp.user = %s AND
-                g.id = gp.game
+                p.user = %s
             """, (user_id,))
         results = cursor.fetchall()
         return cursor, results
@@ -217,12 +220,18 @@ class UserManager(Manager):
     def get_users_items(self, user_id):
         cursor = self.db.cursor()
         cursor.execute("""
-            SELECT *
+            SELECT 
+                u.date, u.item, u.game_id, u.user,
+                g.title, g.price, g.description, g.developer,
+                g.image, g.genre
             FROM
-                item_unlock iu, item i 
+                item_unlock u 
+            INNER JOIN
+                game g
+                ON
+                    g.id = u.game_id
             WHERE
-                iu.user = %s AND
-                iu.item = i.title
+                u.user = %s
             """, (user_id,))
         results = cursor.fetchall()
         return cursor, results

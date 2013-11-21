@@ -28,7 +28,6 @@ app.add_url_rule('/api/login', view_func=LazyView('api.sessions.login'), methods
 
 @app.route('/')
 def index():
-
     return render_template('index.html', user = g.user)
 
 

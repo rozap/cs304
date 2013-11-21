@@ -21,17 +21,21 @@
 
 <div class="row">
 	<% if(showGamesOnly) {%>
-	<div class="col-md-3">
+	<div class="col-md-12">
 		<h5>Games Purchased</h5>
-		<ul class="nav nav-pills nav-stacked">
 			<% _.each(model.get('games'), function(game) { %>
-				<li>
-					<a href="#/games/<%- game.id %>">
-						<%- game.title %>
-					</a>
-				</li>
+				<div class="row min-space-top">
+					<div class="col-lg-2 game-thumb">
+						<img src="<%- game.image %>"/>
+					</div>
+					<div class="col-lg-10">
+						<h4>
+							<a href="#/games/<%- game.game %>">
+								<%- game.title %></a>
+						</h4>
+					</div>
+				</div>
 			<% }); %>
-		</ul>
 	</div>
 	<% } %>
 

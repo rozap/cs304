@@ -19,18 +19,17 @@ def get_community():
 
 @json_view
 def detail_user(username):
-    user = {'username' : username}
     try:
-        user = g.db.users.get_user(user)
-        user['games'] = g.db.users.get_users_games(user['username'])
+        user = g.db.users.get_user({'username': username})
+        user['games'] = g.db.users.get_users_games(username)
         # I know for the counts we could count the stuff in the dict, but hey proj requreiments.
-        gc = g.db.users.get_users_games_count(user['username'])
+        gc = g.db.users.get_users_games_count(username)
         user['games_count'] = gc['COUNT(*)']
-        user['achievements'] = g.db.users.get_users_achievements(user['username'])
-        ac = g.db.users.get_users_achievements_count(user['username'])
+        user['achievements'] = g.db.users.get_users_achievements(username)
+        ac = g.db.users.get_users_achievements_count(username)
         user['achievements_count'] = ac['COUNT(*)']
-        user['items'] = g.db.users.get_users_items(user['username'])
-        ic = g.db.users.get_users_items_count(user['username'])
+        user['items'] = g.db.users.get_users_items(username)
+        ic = g.db.users.get_users_items_count(username)
         user['items_count'] = ic['COUNT(*)']
     except IndexError:
         abort(404)

@@ -5965,6 +5965,9 @@ body {
 .space-top {
   margin-top: 30px;
 }
+.min-space-top {
+  margin-top: 7.5px;
+}
 .game-title {
   margin-bottom: 30px;
 }
@@ -5974,4 +5977,7 @@ body {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   float: right;
+}
+.game-thumb img {
+  max-width: 140px;
 }

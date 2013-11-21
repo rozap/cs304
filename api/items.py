@@ -24,7 +24,6 @@ def list_item_unlocks():
 
 		data['user'] = username
 		g.db.items.insert_item_unlock(data)
-
 		new_unlock = g.db.items.get_item_unlock(data['item'], game_id, username)
 
 		return False, new_unlock

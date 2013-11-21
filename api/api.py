@@ -21,10 +21,18 @@ class LazyView(object):
 
 def json_view(fn):
     def wrapped(*args, **kwargs):
-        root, result = fn(*args, **kwargs)
+        res = fn(*args, **kwargs)
+        if len(res) == 2:
+            root, result = res
+            status = 200
+        else:
+            root, result, status = res
+
         if root:
             js = json.dumps({root : result})
         else:
             js = json.dumps(result)
-        return Response(js, mimetype="application/json")
+        resp = Response(js, mimetype="application/json")
+        resp.status_code = status
+        return resp
     return wrapped

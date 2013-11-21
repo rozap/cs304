@@ -136,7 +136,9 @@ CREATE TABLE `discussion` (
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`, `game_id`),
   CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
-  CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+  CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
+  CONSTRAINT body_length CHECK (DATALENGTH(body) > 0),
+  CONSTRAINT title_length CHECK (DATALENGTH(title) > 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
