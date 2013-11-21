@@ -250,3 +250,41 @@ class UserManager(Manager):
             """, (user_id,))
         results = cursor.fetchall()
         return cursor, results
+        
+    @entity_list()
+    def get_community_min(self, table):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT
+                MIN(num)
+            FROM 
+                (
+                    SELECT 
+                        COUNT(*) as num
+                    FROM 
+                        %s
+                    GROUP BY
+                        user
+                ) AS Community_MIN
+        """, table)
+        results = cursor.fetchall()
+        return self.db, cursor
+
+    @entity_list()
+    def get_community_max(self, table):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT
+                MAX(num)
+            FROM 
+                (
+                    SELECT 
+                        COUNT(*) as num
+                    FROM 
+                        %s
+                    GROUP BY
+                        user
+                ) AS Community_MAX
+        """, table)
+        results = cursor.fetchall()
+        return self.db, cursor
