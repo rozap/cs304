@@ -19,6 +19,7 @@ define([
 		el: '#main',
 
 		events: {
+			'click .purchase': 'purchaseGame',
 			'click .detail-item': 'detailItem',
 			'click .purchase-item': 'purchaseItem',
 		},
@@ -32,6 +33,22 @@ define([
 			this.model.fetch();
 		},
 
+		purchaseGame: function(ctx) {
+			var gp = new Models.GamePurchase({game : this.model.get('id')});
+				that = this;
+			console.log(gp);
+			gp.sync('create', gp, {
+				wait: true,
+				success: function(resp) {
+					gp.set(resp);
+					that.cancel();
+					this.render();
+				},
+				error: function() {
+					console.log('shit');
+				}
+			});
+		},
 
 		render: function(ctx) {
 			Views.AbstractView.prototype.render.call(this, ctx);
@@ -61,8 +78,6 @@ define([
 				}
 			})
 		}
-
-
 
 	});
 

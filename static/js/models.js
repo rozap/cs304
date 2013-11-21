@@ -56,6 +56,12 @@ define([
 		}
 	});
 
+	var GamePurchase = AbstractModel.extend({
+		url: function() {
+			return '/api/game_purchase'
+		}
+	});
+
 	var ItemUnlock = AbstractModel.extend({
 		url: function() {
 			return '/api/item_unlock'
@@ -71,6 +77,7 @@ define([
 		User: User,
 		Item: Item,
 		Community: Community,
+		GamePurchase: GamePurchase,
 		ItemUnlock: ItemUnlock
 	}
 });
