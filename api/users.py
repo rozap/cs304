@@ -15,6 +15,18 @@ def get_community():
     users['users_with_all_games'] = g.db.users.get_users_with_all_games()
     users['users_with_all_achievements'] = g.db.users.get_users_with_all_achievements()
     users['users_with_all_items'] = g.db.users.get_users_with_all_items()
+
+    users['game_purchase_avg'] = g.db.users.get_community_avg('game_purchase');
+    users['game_purchase_max'] = g.db.users.get_community_max('game_purchase');
+    users['game_purchase_min'] = g.db.users.get_community_min('game_purchase');
+
+    users['item_unlock_avg'] = g.db.users.get_community_avg('item_unlock');
+    users['item_unlock_max'] = g.db.users.get_community_max('item_unlock');
+    users['item_unlock_min'] = g.db.users.get_community_min('item_unlock');
+
+    users['achievement_unlock_avg'] = g.db.users.get_community_avg('achievement_unlock');
+    users['achievement_unlock_max'] = g.db.users.get_community_max('achievement_unlock');
+    users['achievement_unlock_min'] = g.db.users.get_community_min('achievement_unlock');
     return False, users
 
 @json_view
