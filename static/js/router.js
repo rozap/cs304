@@ -17,13 +17,12 @@ define([
 			"": "home",
 			"games/:id/discussions/:discussion_id": "discussion",
 			"games/:id": "game",
-			"games": "gameList",
 			"games/:id/discussions/:discussion_id": "discussion",
 			"games/:id/items/:title": "item",
 			"login": "login",
 			"register": "register",
 			"user/:username": "user",
-			"community" : "community"
+			"community": "community"
 		},
 
 
@@ -40,7 +39,7 @@ define([
 			this.app.context = {};
 		},
 
-		gameList: function() {
+		home: function() {
 			this.mainView = new GameViews.GameListView(this.app);
 		},
 
