@@ -20,6 +20,8 @@ define([
 
 		events: {
 			'click .purchase': 'purchaseGame'
+			'click .detail-item': 'detailItem',
+			'click .purchase-item': 'purchaseItem',
 		},
 
 		initialize: function(app) {
@@ -51,6 +53,30 @@ define([
 		render: function(ctx) {
 			Views.AbstractView.prototype.render.call(this, ctx);
 			this.addSubview('discussionsView', new Discussions.DiscussionsView(this.app, this));
+		},
+
+		detailItem: function(e) {
+			var title = $(e.currentTarget).data('item');
+			this.$el.find('.modal[data-item="' + title + '"]').modal('show');
+		},
+
+		purchaseItem: function(e) {
+			var title = $(e.currentTarget).data('item');
+
+			var unlock = new Models.ItemUnlock({
+				game_id: this.model.get('id'),
+				item: title
+			});
+
+
+			unlock.sync('create', unlock, {
+				success: function(resp) {
+					console.log("unlock success!")
+				},
+				error: function(resp) {
+					console.log("unlock failed")
+				}
+			})
 		}
 
 	});

@@ -17,8 +17,8 @@ define([
 	var CommunityView = Views.AbstractView.extend({
 		template: _.template(CommunityViewTemplate),
 
-		el : '#main',
-		
+		el: '#main',
+
 		events: {
 			"click .show_games": "showGamesOnly",
 			"click .show_items": "showItemsOnly",
@@ -44,25 +44,25 @@ define([
 
 		showGamesOnly: function(event) {
 			this.render({
-				showGamesOnly : true,
-				showItemsOnly : false,
-				showAchievementsOnly : false
+				showGamesOnly: true,
+				showItemsOnly: false,
+				showAchievementsOnly: false
 			});
 		},
 
 		showItemsOnly: function(event) {
 			this.render({
-				showGamesOnly : false,
-				showItemsOnly : true,
-				showAchievementsOnly : false
+				showGamesOnly: false,
+				showItemsOnly: true,
+				showAchievementsOnly: false
 			});
 		},
 
 		showAchievementsOnly: function(event) {
 			this.render({
-				showGamesOnly : false,
-				showItemsOnly : false,
-				showAchievementsOnly : true
+				showGamesOnly: false,
+				showItemsOnly: false,
+				showAchievementsOnly: true
 			});
 		}
 	});
@@ -98,25 +98,25 @@ define([
 
 		showGamesOnly: function(event) {
 			this.render({
-				showGamesOnly : true,
-				showItemsOnly : false,
-				showAchievementsOnly : false
+				showGamesOnly: true,
+				showItemsOnly: false,
+				showAchievementsOnly: false
 			});
 		},
 
 		showItemsOnly: function(event) {
 			this.render({
-				showGamesOnly : false,
-				showItemsOnly : true,
-				showAchievementsOnly : false
+				showGamesOnly: false,
+				showItemsOnly: true,
+				showAchievementsOnly: false
 			});
 		},
 
 		showAchievementsOnly: function(event) {
 			this.render({
-				showGamesOnly : false,
-				showItemsOnly : false,
-				showAchievementsOnly : true
+				showGamesOnly: false,
+				showItemsOnly: false,
+				showAchievementsOnly: true
 			});
 		}
 
@@ -162,7 +162,7 @@ define([
 
 		hydrate: function() {
 			var $form = this.$el.find('#register-form'),
-			data = $form.serializeObject(true);
+				data = $form.serializeObject(true);
 			return data;
 		}
 
@@ -194,7 +194,7 @@ define([
 			this.model.set(this.hydrate());
 			this.model.sync('create', this.model, {
 				success: function(user) {
-					window.location = '/#/games'
+					window.location = '/'
 				},
 				error: function() {
 					that.render({
@@ -206,7 +206,7 @@ define([
 
 		hydrate: function() {
 			var $form = this.$el.find('#login-form'),
-			data = $form.serializeObject(true);
+				data = $form.serializeObject(true);
 			return data;
 		}
 

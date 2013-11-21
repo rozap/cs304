@@ -1,4 +1,4 @@
-from flask import g, session, render_template, Flask
+from flask import g, session, render_template, Flask, redirect, url_for
 from database import Database
 from api.api import LazyView
 
@@ -13,6 +13,7 @@ app.add_url_rule('/api/user/<username>', view_func=LazyView('api.users.detail_us
 app.add_url_rule('/api/community', view_func=LazyView('api.users.get_community'))
 
 app.add_url_rule('/api/items', view_func=LazyView('api.items.list_items'))
+app.add_url_rule('/api/item_unlock', view_func=LazyView('api.items.list_item_unlocks'), methods = ('GET', 'POST', 'DELETE'))
 app.add_url_rule('/api/achievements', view_func=LazyView('api.achievements.list_achievements'))
 
 app.add_url_rule('/api/discussions', view_func=LazyView('api.discussion.list_discussions'), methods = ('GET', 'POST', 'PUT'))
@@ -24,15 +25,25 @@ app.add_url_rule('/api/avatars', view_func=LazyView('api.avatars.list_avatars'),
 app.add_url_rule('/api/register', view_func=LazyView('api.sessions.register'), methods = ('POST',))
 app.add_url_rule('/api/login', view_func=LazyView('api.sessions.login'), methods = ('POST',))
 
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+
+    return render_template('index.html', user = g.user)
+
+
+@app.route('/logout')
+def logout():
+    del session['username']
+    return redirect(url_for('index'))
 
 @app.before_request
 def before_request():
     g.db = Database()
     if session.get('username', False):
         g.user = g.db.users.get_user({'username' : session['username']})
+    else:
+        g.user = False
 
 @app.teardown_request
 def teardown_request(exception):
