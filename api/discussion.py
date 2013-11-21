@@ -44,8 +44,11 @@ def detail_discussion(discussion_id):
         body = request.json.get('body', '')
         if len(title) < 1 or len(body) < 1:
             return 
-
         g.db.discussions.update_discussion(request.json, discussion_id, g.user['username'])
+    elif request.method == 'DELETE':
+        g.db.discussions.delete_discussion(discussion_id)
+        return False, {'message' : 'Deletion success'}, 202
+        
     discussion = g.db.discussions.get_discussion(discussion_id)
     return False, discussion
 

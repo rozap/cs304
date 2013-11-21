@@ -156,6 +156,7 @@ define([
 		events: {
 			'click .new-comment-btn': 'newComment',
 			'click .edit-discussion-btn': 'edit',
+			'click .delete-discussion-btn': 'deleteDiscussion',
 		},
 
 		initialize: function(app, parent) {
@@ -221,6 +222,17 @@ define([
 			}
 			this.addSubview('editDiscussionView', new EditDiscussionView(opts, this)).render();
 		},
+
+
+		deleteDiscussion: function() {
+			var that = this,
+				gameId = this.model.get('game_id');
+			this.model.destroy({
+				success: function() {
+					that.app.router.navigate('#/games/' + gameId)
+				}
+			});
+		}
 
 	});
 

@@ -1,4 +1,4 @@
-from managers import Manager, entity_list, entity_write, entity_single
+from managers import Manager, entity_list, entity_write, entity_single, entity_delete
 from datetime import datetime
 
 class DiscussionManager(Manager):
@@ -68,6 +68,19 @@ class DiscussionManager(Manager):
                 )
             )
         return self.db, cursor
+
+
+    @entity_delete()
+    def delete_discussion(self, discussion_id):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            DELETE FROM discussion
+            WHERE id = %s
+            """, (discussion_id,)
+        )
+        return self.db, cursor
+
+
 
     @entity_list()
     def get_comments(self, discussion_id):
