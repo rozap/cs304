@@ -54,7 +54,13 @@ define([
 		url: function() {
 			return '/api/community'
 		}
-	})
+	});
+
+	var GamePurchase = AbstractModel.extend({
+		url: function() {
+			return '/api/game_purchase'
+		}
+	});
 
 	return {
 		Discussion: Discussion,
@@ -64,6 +70,7 @@ define([
 		Login: Login,
 		User: User,
 		Item: Item,
-		Community: Community
+		Community: Community,
+		GamePurchase: GamePurchase
 	}
 });

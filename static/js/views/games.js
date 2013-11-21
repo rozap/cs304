@@ -18,6 +18,10 @@ define([
 
 		el: '#main',
 
+		events: {
+			'click .purchase': 'purchaseGame'
+		},
+
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
 			this.model = new Models.Game({
@@ -27,13 +31,27 @@ define([
 			this.model.fetch();
 		},
 
+		purchaseGame: function(ctx) {
+			var gp = new Models.GamePurchase({game : this.model.get('id')});
+				that = this;
+			console.log(gp);
+			gp.sync('create', gp, {
+				wait: true,
+				success: function(resp) {
+					gp.set(resp);
+					that.cancel();
+					this.render();
+				},
+				error: function() {
+					console.log('shit');
+				}
+			});
+		},
 
 		render: function(ctx) {
 			Views.AbstractView.prototype.render.call(this, ctx);
 			this.addSubview('discussionsView', new Discussions.DiscussionsView(this.app, this));
 		}
-
-
 
 	});
 
