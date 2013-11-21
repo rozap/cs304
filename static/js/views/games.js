@@ -19,7 +19,7 @@ define([
 		el: '#main',
 
 		events: {
-			'click .purchase': 'purchaseGame'
+			'click .purchase': 'purchaseGame',
 			'click .detail-item': 'detailItem',
 			'click .purchase-item': 'purchaseItem',
 		},
