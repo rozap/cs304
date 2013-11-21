@@ -30,17 +30,22 @@
 			<% _.each(model.get('items'), function(item) { %>
 
 				<!-- Modal -->
-				<div class="modal fade" id="<%- item.title.replace(/ /g,"_") %>" tabindex="-1" role="dialog" aria-labelledby="lol" aria-hidden="true">
+				<div class="modal fade" data-item="<%- item.title %>">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				        <h4 class="modal-title" id="lol"><%- item.title %></h4>
+				        <h4 class="modal-title"><%- item.title %></h4>
 				      </div>
 				      <div class="modal-body">
 				        <%- item.description %>
 				      </div>
 				      <div class="modal-footer">
+				        <button type="button"
+				         class="btn btn-primary purchase-item"
+				         data-item="<%- item.title %>">
+				         	Purchase
+				         </button>
 				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				      </div>
 				    </div><!-- /.modal-content -->
@@ -48,7 +53,9 @@
 				</div><!-- /.modal -->
 
 				<li>
-					 <a href="javascript:void(0)" data-toggle="modal" data-target="#<%- item.title.replace(/ /g,"_") %>" >
+					 <a href="javascript:void(0)" 
+					 	class="detail-item"
+					 	data-item="<%- item.title %>">
 						<%- item.title %>
 					</a> 
 				</li>

@@ -11,6 +11,7 @@ app.add_url_rule('/api/user/<username>', view_func=LazyView('api.users.detail_us
 app.add_url_rule('/api/community', view_func=LazyView('api.users.get_community'))
 
 app.add_url_rule('/api/items', view_func=LazyView('api.items.list_items'))
+app.add_url_rule('/api/item_unlock', view_func=LazyView('api.items.list_item_unlocks'), methods = ('GET', 'POST', 'DELETE'))
 app.add_url_rule('/api/achievements', view_func=LazyView('api.achievements.list_achievements'))
 
 app.add_url_rule('/api/discussions', view_func=LazyView('api.discussion.list_discussions'), methods = ('GET', 'POST', 'PUT'))

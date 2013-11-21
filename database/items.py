@@ -1,4 +1,5 @@
 from managers import Manager, entity_list, entity_write, entity_single
+from datetime import datetime
 
 class ItemManager(Manager):
     @entity_list()
@@ -65,3 +66,47 @@ class ItemManager(Manager):
                 )
             )
         return self.db, cursor
+
+
+    @entity_write()
+    def insert_item_unlock(self, vals):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            INSERT INTO item_unlock(date, item, game_id, user)
+            VALUES(%s, %s, %s, %s)
+            """, (
+                datetime.now(),
+                vals['item'],
+                vals['game_id'],
+                vals['user']
+                )
+            )
+        return self.db, cursor
+
+
+    @entity_list()
+    def get_item_unlocks(self, game_id, username):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                date, item, game_id, user
+            FROM
+                item_unlock
+            WHERE game_id = %s AND user = %s
+        """, (game_id, username))
+        results = cursor.fetchall()
+        return cursor, results
+
+
+    @entity_single()
+    def get_item_unlock(self, item, game_id, username):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                date, item, game_id, user
+            FROM
+                item_unlock
+            WHERE item = %s AND game_id = %s AND user = %s
+        """, (item, game_id, username))
+        results = cursor.fetchall()
+        return cursor, results

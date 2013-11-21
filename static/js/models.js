@@ -54,7 +54,13 @@ define([
 		url: function() {
 			return '/api/community'
 		}
-	})
+	});
+
+	var ItemUnlock = AbstractModel.extend({
+		url: function() {
+			return '/api/item_unlock'
+		}
+	});
 
 	return {
 		Discussion: Discussion,
@@ -64,6 +70,7 @@ define([
 		Login: Login,
 		User: User,
 		Item: Item,
-		Community: Community
+		Community: Community,
+		ItemUnlock: ItemUnlock
 	}
 });
