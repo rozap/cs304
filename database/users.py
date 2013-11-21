@@ -192,14 +192,14 @@ class UserManager(Manager):
     def get_users_achievements(self, user_id):
         cursor = self.db.cursor()
         cursor.execute("""
-            SELECT *
+            SELECT au.achievement as title
             FROM
-                achievement_unlock au, achievement a
+                achievement_unlock au
             WHERE
-                au.user = %s AND
-                au.achievement = a.title
+                au.user = %s
             """, (user_id,))
         results = cursor.fetchall()
+        print results
         return cursor, results
 
     @entity_single()
@@ -208,10 +208,9 @@ class UserManager(Manager):
         cursor.execute("""
             SELECT COUNT(*)
             FROM
-                achievement_unlock au, achievement a
+                achievement_unlock au
             WHERE
-                au.user = %s AND
-                au.achievement = a.title
+                au.user = %s
             """, (user_id,))
         results = cursor.fetchall()
         return cursor, results
@@ -234,6 +233,9 @@ class UserManager(Manager):
                 u.user = %s
             """, (user_id,))
         results = cursor.fetchall()
+        print '\n'
+        print results
+        print '\n'
         return cursor, results
 
     @entity_single()
@@ -242,10 +244,9 @@ class UserManager(Manager):
         cursor.execute("""
             SELECT COUNT(*)
             FROM
-                item_unlock iu, item i 
+                item_unlock iu
             WHERE
-                iu.user = %s AND
-                iu.item = i.title
+                iu.user = %s
             """, (user_id,))
         results = cursor.fetchall()
         return cursor, results
