@@ -9,6 +9,20 @@ def list_discussions():
         discussion_dict['username'] = g.user['username']
         discussion_id = g.db.discussions.insert_discussion(discussion_dict)
         discussion = g.db.discussions.get_discussion(discussion_id)
+
+        #The user just created a discussion, so check if they have the discussion achievement, 
+        #and if they don't, then bestow it upon them
+        achievement = 'Discussion Contributor'
+        exisiting_achievement = g.db.achievements.has_achievement(g.user['username'], achievement, discussion_dict['game_id'])
+        if exisiting_achievement['achievement_count'] == 0:
+            a = {
+                'achievement' : achievement,
+                'game_id' : discussion_dict['game_id'],
+                'user' : g.user['username']
+            }
+            g.db.achievements.unlock_achievement(a)
+
+
         return False, discussion
 
     try:
@@ -43,6 +57,20 @@ def list_comments():
         #Create the new comment
         c_id = g.db.discussions.insert_comment(comment_dict)
         comment = g.db.discussions.get_comment(c_id)
+
+
+        game_id = g.db.discussions.get_game_id_from_comment(c_id)['id']
+        achievement = 'Comment Contributor'
+        exisiting_achievement = g.db.achievements.has_achievement(g.user['username'], achievement, game_id)
+        if exisiting_achievement['achievement_count'] == 0:
+            a = {
+                'achievement' : achievement,
+                'game_id' : game_id,
+                'user' : g.user['username']
+            }
+            g.db.achievements.unlock_achievement(a)
+
+
         return False, comment
 
     elif request.method == 'GET':
