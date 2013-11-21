@@ -22,9 +22,9 @@
 <div class="row">
 	<% if(showGamesOnly) {%>
 	<div class="col-md-12">
-		<h5>Games Purchased</h5>
+		<h3>Games Purchased</h3>
 			<% _.each(model.get('games'), function(game) { %>
-				<div class="row min-space-top">
+				<div class="row profile-item">
 					<div class="col-lg-2 game-thumb">
 						<img src="<%- game.image %>"/>
 					</div>
@@ -41,10 +41,9 @@
 
 	<% if(showItemsOnly) {%>
 	<div class="col-md-12">
-		<h5>Items Unlocked</h5>
-		<ul class="nav nav-pills nav-stacked">
+		<h3>Items Unlocked</h3>
 			<% _.each(model.get('items'), function(item) { %>
-				<div class="row min-space-top">
+				<div class="row profile-item">
 					<div class="col-lg-2 game-thumb">
 						<img src="<%- item.image %>"/>
 					</div>
@@ -52,19 +51,19 @@
 						<h4>
 								<%- item.item %>
 						</h4>
+						<h6>Attained on: <%- item.date %></h6>
 						<a href="#/games/<%- item.game_id %>">
 							In game: <%- item.title %>
 						</a>
 					</div>
 				</div>
 			<% }); %>
-		</ul>
 	</div>
 	<% } %>
 
 	<% if(showAchievementsOnly) {%>
 	<div class="col-md-3">
-		<h5>Achievements Unlocked</h5>
+		<h3>Achievements Unlocked</h3>
 		<ul class="nav nav-pills nav-stacked">
 			<% _.each(model.get('achievements'), function(achievement) { %>
 				<li>

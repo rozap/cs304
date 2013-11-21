@@ -231,6 +231,7 @@ class UserManager(Manager):
                     g.id = u.game_id
             WHERE
                 u.user = %s
+            ORDER BY u.date DESC
             """, (user_id,))
         results = cursor.fetchall()
         print '\n'
