@@ -256,12 +256,31 @@ class UserManager(Manager):
         results = cursor.fetchall()
         return cursor, results
         
-    @entity_list()
+    @entity_single()
+    def get_community_avg(self, table):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT
+                AVG(num) as community_avg
+            FROM 
+                (
+                    SELECT 
+                        COUNT(*) as num
+                    FROM 
+                        %s
+                    GROUP BY
+                        user
+                ) AS Community_AVG
+        """% table)
+        results = cursor.fetchall()
+        return cursor, results
+
+    @entity_single()
     def get_community_min(self, table):
         cursor = self.db.cursor()
         cursor.execute("""
             SELECT
-                MIN(num)
+                MIN(num) as community_min
             FROM 
                 (
                     SELECT 
@@ -271,16 +290,16 @@ class UserManager(Manager):
                     GROUP BY
                         user
                 ) AS Community_MIN
-        """, table)
+        """% table)
         results = cursor.fetchall()
-        return self.db, cursor
+        return cursor, results
 
-    @entity_list()
+    @entity_single()
     def get_community_max(self, table):
         cursor = self.db.cursor()
         cursor.execute("""
             SELECT
-                MAX(num)
+                MAX(num) as community_max
             FROM 
                 (
                     SELECT 
@@ -290,6 +309,6 @@ class UserManager(Manager):
                     GROUP BY
                         user
                 ) AS Community_MAX
-        """, table)
+        """% table)
         results = cursor.fetchall()
-        return self.db, cursor
+        return cursor, results

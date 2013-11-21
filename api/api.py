@@ -1,7 +1,14 @@
 from werkzeug import import_string, cached_property
 import json
 from flask import Response
+from decimal import Decimal
 
+class Encoder(json.JSONEncoder):
+    def default(self, obj):
+        print obj
+        if isinstance(obj, Decimal):
+            return float(obj)
+        return json.JSONEncoder.default(self, obj)
 
 class LazyView(object):
 
@@ -29,9 +36,9 @@ def json_view(fn):
             root, result, status = res
 
         if root:
-            js = json.dumps({root : result})
+            js = json.dumps({root : result}, cls = Encoder)
         else:
-            js = json.dumps(result)
+            js = json.dumps(result, cls = Encoder)
         resp = Response(js, mimetype="application/json")
         resp.status_code = status
         return resp
