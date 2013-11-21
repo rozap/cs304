@@ -40,15 +40,23 @@
 	<% } %>
 
 	<% if(showItemsOnly) {%>
-	<div class="col-md-3">
+	<div class="col-md-12">
 		<h5>Items Unlocked</h5>
 		<ul class="nav nav-pills nav-stacked">
 			<% _.each(model.get('items'), function(item) { %>
-				<li>
-					<a href="javascript:void(0)">
-						<%- item.title %>
-					</a>
-				</li>
+				<div class="row min-space-top">
+					<div class="col-lg-2 game-thumb">
+						<img src="<%- item.image %>"/>
+					</div>
+					<div class="col-lg-10">
+						<h4>
+								<%- item.item %>
+						</h4>
+						<a href="#/games/<%- item.game_id %>">
+							In game: <%- item.title %>
+						</a>
+					</div>
+				</div>
 			<% }); %>
 		</ul>
 	</div>
