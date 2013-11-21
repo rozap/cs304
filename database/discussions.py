@@ -95,6 +95,21 @@ class DiscussionManager(Manager):
         results = cursor.fetchall()
         return cursor, results
 
+    @entity_single()
+    def get_game_id_from_comment(self, c_id):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                d.game_id as id
+            FROM
+                comment c
+            INNER JOIN discussion d
+                ON c.discussion_id = d.id
+            WHERE c.id = %s
+        """, (c_id,))
+        results = cursor.fetchall()
+        return cursor, results
+
     @entity_write()
     def insert_comment(self, vals):
         if not vals.get('date', False):

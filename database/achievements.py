@@ -1,5 +1,5 @@
 from managers import Manager, entity_list, entity_write, entity_single
-
+from datetime import datetime
 
 
 
@@ -56,6 +56,21 @@ class AchievementManager(Manager):
         """, (title, game_id,))
         return self.db, cursor
 
+
+    @entity_single()
+    def has_achievement(self, username, title, game_id):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT 
+                count(*) as achievement_count
+            FROM
+                achievement_unlock
+            WHERE achievement = %s AND game_id = %s AND user = %s
+        """, (title, game_id, username))
+        results = cursor.fetchall()
+        return cursor, results
+
+
     @entity_write()
     def insert_achievement(self, vals):
         cursor = self.db.cursor()
@@ -66,6 +81,21 @@ class AchievementManager(Manager):
                 vals['title'],
                 vals['game_id'],
                 vals['description']
+                )
+            )
+        return self.db, cursor
+
+    @entity_write()
+    def unlock_achievement(self, vals):
+        cursor = self.db.cursor()
+        cursor.execute("""
+            INSERT INTO achievement_unlock(date, achievement, game_id, user)
+            VALUES(%s, %s, %s, %s)
+            """, (
+                datetime.now(),
+                vals['achievement'],
+                vals['game_id'],
+                vals['user']
                 )
             )
         return self.db, cursor

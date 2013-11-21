@@ -192,14 +192,21 @@ class UserManager(Manager):
     def get_users_achievements(self, user_id):
         cursor = self.db.cursor()
         cursor.execute("""
-            SELECT au.achievement as title
+            SELECT a.title as achievement_title, a.description as achievement_description,
+                au.user, au.game_id, au.date, 
+                g.title, g.price, g.description, g.developer,
+                g.image, g.genre
             FROM
-                achievement_unlock au
+                achievement a
+            INNER JOIN achievement_unlock au
+                ON a.title = au.achievement AND a.game_id = au.game_id
+            INNER JOIN game g
+                ON a.game_id = g.id
             WHERE
                 au.user = %s
+            ORDER BY au.date DESC
             """, (user_id,))
         results = cursor.fetchall()
-        print results
         return cursor, results
 
     @entity_single()
@@ -234,9 +241,6 @@ class UserManager(Manager):
             ORDER BY u.date DESC
             """, (user_id,))
         results = cursor.fetchall()
-        print '\n'
-        print results
-        print '\n'
         return cursor, results
 
     @entity_single()

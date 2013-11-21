@@ -28,27 +28,6 @@ class GameManager(Manager):
         results = cursor.fetchall()
         return cursor, results
 
-    @entity_list()
-    def get_game_ids(self, limit = 40, page = 0, **kwargs):
-        cursor = self.db.cursor()
-
-        where_args = self.create_filters(**kwargs)
-
-        query = """
-            SELECT 
-                id
-            FROM
-                game 
-        """ +where_args+"""
-            limit %s
-            offset %s
-        """
-
-        print query
-
-        cursor.execute(query, (limit, limit*page))
-        results = cursor.fetchall()
-        return cursor, results
 
 
     @entity_single()
