@@ -89,3 +89,12 @@ def entity_write():
             return insert_id
         return wrapped
     return write
+
+
+def entity_delete():
+    def write(fn):
+        def wrapped(*args, **kwargs):
+            db, cursor = fn(*args, **kwargs)
+            db.commit()
+        return wrapped
+    return write

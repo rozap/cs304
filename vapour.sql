@@ -106,7 +106,7 @@ CREATE TABLE `comment` (
   `body` text DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id` ),
-  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`),
+  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

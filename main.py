@@ -17,7 +17,7 @@ app.add_url_rule('/api/item_unlock', view_func=LazyView('api.items.list_item_unl
 app.add_url_rule('/api/achievements', view_func=LazyView('api.achievements.list_achievements'))
 
 app.add_url_rule('/api/discussions', view_func=LazyView('api.discussion.list_discussions'), methods = ('GET', 'POST', 'PUT'))
-app.add_url_rule('/api/discussions/<int:discussion_id>', view_func=LazyView('api.discussion.detail_discussion'), methods = ('GET', 'POST', 'PUT'))
+app.add_url_rule('/api/discussions/<int:discussion_id>', view_func=LazyView('api.discussion.detail_discussion'), methods = ('GET', 'POST', 'PUT', 'DELETE'))
 
 app.add_url_rule('/api/comments', view_func=LazyView('api.discussion.list_comments'), methods = ('GET', 'POST', 'PUT'))
 app.add_url_rule('/api/avatars', view_func=LazyView('api.avatars.list_avatars'), methods = ('GET',))
@@ -40,7 +40,11 @@ def logout():
 def before_request():
     g.db = Database()
     if session.get('username', False):
-        g.user = g.db.users.get_user({'username' : session['username']})
+        try:
+            g.user = g.db.users.get_user({'username' : session['username']})
+        except:
+            del session['username']
+            g.user = False
     else:
         g.user = False
 
