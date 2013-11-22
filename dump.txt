@@ -1,0 +1,470 @@
+-- MySQL dump 10.13  Distrib 5.5.32, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: vapour
+-- ------------------------------------------------------
+-- Server version	5.5.32-0ubuntu0.13.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `achievement`
+--
+
+DROP TABLE IF EXISTS `achievement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `achievement` (
+  `title` varchar(255) NOT NULL,
+  `game_id` int(50) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`title`,`game_id`),
+  KEY `achievement_ibfk_1` (`game_id`),
+  CONSTRAINT `achievement_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `achievement`
+--
+
+LOCK TABLES `achievement` WRITE;
+/*!40000 ALTER TABLE `achievement` DISABLE KEYS */;
+INSERT INTO `achievement` VALUES ('Comment Contributor',30,'A user can achieve this by commenting on a discussion within Counter-Strike: Condition Zero'),('Comment Contributor',31,'A user can achieve this by commenting on a discussion within Counter-Strike: Condition Zero Deleted Scenes'),('Comment Contributor',32,'A user can achieve this by commenting on a discussion within Left 4 Dead 2'),('Comment Contributor',33,'A user can achieve this by commenting on a discussion within Half-Life 2'),('Comment Contributor',34,'A user can achieve this by commenting on a discussion within Counter-Strike'),('Comment Contributor',35,'A user can achieve this by commenting on a discussion within Dota 2'),('Comment Contributor',36,'A user can achieve this by commenting on a discussion within Counter-Strike: Source'),('Comment Contributor',37,'A user can achieve this by commenting on a discussion within Portal: First Slice'),('Comment Contributor',38,'A user can achieve this by commenting on a discussion within Day of Defeat'),('Comment Contributor',39,'A user can achieve this by commenting on a discussion within Half-Life 2: Lost Coast'),('Comment Contributor',40,'A user can achieve this by commenting on a discussion within Half-Life'),('Comment Contributor',41,'A user can achieve this by commenting on a discussion within Half-Life 2: Episode Two'),('Comment Contributor',42,'A user can achieve this by commenting on a discussion within Half-Life: Opposing Force'),('Comment Contributor',43,'A user can achieve this by commenting on a discussion within Ricochet'),('Comment Contributor',44,'A user can achieve this by commenting on a discussion within Half-Life: Blue Shift'),('Comment Contributor',45,'A user can achieve this by commenting on a discussion within Half-Life Deathmatch: Source'),('Comment Contributor',46,'A user can achieve this by commenting on a discussion within Portal 2'),('Comment Contributor',47,'A user can achieve this by commenting on a discussion within Team Fortress Classic'),('Comment Contributor',48,'A user can achieve this by commenting on a discussion within Day of Defeat: Source'),('Comment Contributor',49,'A user can achieve this by commenting on a discussion within Deathmatch Classic'),('Comment Contributor',50,'A user can achieve this by commenting on a discussion within Half-Life 2: Episode One'),('Comment Contributor',51,'A user can achieve this by commenting on a discussion within Half-Life 2: Deathmatch'),('Comment Contributor',52,'A user can achieve this by commenting on a discussion within Portal'),('Comment Contributor',53,'A user can achieve this by commenting on a discussion within Half-Life: Source'),('Comment Contributor',54,'A user can achieve this by commenting on a discussion within Left 4 Dead'),('Comment Contributor',55,'A user can achieve this by commenting on a discussion within Alien Swarm'),('Comment Contributor',56,'A user can achieve this by commenting on a discussion within Counter-Strike: Global Offensive'),('Comment Contributor',57,'A user can achieve this by commenting on a discussion within Portal 2 - Pre-order'),('Comment Contributor',58,'A user can achieve this by commenting on a discussion within Space Empires V'),('Comment Contributor',59,'A user can achieve this by commenting on a discussion within Source Filmmaker'),('Comment Contributor',60,'A user can achieve this by commenting on a discussion within Darwinia'),('Comment Contributor',61,'A user can achieve this by commenting on a discussion within Quake'),('Comment Contributor',62,'A user can achieve this by commenting on a discussion within Uplink'),('Comment Contributor',63,'A user can achieve this by commenting on a discussion within Iron Warriors: T-72 Tank Command'),('Comment Contributor',64,'A user can achieve this by commenting on a discussion within SiN Episodes: Emergence'),('Comment Contributor',65,'A user can achieve this by commenting on a discussion within Jagged Alliance 2'),('Comment Contributor',66,'A user can achieve this by commenting on a discussion within Heretic: Shadow of the Serpent Riders'),('Comment Contributor',67,'A user can achieve this by commenting on a discussion within Final DOOM'),('Comment Contributor',68,'A user can achieve this by commenting on a discussion within The Ship Single Player'),('Comment Contributor',69,'A user can achieve this by commenting on a discussion within The Ship'),('Comment Contributor',70,'A user can achieve this by commenting on a discussion within Quake III Arena'),('Comment Contributor',71,'A user can achieve this by commenting on a discussion within Quake II: The Reckoning'),('Comment Contributor',72,'A user can achieve this by commenting on a discussion within Quake II: Ground Zero'),('Comment Contributor',73,'A user can achieve this by commenting on a discussion within Dangerous Waters'),('Comment Contributor',74,'A user can achieve this by commenting on a discussion within Quake III: Team Arena'),('Comment Contributor',75,'A user can achieve this by commenting on a discussion within Quake II'),('Comment Contributor',76,'A user can achieve this by commenting on a discussion within Wolfenstein 3D'),('Comment Contributor',77,'A user can achieve this by commenting on a discussion within DOOM II: Hell on Earth'),('Comment Contributor',78,'A user can achieve this by commenting on a discussion within HeXen: Beyond Heretic'),('Comment Contributor',79,'A user can achieve this by commenting on a discussion within The Ultimate DOOM'),('Comment Contributor',80,'A user can achieve this by commenting on a discussion within Earth 2160'),('Comment Contributor',81,'A user can achieve this by commenting on a discussion within DEFCON'),('Comment Contributor',82,'A user can achieve this by commenting on a discussion within Multiwinia'),('Comment Contributor',83,'A user can achieve this by commenting on a discussion within Arx Fatalis'),('Comment Contributor',84,'A user can achieve this by commenting on a discussion within HeXen: Deathkings of the Dark Citadel'),('Comment Contributor',85,'A user can achieve this by commenting on a discussion within Act of War: Direct Action'),('Comment Contributor',86,'A user can achieve this by commenting on a discussion within ThreadSpace: Hyperbol'),('Comment Contributor',87,'A user can achieve this by commenting on a discussion within Gumboy: Crazy Adventures'),('Comment Contributor',88,'A user can achieve this by commenting on a discussion within SiN'),('Comment Contributor',89,'A user can achieve this by commenting on a discussion within RollerCoaster Tycoon 3: Platinum!'),('Comment Contributor',90,'A user can achieve this by commenting on a discussion within Call of Duty'),('Discussion Contributor',30,'A user can achieve this by creating a discussion about Counter-Strike: Condition Zero'),('Discussion Contributor',31,'A user can achieve this by creating a discussion about Counter-Strike: Condition Zero Deleted Scenes'),('Discussion Contributor',32,'A user can achieve this by creating a discussion about Left 4 Dead 2'),('Discussion Contributor',33,'A user can achieve this by creating a discussion about Half-Life 2'),('Discussion Contributor',34,'A user can achieve this by creating a discussion about Counter-Strike'),('Discussion Contributor',35,'A user can achieve this by creating a discussion about Dota 2'),('Discussion Contributor',36,'A user can achieve this by creating a discussion about Counter-Strike: Source'),('Discussion Contributor',37,'A user can achieve this by creating a discussion about Portal: First Slice'),('Discussion Contributor',38,'A user can achieve this by creating a discussion about Day of Defeat'),('Discussion Contributor',39,'A user can achieve this by creating a discussion about Half-Life 2: Lost Coast'),('Discussion Contributor',40,'A user can achieve this by creating a discussion about Half-Life'),('Discussion Contributor',41,'A user can achieve this by creating a discussion about Half-Life 2: Episode Two'),('Discussion Contributor',42,'A user can achieve this by creating a discussion about Half-Life: Opposing Force'),('Discussion Contributor',43,'A user can achieve this by creating a discussion about Ricochet'),('Discussion Contributor',44,'A user can achieve this by creating a discussion about Half-Life: Blue Shift'),('Discussion Contributor',45,'A user can achieve this by creating a discussion about Half-Life Deathmatch: Source'),('Discussion Contributor',46,'A user can achieve this by creating a discussion about Portal 2'),('Discussion Contributor',47,'A user can achieve this by creating a discussion about Team Fortress Classic'),('Discussion Contributor',48,'A user can achieve this by creating a discussion about Day of Defeat: Source'),('Discussion Contributor',49,'A user can achieve this by creating a discussion about Deathmatch Classic'),('Discussion Contributor',50,'A user can achieve this by creating a discussion about Half-Life 2: Episode One'),('Discussion Contributor',51,'A user can achieve this by creating a discussion about Half-Life 2: Deathmatch'),('Discussion Contributor',52,'A user can achieve this by creating a discussion about Portal'),('Discussion Contributor',53,'A user can achieve this by creating a discussion about Half-Life: Source'),('Discussion Contributor',54,'A user can achieve this by creating a discussion about Left 4 Dead'),('Discussion Contributor',55,'A user can achieve this by creating a discussion about Alien Swarm'),('Discussion Contributor',56,'A user can achieve this by creating a discussion about Counter-Strike: Global Offensive'),('Discussion Contributor',57,'A user can achieve this by creating a discussion about Portal 2 - Pre-order'),('Discussion Contributor',58,'A user can achieve this by creating a discussion about Space Empires V'),('Discussion Contributor',59,'A user can achieve this by creating a discussion about Source Filmmaker'),('Discussion Contributor',60,'A user can achieve this by creating a discussion about Darwinia'),('Discussion Contributor',61,'A user can achieve this by creating a discussion about Quake'),('Discussion Contributor',62,'A user can achieve this by creating a discussion about Uplink'),('Discussion Contributor',63,'A user can achieve this by creating a discussion about Iron Warriors: T-72 Tank Command'),('Discussion Contributor',64,'A user can achieve this by creating a discussion about SiN Episodes: Emergence'),('Discussion Contributor',65,'A user can achieve this by creating a discussion about Jagged Alliance 2'),('Discussion Contributor',66,'A user can achieve this by creating a discussion about Heretic: Shadow of the Serpent Riders'),('Discussion Contributor',67,'A user can achieve this by creating a discussion about Final DOOM'),('Discussion Contributor',68,'A user can achieve this by creating a discussion about The Ship Single Player'),('Discussion Contributor',69,'A user can achieve this by creating a discussion about The Ship'),('Discussion Contributor',70,'A user can achieve this by creating a discussion about Quake III Arena'),('Discussion Contributor',71,'A user can achieve this by creating a discussion about Quake II: The Reckoning'),('Discussion Contributor',72,'A user can achieve this by creating a discussion about Quake II: Ground Zero'),('Discussion Contributor',73,'A user can achieve this by creating a discussion about Dangerous Waters'),('Discussion Contributor',74,'A user can achieve this by creating a discussion about Quake III: Team Arena'),('Discussion Contributor',75,'A user can achieve this by creating a discussion about Quake II'),('Discussion Contributor',76,'A user can achieve this by creating a discussion about Wolfenstein 3D'),('Discussion Contributor',77,'A user can achieve this by creating a discussion about DOOM II: Hell on Earth'),('Discussion Contributor',78,'A user can achieve this by creating a discussion about HeXen: Beyond Heretic'),('Discussion Contributor',79,'A user can achieve this by creating a discussion about The Ultimate DOOM'),('Discussion Contributor',80,'A user can achieve this by creating a discussion about Earth 2160'),('Discussion Contributor',81,'A user can achieve this by creating a discussion about DEFCON'),('Discussion Contributor',82,'A user can achieve this by creating a discussion about Multiwinia'),('Discussion Contributor',83,'A user can achieve this by creating a discussion about Arx Fatalis'),('Discussion Contributor',84,'A user can achieve this by creating a discussion about HeXen: Deathkings of the Dark Citadel'),('Discussion Contributor',85,'A user can achieve this by creating a discussion about Act of War: Direct Action'),('Discussion Contributor',86,'A user can achieve this by creating a discussion about ThreadSpace: Hyperbol'),('Discussion Contributor',87,'A user can achieve this by creating a discussion about Gumboy: Crazy Adventures'),('Discussion Contributor',88,'A user can achieve this by creating a discussion about SiN'),('Discussion Contributor',89,'A user can achieve this by creating a discussion about RollerCoaster Tycoon 3: Platinum!'),('Discussion Contributor',90,'A user can achieve this by creating a discussion about Call of Duty'),('Game owner',30,'A user can achieve this by purchasing Counter-Strike: Condition Zero'),('Game owner',31,'A user can achieve this by purchasing Counter-Strike: Condition Zero Deleted Scenes'),('Game owner',32,'A user can achieve this by purchasing Left 4 Dead 2'),('Game owner',33,'A user can achieve this by purchasing Half-Life 2'),('Game owner',34,'A user can achieve this by purchasing Counter-Strike'),('Game owner',35,'A user can achieve this by purchasing Dota 2'),('Game owner',36,'A user can achieve this by purchasing Counter-Strike: Source'),('Game owner',37,'A user can achieve this by purchasing Portal: First Slice'),('Game owner',38,'A user can achieve this by purchasing Day of Defeat'),('Game owner',39,'A user can achieve this by purchasing Half-Life 2: Lost Coast'),('Game owner',40,'A user can achieve this by purchasing Half-Life'),('Game owner',41,'A user can achieve this by purchasing Half-Life 2: Episode Two'),('Game owner',42,'A user can achieve this by purchasing Half-Life: Opposing Force'),('Game owner',43,'A user can achieve this by purchasing Ricochet'),('Game owner',44,'A user can achieve this by purchasing Half-Life: Blue Shift'),('Game owner',45,'A user can achieve this by purchasing Half-Life Deathmatch: Source'),('Game owner',46,'A user can achieve this by purchasing Portal 2'),('Game owner',47,'A user can achieve this by purchasing Team Fortress Classic'),('Game owner',48,'A user can achieve this by purchasing Day of Defeat: Source'),('Game owner',49,'A user can achieve this by purchasing Deathmatch Classic'),('Game owner',50,'A user can achieve this by purchasing Half-Life 2: Episode One'),('Game owner',51,'A user can achieve this by purchasing Half-Life 2: Deathmatch'),('Game owner',52,'A user can achieve this by purchasing Portal'),('Game owner',53,'A user can achieve this by purchasing Half-Life: Source'),('Game owner',54,'A user can achieve this by purchasing Left 4 Dead'),('Game owner',55,'A user can achieve this by purchasing Alien Swarm'),('Game owner',56,'A user can achieve this by purchasing Counter-Strike: Global Offensive'),('Game owner',57,'A user can achieve this by purchasing Portal 2 - Pre-order'),('Game owner',58,'A user can achieve this by purchasing Space Empires V'),('Game owner',59,'A user can achieve this by purchasing Source Filmmaker'),('Game owner',60,'A user can achieve this by purchasing Darwinia'),('Game owner',61,'A user can achieve this by purchasing Quake'),('Game owner',62,'A user can achieve this by purchasing Uplink'),('Game owner',63,'A user can achieve this by purchasing Iron Warriors: T-72 Tank Command'),('Game owner',64,'A user can achieve this by purchasing SiN Episodes: Emergence'),('Game owner',65,'A user can achieve this by purchasing Jagged Alliance 2'),('Game owner',66,'A user can achieve this by purchasing Heretic: Shadow of the Serpent Riders'),('Game owner',67,'A user can achieve this by purchasing Final DOOM'),('Game owner',68,'A user can achieve this by purchasing The Ship Single Player'),('Game owner',69,'A user can achieve this by purchasing The Ship'),('Game owner',70,'A user can achieve this by purchasing Quake III Arena'),('Game owner',71,'A user can achieve this by purchasing Quake II: The Reckoning'),('Game owner',72,'A user can achieve this by purchasing Quake II: Ground Zero'),('Game owner',73,'A user can achieve this by purchasing Dangerous Waters'),('Game owner',74,'A user can achieve this by purchasing Quake III: Team Arena'),('Game owner',75,'A user can achieve this by purchasing Quake II'),('Game owner',76,'A user can achieve this by purchasing Wolfenstein 3D'),('Game owner',77,'A user can achieve this by purchasing DOOM II: Hell on Earth'),('Game owner',78,'A user can achieve this by purchasing HeXen: Beyond Heretic'),('Game owner',79,'A user can achieve this by purchasing The Ultimate DOOM'),('Game owner',80,'A user can achieve this by purchasing Earth 2160'),('Game owner',81,'A user can achieve this by purchasing DEFCON'),('Game owner',82,'A user can achieve this by purchasing Multiwinia'),('Game owner',83,'A user can achieve this by purchasing Arx Fatalis'),('Game owner',84,'A user can achieve this by purchasing HeXen: Deathkings of the Dark Citadel'),('Game owner',85,'A user can achieve this by purchasing Act of War: Direct Action'),('Game owner',86,'A user can achieve this by purchasing ThreadSpace: Hyperbol'),('Game owner',87,'A user can achieve this by purchasing Gumboy: Crazy Adventures'),('Game owner',88,'A user can achieve this by purchasing SiN'),('Game owner',89,'A user can achieve this by purchasing RollerCoaster Tycoon 3: Platinum!'),('Game owner',90,'A user can achieve this by purchasing Call of Duty');
+/*!40000 ALTER TABLE `achievement` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `achievement_unlock`
+--
+
+DROP TABLE IF EXISTS `achievement_unlock`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `achievement_unlock` (
+  `date` datetime DEFAULT NULL,
+  `achievement` varchar(255) NOT NULL DEFAULT '',
+  `game_id` int(50) NOT NULL DEFAULT '0',
+  `user` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`achievement`,`game_id`,`user`),
+  KEY `achievement_unlock_ibfk_2` (`game_id`),
+  KEY `achievement_unlock_ibfk_3` (`user`),
+  CONSTRAINT `achievement_unlock_ibfk_1` FOREIGN KEY (`achievement`) REFERENCES `achievement` (`title`),
+  CONSTRAINT `achievement_unlock_ibfk_2` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
+  CONSTRAINT `achievement_unlock_ibfk_3` FOREIGN KEY (`user`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `achievement_unlock`
+--
+
+LOCK TABLES `achievement_unlock` WRITE;
+/*!40000 ALTER TABLE `achievement_unlock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `achievement_unlock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`username`),
+  CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comment` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `discussion_id` int(50) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `body` text,
+  `date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `comment_ibfk_1` (`discussion_id`),
+  KEY `comment_ibfk_3` (`username`),
+  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comment`
+--
+
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `discussion`
+--
+
+DROP TABLE IF EXISTS `discussion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `discussion` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `game_id` int(50) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` text,
+  `date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`,`game_id`),
+  KEY `discussion_ibfk_1` (`game_id`),
+  KEY `discussion_ibfk_2` (`username`),
+  CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
+  CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `discussion`
+--
+
+LOCK TABLES `discussion` WRITE;
+/*!40000 ALTER TABLE `discussion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `discussion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `friend`
+--
+
+DROP TABLE IF EXISTS `friend`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `friend` (
+  `user_0` varchar(255) NOT NULL DEFAULT '',
+  `user_1` varchar(255) NOT NULL DEFAULT '',
+  `date` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_0`,`user_1`),
+  KEY `friend_ibfk_2` (`user_1`),
+  CONSTRAINT `friend_ibfk_1` FOREIGN KEY (`user_0`) REFERENCES `user` (`username`),
+  CONSTRAINT `friend_ibfk_2` FOREIGN KEY (`user_1`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `friend`
+--
+
+LOCK TABLES `friend` WRITE;
+/*!40000 ALTER TABLE `friend` DISABLE KEYS */;
+/*!40000 ALTER TABLE `friend` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game`
+--
+
+DROP TABLE IF EXISTS `game`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `game` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `title` varchar(511) DEFAULT NULL,
+  `price` float(5,2) DEFAULT NULL,
+  `description` text,
+  `developer` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `genre` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `title` (`title`)
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game`
+--
+
+LOCK TABLES `game` WRITE;
+/*!40000 ALTER TABLE `game` DISABLE KEYS */;
+INSERT INTO `game` VALUES (30,'Counter-Strike: Condition Zero',9.99,'With its extensive Tour of Duty campaign, a near-limitless number of skirmish modes, updates and new content for Counter-Strike\'s award-winning multiplayer game play, plus over 12 bonus single player missions, Counter-Strike: Condition Zero is a tremendous offering of single and multiplayer content.','Valve','http://cdn4.steampowered.com/v/gfx/apps/80/header_292x136.jpg?t=1362608307','Action'),(31,'Counter-Strike: Condition Zero Deleted Scenes',9.99,'With its extensive Tour of Duty campaign, a near-limitless number of skirmish modes, updates and new content for Counter-Strike\'s award-winning multiplayer game play, plus over 12 bonus single player missions, Counter-Strike: Condition Zero is a tremendous offering of single and multiplayer content.','Valve','http://cdn4.steampowered.com/v/gfx/apps/80/header_292x136.jpg?t=1362608307','Action'),(32,'Left 4 Dead 2',19.99,'Set in the zombie apocalypse, Left 4 Dead 2 (L4D2) is the highly anticipated sequel to the award-winning Left 4 Dead, the #1 co-op game of 2008. This co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns.','Valve','http://cdn4.steampowered.com/v/gfx/apps/550/header_292x136.jpg?t=1382642654','Action'),(33,'Half-Life 2',9.99,'1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valve\'s debut title wins more than 50 game-of-the-year awards on its way to being named \"Best PC Game Ever\" by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.','Valve','http://cdn4.steampowered.com/v/gfx/apps/220/header_292x136.jpg?t=1384249356','Action'),(34,'Counter-Strike',9.99,'Play the world\'s number 1 online action game. Engage in an incredibly realistic brand of terrorist warfare in this wildly popular team-based game. Ally with teammates to complete strategic missions. Take out enemy sites. Rescue hostages. Your role affects your team\'s success. Your team\'s success affects your role.','Valve','http://cdn4.steampowered.com/v/gfx/apps/10/header_292x136.jpg?t=1360355165','Action'),(35,'Dota 2',0.00,'Dota is a competitive game of action and strategy, played both professionally and casually by millions of passionate fans worldwide. Players pick from a pool of over a hundred heroes, forming two teams of five players.','','http://cdn4.steampowered.com/v/gfx/apps/570/header_292x136.jpg?t=1382637963','Action'),(36,'Counter-Strike: Source',19.99,'THE NEXT INSTALLMENT OF THE WORLD\'S # 1 ONLINE ACTION GAME Counter-Strike: Source blends Counter-Strike\'s award-winning teamplay action with the advanced technology of Source&trade; technology. Featuring state of the art graphics, all new sounds, and introducing physics, Counter-Strike: Source is a must-have for every action gamer.','Valve','http://cdn4.steampowered.com/v/gfx/apps/240/header_292x136.jpg?t=1360273366','Action'),(37,'Portal: First Slice',9.99,'Portal&trade; is a new single player game from Valve. Set in the mysterious Aperture Science Laboratories, Portal has been called one of the most innovative new games on the horizon and will offer gamers hours of unique gameplay.','Valve','http://cdn4.steampowered.com/v/gfx/apps/400/header_292x136.jpg?t=1374685745','Action'),(38,'Day of Defeat',4.99,'Enlist in an intense brand of Axis vs. Allied teamplay set in the WWII European Theatre of Operations. Players assume the role of light/assault/heavy infantry, sniper or machine-gunner class, each with a unique arsenal of historical weaponry at their disposal. Missions are based on key historical operations.','Valve','http://cdn4.steampowered.com/v/gfx/apps/30/header_292x136.jpg?t=1364932044','Action'),(39,'Half-Life 2: Lost Coast',39.99,'Originally planned as a section of the Highway 17 chapter of Half-Life 2, Lost Coast is a playable technology showcase that introduces High Dynamic Range lighting to the Source engine.','Valve','http://cdn4.steampowered.com/v/gfx/apps/340/header_292x136.jpg?t=1374509172','Action'),(40,'Half-Life',9.99,'Named Game of the Year by over 50 publications, Valve\'s debut title blends action and adventure with award-winning technology to create a frighteningly realistic world where players must think to survive. Also includes an exciting multiplayer mode that allows you to play against friends and enemies around the world.','Valve','http://cdn4.steampowered.com/v/gfx/apps/70/header_292x136.jpg?t=1360355165','Action'),(41,'Half-Life 2: Episode Two',7.99,'Half-Life&reg; 2: Episode Two is the second in a trilogy of new games created by Valve that extends the award-winning and best-selling Half-Life&reg; adventure. As Dr. Gordon Freeman, you were last seen exiting City 17 with Alyx Vance as the Citadel erupted amidst a storm of unknown proportions.','Valve','http://cdn4.steampowered.com/v/gfx/apps/420/header_292x136.jpg?t=1374509404','Action'),(42,'Half-Life: Opposing Force',4.99,'Return to the Black Mesa Research Facility as one of the military specialists assigned to eliminate Gordon Freeman. Experience an entirely new episode of single player action. Meet fierce alien opponents, and experiment with new weaponry. Named \'Game of the Year\' by the Academy of Interactive Arts and Sciences.','Gearbox Software','http://cdn4.steampowered.com/v/gfx/apps/50/header_292x136.jpg?t=1364932044','Action'),(43,'Ricochet',4.99,'A futuristic action game that challenges your agility as well as your aim, Ricochet features one-on-one and team matches played in a variety of futuristic battle arenas.','Valve','http://cdn4.steampowered.com/v/gfx/apps/60/header_292x136.jpg?t=1376051908','Action'),(44,'Half-Life: Blue Shift',4.99,'Made by Gearbox Software and originally released in 2001 as an add-on to Half-Life, Blue Shift is a return to the Black Mesa Research Facility in which you play as Barney Calhoun, the security guard sidekick who helped Gordon out of so many sticky situations.','Gearbox Software','http://cdn4.steampowered.com/v/gfx/apps/130/header_292x136.jpg?t=1364932044','Action'),(45,'Half-Life Deathmatch: Source',9.99,'Half-Life Deathmatch: Source is a recreation of the first multiplayer game set in the Half-Life universe. Features all the classic weapons and most-played maps, now running on the Source engine.','Valve','http://cdn4.steampowered.com/v/gfx/apps/360/header_292x136.jpg?t=1380559184','Action'),(46,'Portal 2',19.99,'Portal 2 draws from the award-winning formula of innovative gameplay, story, and music that earned the original Portal over 70 industry accolades and created a cult following. The single-player portion of Portal 2 introduces a cast of dynamic new characters, a host of fresh puzzle elements, and a much larger set of devious test chambers.','Developer:','http://cdn4.steampowered.com/v/gfx/apps/620/header_292x136.jpg?t=1382638717','Action'),(47,'Team Fortress Classic',4.99,'One of the most popular online action games of all time, Team Fortress Classic features over nine character classes -- from Medic to Spy to Demolition Man -- enlisted in a unique style of online team warfare. Each character class possesses unique weapons, items, and abilities, as teams compete online in a variety of game play modes.','Valve','http://cdn4.steampowered.com/v/gfx/apps/20/header_292x136.jpg?t=1364932044','Action'),(48,'Day of Defeat: Source',9.99,'Day of Defeat offers intense online action gameplay set in Europe during WWII. Assume the role of infantry, sniper or machine-gunner classes, and more. DoD:S features enhanced graphics and sounds design to leverage the power of Source, Valve\'s new engine technology.','Valve','http://cdn4.steampowered.com/v/gfx/apps/300/header_292x136.jpg?t=1381424224','Action'),(49,'Deathmatch Classic',4.99,'Enjoy fast-paced multiplayer gaming with Deathmatch Classic (a.k.a. DMC). Valve\'s tribute to the work of id software, DMC invites players to grab their rocket launchers and put their reflexes to the test in a collection of futuristic settings.','Valve','http://cdn4.steampowered.com/v/gfx/apps/40/header_292x136.jpg?t=1364932044','Action'),(50,'Half-Life 2: Episode One',7.99,'Half-Life 2 has sold over 4 million copies worldwide, and earned over 35 Game of the Year Awards. Episode One is the first in a series of games that reveal the aftermath of Half-Life 2 and launch a journey beyond City 17. Also features two multiplayer games. Half-Life 2 not required.','Valve','http://cdn4.steampowered.com/v/gfx/apps/380/header_292x136.jpg?t=1374614012','Action'),(51,'Half-Life 2: Deathmatch',4.99,'Fast multiplayer action set in the Half-Life 2 universe! HL2\'s physics adds a new dimension to deathmatch play. Play straight deathmatch or try Combine vs. Resistance teamplay. Toss a toilet at your friend today!','Valve','http://cdn4.steampowered.com/v/gfx/apps/320/header_292x136.jpg?t=1374509605','Action'),(52,'Portal',9.99,'Portal&trade; is a new single player game from Valve. Set in the mysterious Aperture Science Laboratories, Portal has been called one of the most innovative new games on the horizon and will offer gamers hours of unique gameplay.','Valve','http://cdn4.steampowered.com/v/gfx/apps/400/header_292x136.jpg?t=1374685745','Action'),(53,'Half-Life: Source',9.99,'Winner of over 50 Game of the Year awards, Half-Life set new standards for action games when it was released in 1998. Half-Life: Source is a digitally remastered version of the critically acclaimed and best selling PC game, enhanced via Source technology to include physics simulation, enhanced effects, and more.','Valve','http://cdn4.steampowered.com/v/gfx/apps/280/header_292x136.jpg?t=1380558763','Action'),(54,'Left 4 Dead',19.99,'From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters.','Valve','http://cdn4.steampowered.com/v/gfx/apps/500/header_292x136.jpg?t=1382642531','Action'),(55,'Alien Swarm',0.00,'Alien Swarm is a game and Source SDK release from a group of talented designers at Valve who were hired from the Mod community. Available free of charge, the game thrusts players into an epic bug hunt featuring a unique blend of co-op play and squad-level tactics. With your friends, form a squad of four distinct IAF Marine classes.','Valve','http://cdn4.steampowered.com/v/gfx/apps/630/header_292x136.jpg?t=1348009302','Action'),(56,'Counter-Strike: Global Offensive',14.99,'Counter-Strike: Global Offensive (CS: GO) will expand upon the team-based action gameplay that it pioneered when it was launched 12 years ago. CS: GO features new maps, characters, and weapons and delivers updated versions of the classic CS content (de_dust, etc.).','Valve','http://cdn4.steampowered.com/v/gfx/apps/730/header_292x136.jpg?t=1382638559','Action'),(57,'Portal 2 - Pre-order',19.99,'Portal 2 draws from the award-winning formula of innovative gameplay, story, and music that earned the original Portal over 70 industry accolades and created a cult following. The single-player portion of Portal 2 introduces a cast of dynamic new characters, a host of fresh puzzle elements, and a much larger set of devious test chambers.','Developer:','http://cdn4.steampowered.com/v/gfx/apps/620/header_292x136.jpg?t=1382638717','Action'),(58,'Space Empires V',14.99,'Space Empires V is the latest edition in the Space Empires series. This new chapter completely updates the UI and takes the player into a real-time rendered 3D universe. Watch space battles played out in glorious detail and realistic effects. Expand, Explore, Exploit, and Exterminate in a huge living breathing galaxy.','Malfador Machinations','http://cdn4.steampowered.com/v/gfx/apps/1690/header_292x136.jpg?t=1381422859','Strategy'),(59,'Source Filmmaker',0.00,'The Source Filmmaker (SFM) is the movie-making tool built and used by us here at Valve to make movies inside the Source game engine. Because the SFM uses the same assets as the game, anything that exists in the game can be used in the movie, and vice versa.','Developer:','http://cdn4.steampowered.com/v/gfx/apps/1840/header_292x136.jpg?t=1376076632','Animation & Modeling'),(60,'Darwinia',9.99,'Combining fast-paced action with strategic battle planning, Darwinia features a novel and intuitive control mechanism, a graphical style ripped from 80\'s retro classics like Tron and Defender, and a story concerning a tribe of nomadic sprites trapped in a modern 3D world.','Developer:','http://cdn4.steampowered.com/v/gfx/apps/1500/header_292x136.jpg?t=1355780763','Strategy'),(61,'Quake',9.99,'Rage through 32 single player levels and 6 deathmatch levels of sheer terror and fully immersive sound and lighting. Arm yourself against the cannibalistic Ogre, fiendish Vore and indestructible Schambler using lethal nails, fierce Thunderbolts and abominable Rocket and Grenade Launchers.','id Software','http://cdn4.steampowered.com/v/gfx/apps/2310/header_292x136.jpg?t=1380823088','Action'),(62,'Uplink',9.99,'You play an Uplink Agent who makes a living by performing jobs for major corporations. Your tasks involve hacking into rival computer systems, stealing research data, sabotaging other companies, laundering money, erasing evidence, or framing innocent people.','Developer:','http://cdn4.steampowered.com/v/gfx/apps/1510/header_292x136.jpg?t=1355780763','Strategy'),(63,'Iron Warriors: T-72 Tank Command',4.99,'The most devastating mechanized armor to ever roll onto a battlefield is brought to life in Iron Warriors: T72-Tank Command. This epic combat simulator allows the player to command an entire platoon of tanks and ALL associated support units, or assume the role of ANY member in a complete tank crew!','Strategy First','http://cdn4.steampowered.com/v/gfx/apps/1670/header_292x136.jpg?t=1308071993','Strategy'),(64,'SiN Episodes: Emergence',9.99,'You are John Blade, commander of HardCorps, an elite security force dedicated to protecting the people of Freeport City. Four years have passed since your first battle with Elexis Sinclaire, a beautiful, brilliant, and ruthless scientist who is out to remake humanity according to her own twisted vision.','Ritual Entertainment','http://cdn4.steampowered.com/v/gfx/apps/1300/header_292x136.jpg?t=1353106192','Action'),(65,'Jagged Alliance 2',19.99,'The small country of Arulco has been taken over by a merciless dictator - and only you can loosen the iron grip! Jagged Alliance 2 Gold Pack immerses you into an elaborate role-playing universe where you will interact with more than 150 characters, recruit your own band of soldiers and create your own custom mercenary to win back Arulco...','Strategy First','http://cdn4.steampowered.com/v/gfx/apps/1620/header_292x136.jpg?t=1318272755','Strategy'),(66,'Heretic: Shadow of the Serpent Riders',4.99,'In a twisted medieval dimension, undead creatures and bestial horrors have done the unthinkable--callously slaughtering your entire race. Your friends. Your family. Eliminated. But the nightmare has just begun.','Raven Software','http://cdn4.steampowered.com/v/gfx/apps/2390/header_292x136.jpg?t=1342303805','Action'),(67,'Final DOOM',4.99,'Two New, 32-Level DOOM II Episodes. Evilution: Far from earth, the UAC recommenced their experiments on on of the moons of Jupiter. A spaceship, mistaken for a supply vexxel on radar, hovered above the base. Hideous demons poured out, blanketing the base with death. All your comrades were quickly slaughtered or zombified.','id Software','http://cdn4.steampowered.com/v/gfx/apps/2290/header_292x136.jpg?t=1354322946','Action'),(68,'The Ship Single Player',9.99,'The Ship is owned by the mysterious Mr X and as one of many \"lucky\" recipients of a free ticket you arrive on board The Ship to find there\'s a catch to your luxury cruise. The passengers are coerced into a brutal Hunt to indulge Mr. X\'s fantasies. Can you survive the voyage?','','http://cdn4.steampowered.com/v/gfx/apps/2420/header_292x136.jpg?t=1380847806','Action'),(69,'The Ship',19.99,'The Ship is primarily a multiplayer, online murder game with a unique set of game rules.The Ship is owned by the mysterious Mr X and as one of many \'lucky\' recipients of a free ticket you arrive on board The Ship to find there\'s a catch to your luxury cruise.You are coerced into a brutal Hunt to indulge Mr.','','http://cdn4.steampowered.com/v/gfx/apps/2400/header_292x136.jpg?t=1380847753','Action'),(70,'Quake III Arena',19.99,'Welcome to the Arena, where high-ranking warriors are transformed into spineless mush. Abandoning every ounce of common sense and any trace of doubt, you lunge onto a stage of harrowing landscapes and veiled abysses.','id Software','http://cdn4.steampowered.com/v/gfx/apps/2200/header_292x136.jpg?t=1343157282','Action'),(71,'Quake II: The Reckoning',4.99,'You are part of an elite commando force that must infiltrate a hostile alien cite. Once inside, you must scour industrial landscapes, crawl through waterways and air ducts, navigate treacherous canyons teeming with vicious mutants, stow away on an alien spacecraft, and destroy the enemy\'s secret moon base.','Xatrix Entertainment','http://cdn4.steampowered.com/v/gfx/apps/2330/header_292x136.jpg?t=1343157132','Action'),(72,'Quake II: Ground Zero',4.99,'Take out the Big Gun sounded simple enough, except the Strogg were waiting. You, and a few marines like you, are the lucky ones. You\'ve made it down in one piece and are still able to contact the fleet. The Gravity Well, the Strogg\'s newest weapon in its arsenal against mankind, is operational.','Rogue Entertainment','http://cdn4.steampowered.com/v/gfx/apps/2340/header_292x136.jpg?t=1343157183','Action'),(73,'Dangerous Waters',14.99,'S.C.S. - Dangerous Waters allows you total control over multiple air, surface, and submarine platforms in a modern-day naval environment. Take direct control of individual crew stations and also plan and execute combined arms naval strategies from a top-down \'Commanders Eye\' perspective.','Sonalysts','http://cdn4.steampowered.com/v/gfx/apps/1600/header_292x136.jpg?t=1383765398','Strategy'),(74,'Quake III: Team Arena',19.99,'Never before have the forces aligned. United by name and by cause, The Fallen, Pagans, Crusaders, Intruders, and Stroggs must channel their power into an allied operation where teamwork is the only method of mass destruction. Four distinct games test each troop\'s synthesis and strength to exacting degrees.','id Software','http://cdn4.steampowered.com/v/gfx/apps/2350/header_292x136.jpg?t=1380847906','Action'),(75,'Quake II',9.99,'Shortly after landing on an alien surface, you learn that hundreds of your men have been reduced to just a few. Now you must fight your way through heavily fortified military installations, lower the city\'s defenses and shut down the enemy\'s war machine. Only then will the fate of humanity be known.','id Software','http://cdn4.steampowered.com/v/gfx/apps/2320/header_292x136.jpg?t=1343157023','Action'),(76,'Wolfenstein 3D',4.99,'Maybe it was the fact that people got to blow away Nazis. Maybe it was the sheer challenge of it all. For whatever reason, Wolfenstein 3D and Spear of Destiny, pioneered the first-person shooter genre and brought its legendary creators, id Software, worldwide notoriety and numerous awards.','id Software','http://cdn4.steampowered.com/v/gfx/apps/2270/header_292x136.jpg?t=1342306398','Action'),(77,'DOOM II: Hell on Earth',4.99,'Let the Obsession begin. Again. This time, the entire forces of the netherworld have overrun Earth. To save her, you must descend into the stygian depths of Hell itself! Battle mightier, nastier, deadlier demons and monsters. Use more powerful weapons.','id Software','http://cdn4.steampowered.com/v/gfx/apps/2300/header_292x136.jpg?t=1342291307','Action'),(78,'HeXen: Beyond Heretic',4.99,'While you were battling the evil forces of D\'Sparil, the other Serpent Riders were busy sowing the seeds of destruction in other dimensions. One such dimension is the decaying world where Hexen takes place. A world littered with the mangled corpses of nonbelievers and inhabited by the undead followers that executed them.','Raven Software','http://cdn4.steampowered.com/v/gfx/apps/2360/header_292x136.jpg?t=1342302315','Action'),(79,'The Ultimate DOOM',4.99,'The complete megahit game that set the world afire. Plus All-New Episode IV: Thy Flesh Consumed. The demons came and the marines died. Except one. You are the last defense against these hell-spawned hordes. Prepare for the most intense mutant-laden, blood-splattered action ever!','id Software','http://cdn4.steampowered.com/v/gfx/apps/2280/header_292x136.jpg?t=1342304892','Action'),(80,'Earth 2160',4.99,'After the destruction of the EARTH in 2150, the leaders of the Eurasian Dynasty escaped on board an evacuation fleet. Now they are fighting for the survival of the human species. Their base is one large building comprising of smaller variable parts.','Reality Pump Studios','http://cdn4.steampowered.com/v/gfx/apps/1900/header_292x136.jpg?t=1382244346','Strategy'),(81,'DEFCON',9.99,'Inspired by the 1983 cult classic film, Wargames, DEFCON superbly evokes the tension, paranoia and suspicion of the Cold War era, playing on the fascinating aspects of psychological gameplay that occur during strategic nuclear warfare. You play a General hidden deep within an underground bunker.','Developer:','http://cdn4.steampowered.com/v/gfx/apps/1520/header_292x136.jpg?t=1381422948','Indie'),(82,'Multiwinia',9.99,'\"Long ago a computer scientist called Dr Sepulveda created a beautiful digital world existing entirely within a computer network of his own invention. This world was called Darwinia and it was inhabited by a peaceful, law-abiding digital life-form called the Darwinians.','Introversion Software','http://cdn4.steampowered.com/v/gfx/apps/1530/header_292x136.jpg?t=1361106356','Indie'),(83,'Arx Fatalis',4.99,'This critically acclaimed first-person RPG takes the player on an amazing journey into the fantasy world of Arx. The game mixes intelligent story with immersive and actual medieval surroundings. Arx Fatalis allows the player to feel that all his actions have a direct consequence on those around him.','Arkane Studios','http://cdn4.steampowered.com/v/gfx/apps/1700/header_292x136.jpg?t=1343921463','RPG'),(84,'HeXen: Deathkings of the Dark Citadel',4.99,'Where HeXen Ends, the True Nightmare Begins. Deathkings of the Dark Citadel is the only official expansion of the original HeXen game. This add-on pack features 20 new single player levels from the original HeXen team as well as a host of new multiplayer options.','Raven Software','http://cdn4.steampowered.com/v/gfx/apps/2370/header_292x136.jpg?t=1342302835','Action'),(85,'Act of War: Direct Action',9.99,'Tomorrow\'s War Is NOW Ripped from today\'s headlines, Act of War: Direct Action&trade; is a frightening tale of suspense, international intrigue and geopolitical military conflict. This real-time strategy experience puts you squarely in control of counterterrorist forces and delivers a first look at tomorrow\'s war.','Eugen Systems','http://cdn4.steampowered.com/v/gfx/apps/2710/header_292x136.jpg?t=1363804600','Action'),(86,'ThreadSpace: Hyperbol',9.99,'ThreadSpace: Hyperbol is an action-strategy game set in the distant future. Players battle each other on roads in space as they pilot massive ships capable of firing a wide variety of weapons. Create defenses, coordinate with your team, and launch an assault against your opponents to achieve victory!','Developer:','http://cdn4.steampowered.com/v/gfx/apps/2720/header_292x136.jpg?t=1381787988','Action'),(87,'Gumboy: Crazy Adventures',9.99,'Gumboy has fun and novel gameplay set in a richly imagined world. With simple game controls, Gumboy lets the player bounce, roll, float, and fly through the world. Additionally, Gumboy can change size, shape and material.','Developer:','http://cdn4.steampowered.com/v/gfx/apps/2520/header_292x136.jpg?t=1308071170','Indie'),(88,'SiN',9.99,'You are John Blade, commander of HardCorps, an elite security force dedicated to protecting the people of Freeport City. Four years have passed since your first battle with Elexis Sinclaire, a beautiful, brilliant, and ruthless scientist who is out to remake humanity according to her own twisted vision.','Ritual Entertainment','http://cdn4.steampowered.com/v/gfx/apps/1300/header_292x136.jpg?t=1353106192','Action'),(89,'RollerCoaster Tycoon 3: Platinum!',19.99,'Rollercoaster Tycoon 3 Platinum combines the excitement of rollercoasters with the fun of great strategy sim. RCT3 Platinum combines the roller coaster theme park fun of the Roller Coaster Tycoon 3 with included expansion packs Soaked! and Wild! Now enjoy more options than ever.','Frontier','http://cdn4.steampowered.com/v/gfx/apps/2700/header_292x136.jpg?t=1354900695','Simulation'),(90,'Call of Duty',19.99,'Call of Duty® delivers the gritty realism and cinematic intensity of World War II\'s epic battlefield moments like never before - through the eyes of citizen soldiers and unsung heroes from an alliance of countries who together helped shape the course of modern history.','Infinity Ward','http://cdn4.steampowered.com/v/gfx/apps/2620/header_292x136.jpg?t=1379463238','Action');
+/*!40000 ALTER TABLE `game` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game_achievement`
+--
+
+DROP TABLE IF EXISTS `game_achievement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `game_achievement` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `game_id` int(50) DEFAULT NULL,
+  `achievement` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `game_id` (`game_id`),
+  KEY `achievement` (`achievement`),
+  CONSTRAINT `game_achievement_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
+  CONSTRAINT `game_achievement_ibfk_2` FOREIGN KEY (`achievement`) REFERENCES `achievement` (`title`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game_achievement`
+--
+
+LOCK TABLES `game_achievement` WRITE;
+/*!40000 ALTER TABLE `game_achievement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `game_achievement` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game_item`
+--
+
+DROP TABLE IF EXISTS `game_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `game_item` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `game_id` int(50) DEFAULT NULL,
+  `item` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `game_id` (`game_id`),
+  KEY `item` (`item`),
+  CONSTRAINT `game_item_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
+  CONSTRAINT `game_item_ibfk_2` FOREIGN KEY (`item`) REFERENCES `item` (`title`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game_item`
+--
+
+LOCK TABLES `game_item` WRITE;
+/*!40000 ALTER TABLE `game_item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `game_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game_purchase`
+--
+
+DROP TABLE IF EXISTS `game_purchase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `game_purchase` (
+  `user` varchar(255) NOT NULL DEFAULT '',
+  `game` int(50) NOT NULL DEFAULT '0',
+  `date` datetime DEFAULT NULL,
+  PRIMARY KEY (`user`,`game`),
+  KEY `game_purchase_ibfk_1` (`game`),
+  CONSTRAINT `game_purchase_ibfk_1` FOREIGN KEY (`game`) REFERENCES `game` (`id`),
+  CONSTRAINT `game_purchase_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game_purchase`
+--
+
+LOCK TABLES `game_purchase` WRITE;
+/*!40000 ALTER TABLE `game_purchase` DISABLE KEYS */;
+/*!40000 ALTER TABLE `game_purchase` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group`
+--
+
+DROP TABLE IF EXISTS `group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `group` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text,
+  `date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group`
+--
+
+LOCK TABLES `group` WRITE;
+/*!40000 ALTER TABLE `group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group_members`
+--
+
+DROP TABLE IF EXISTS `group_members`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `group_members` (
+  `id` int(50) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`,`username`),
+  KEY `group_members_ibfk_2` (`username`),
+  CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`id`) REFERENCES `group` (`id`),
+  CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `group_members`
+--
+
+LOCK TABLES `group_members` WRITE;
+/*!40000 ALTER TABLE `group_members` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_members` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `item`
+--
+
+DROP TABLE IF EXISTS `item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `item` (
+  `title` varchar(255) NOT NULL,
+  `game_id` int(50) NOT NULL DEFAULT '0',
+  `description` text,
+  PRIMARY KEY (`title`,`game_id`),
+  KEY `item_ibfk_1` (`game_id`),
+  CONSTRAINT `item_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `item`
+--
+
+LOCK TABLES `item` WRITE;
+/*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` VALUES ('Act of War: Direct Action Item 1',85,'The first item for Act of War: Direct Action'),('Act of War: Direct Action Item 2',85,'The second item'),('Act of War: Direct Action Item 3',85,'The third item for Act of War: Direct Action'),('Alien Swarm Item 1',55,'The first item for Alien Swarm'),('Alien Swarm Item 2',55,'The second item'),('Alien Swarm Item 3',55,'The third item for Alien Swarm'),('Arx Fatalis Item 1',83,'The first item for Arx Fatalis'),('Arx Fatalis Item 2',83,'The second item'),('Arx Fatalis Item 3',83,'The third item for Arx Fatalis'),('Call of Duty Item 1',90,'The first item for Call of Duty'),('Call of Duty Item 2',90,'The second item'),('Call of Duty Item 3',90,'The third item for Call of Duty'),('Counter-Strike Item 1',34,'The first item for Counter-Strike'),('Counter-Strike Item 2',34,'The second item'),('Counter-Strike Item 3',34,'The third item for Counter-Strike'),('Counter-Strike: Condition Zero Deleted Scenes Item 1',31,'The first item for Counter-Strike: Condition Zero Deleted Scenes'),('Counter-Strike: Condition Zero Deleted Scenes Item 2',31,'The second item'),('Counter-Strike: Condition Zero Deleted Scenes Item 3',31,'The third item for Counter-Strike: Condition Zero Deleted Scenes'),('Counter-Strike: Condition Zero Item 1',30,'The first item for Counter-Strike: Condition Zero'),('Counter-Strike: Condition Zero Item 2',30,'The second item'),('Counter-Strike: Condition Zero Item 3',30,'The third item for Counter-Strike: Condition Zero'),('Counter-Strike: Global Offensive Item 1',56,'The first item for Counter-Strike: Global Offensive'),('Counter-Strike: Global Offensive Item 2',56,'The second item'),('Counter-Strike: Global Offensive Item 3',56,'The third item for Counter-Strike: Global Offensive'),('Counter-Strike: Source Item 1',36,'The first item for Counter-Strike: Source'),('Counter-Strike: Source Item 2',36,'The second item'),('Counter-Strike: Source Item 3',36,'The third item for Counter-Strike: Source'),('Dangerous Waters Item 1',73,'The first item for Dangerous Waters'),('Dangerous Waters Item 2',73,'The second item'),('Dangerous Waters Item 3',73,'The third item for Dangerous Waters'),('Darwinia Item 1',60,'The first item for Darwinia'),('Darwinia Item 2',60,'The second item'),('Darwinia Item 3',60,'The third item for Darwinia'),('Day of Defeat Item 1',38,'The first item for Day of Defeat'),('Day of Defeat Item 2',38,'The second item'),('Day of Defeat Item 3',38,'The third item for Day of Defeat'),('Day of Defeat: Source Item 1',48,'The first item for Day of Defeat: Source'),('Day of Defeat: Source Item 2',48,'The second item'),('Day of Defeat: Source Item 3',48,'The third item for Day of Defeat: Source'),('Deathmatch Classic Item 1',49,'The first item for Deathmatch Classic'),('Deathmatch Classic Item 2',49,'The second item'),('Deathmatch Classic Item 3',49,'The third item for Deathmatch Classic'),('DEFCON Item 1',81,'The first item for DEFCON'),('DEFCON Item 2',81,'The second item'),('DEFCON Item 3',81,'The third item for DEFCON'),('DOOM II: Hell on Earth Item 1',77,'The first item for DOOM II: Hell on Earth'),('DOOM II: Hell on Earth Item 2',77,'The second item'),('DOOM II: Hell on Earth Item 3',77,'The third item for DOOM II: Hell on Earth'),('Dota 2 Item 1',35,'The first item for Dota 2'),('Dota 2 Item 2',35,'The second item'),('Dota 2 Item 3',35,'The third item for Dota 2'),('Earth 2160 Item 1',80,'The first item for Earth 2160'),('Earth 2160 Item 2',80,'The second item'),('Earth 2160 Item 3',80,'The third item for Earth 2160'),('Final DOOM Item 1',67,'The first item for Final DOOM'),('Final DOOM Item 2',67,'The second item'),('Final DOOM Item 3',67,'The third item for Final DOOM'),('Gumboy: Crazy Adventures Item 1',87,'The first item for Gumboy: Crazy Adventures'),('Gumboy: Crazy Adventures Item 2',87,'The second item'),('Gumboy: Crazy Adventures Item 3',87,'The third item for Gumboy: Crazy Adventures'),('Half-Life 2 Item 1',33,'The first item for Half-Life 2'),('Half-Life 2 Item 2',33,'The second item'),('Half-Life 2 Item 3',33,'The third item for Half-Life 2'),('Half-Life 2: Deathmatch Item 1',51,'The first item for Half-Life 2: Deathmatch'),('Half-Life 2: Deathmatch Item 2',51,'The second item'),('Half-Life 2: Deathmatch Item 3',51,'The third item for Half-Life 2: Deathmatch'),('Half-Life 2: Episode One Item 1',50,'The first item for Half-Life 2: Episode One'),('Half-Life 2: Episode One Item 2',50,'The second item'),('Half-Life 2: Episode One Item 3',50,'The third item for Half-Life 2: Episode One'),('Half-Life 2: Episode Two Item 1',41,'The first item for Half-Life 2: Episode Two'),('Half-Life 2: Episode Two Item 2',41,'The second item'),('Half-Life 2: Episode Two Item 3',41,'The third item for Half-Life 2: Episode Two'),('Half-Life 2: Lost Coast Item 1',39,'The first item for Half-Life 2: Lost Coast'),('Half-Life 2: Lost Coast Item 2',39,'The second item'),('Half-Life 2: Lost Coast Item 3',39,'The third item for Half-Life 2: Lost Coast'),('Half-Life Deathmatch: Source Item 1',45,'The first item for Half-Life Deathmatch: Source'),('Half-Life Deathmatch: Source Item 2',45,'The second item'),('Half-Life Deathmatch: Source Item 3',45,'The third item for Half-Life Deathmatch: Source'),('Half-Life Item 1',40,'The first item for Half-Life'),('Half-Life Item 2',40,'The second item'),('Half-Life Item 3',40,'The third item for Half-Life'),('Half-Life: Blue Shift Item 1',44,'The first item for Half-Life: Blue Shift'),('Half-Life: Blue Shift Item 2',44,'The second item'),('Half-Life: Blue Shift Item 3',44,'The third item for Half-Life: Blue Shift'),('Half-Life: Opposing Force Item 1',42,'The first item for Half-Life: Opposing Force'),('Half-Life: Opposing Force Item 2',42,'The second item'),('Half-Life: Opposing Force Item 3',42,'The third item for Half-Life: Opposing Force'),('Half-Life: Source Item 1',53,'The first item for Half-Life: Source'),('Half-Life: Source Item 2',53,'The second item'),('Half-Life: Source Item 3',53,'The third item for Half-Life: Source'),('Heretic: Shadow of the Serpent Riders Item 1',66,'The first item for Heretic: Shadow of the Serpent Riders'),('Heretic: Shadow of the Serpent Riders Item 2',66,'The second item'),('Heretic: Shadow of the Serpent Riders Item 3',66,'The third item for Heretic: Shadow of the Serpent Riders'),('HeXen: Beyond Heretic Item 1',78,'The first item for HeXen: Beyond Heretic'),('HeXen: Beyond Heretic Item 2',78,'The second item'),('HeXen: Beyond Heretic Item 3',78,'The third item for HeXen: Beyond Heretic'),('HeXen: Deathkings of the Dark Citadel Item 1',84,'The first item for HeXen: Deathkings of the Dark Citadel'),('HeXen: Deathkings of the Dark Citadel Item 2',84,'The second item'),('HeXen: Deathkings of the Dark Citadel Item 3',84,'The third item for HeXen: Deathkings of the Dark Citadel'),('Iron Warriors: T-72 Tank Command Item 1',63,'The first item for Iron Warriors: T-72 Tank Command'),('Iron Warriors: T-72 Tank Command Item 2',63,'The second item'),('Iron Warriors: T-72 Tank Command Item 3',63,'The third item for Iron Warriors: T-72 Tank Command'),('Jagged Alliance 2 Item 1',65,'The first item for Jagged Alliance 2'),('Jagged Alliance 2 Item 2',65,'The second item'),('Jagged Alliance 2 Item 3',65,'The third item for Jagged Alliance 2'),('Left 4 Dead 2 Item 1',32,'The first item for Left 4 Dead 2'),('Left 4 Dead 2 Item 2',32,'The second item'),('Left 4 Dead 2 Item 3',32,'The third item for Left 4 Dead 2'),('Left 4 Dead Item 1',54,'The first item for Left 4 Dead'),('Left 4 Dead Item 2',54,'The second item'),('Left 4 Dead Item 3',54,'The third item for Left 4 Dead'),('Multiwinia Item 1',82,'The first item for Multiwinia'),('Multiwinia Item 2',82,'The second item'),('Multiwinia Item 3',82,'The third item for Multiwinia'),('Portal 2 - Pre-order Item 1',57,'The first item for Portal 2 - Pre-order'),('Portal 2 - Pre-order Item 2',57,'The second item'),('Portal 2 - Pre-order Item 3',57,'The third item for Portal 2 - Pre-order'),('Portal 2 Item 1',46,'The first item for Portal 2'),('Portal 2 Item 2',46,'The second item'),('Portal 2 Item 3',46,'The third item for Portal 2'),('Portal Item 1',52,'The first item for Portal'),('Portal Item 2',52,'The second item'),('Portal Item 3',52,'The third item for Portal'),('Portal: First Slice Item 1',37,'The first item for Portal: First Slice'),('Portal: First Slice Item 2',37,'The second item'),('Portal: First Slice Item 3',37,'The third item for Portal: First Slice'),('Quake II Item 1',75,'The first item for Quake II'),('Quake II Item 2',75,'The second item'),('Quake II Item 3',75,'The third item for Quake II'),('Quake II: Ground Zero Item 1',72,'The first item for Quake II: Ground Zero'),('Quake II: Ground Zero Item 2',72,'The second item'),('Quake II: Ground Zero Item 3',72,'The third item for Quake II: Ground Zero'),('Quake II: The Reckoning Item 1',71,'The first item for Quake II: The Reckoning'),('Quake II: The Reckoning Item 2',71,'The second item'),('Quake II: The Reckoning Item 3',71,'The third item for Quake II: The Reckoning'),('Quake III Arena Item 1',70,'The first item for Quake III Arena'),('Quake III Arena Item 2',70,'The second item'),('Quake III Arena Item 3',70,'The third item for Quake III Arena'),('Quake III: Team Arena Item 1',74,'The first item for Quake III: Team Arena'),('Quake III: Team Arena Item 2',74,'The second item'),('Quake III: Team Arena Item 3',74,'The third item for Quake III: Team Arena'),('Quake Item 1',61,'The first item for Quake'),('Quake Item 2',61,'The second item'),('Quake Item 3',61,'The third item for Quake'),('Ricochet Item 1',43,'The first item for Ricochet'),('Ricochet Item 2',43,'The second item'),('Ricochet Item 3',43,'The third item for Ricochet'),('RollerCoaster Tycoon 3: Platinum! Item 1',89,'The first item for RollerCoaster Tycoon 3: Platinum!'),('RollerCoaster Tycoon 3: Platinum! Item 2',89,'The second item'),('RollerCoaster Tycoon 3: Platinum! Item 3',89,'The third item for RollerCoaster Tycoon 3: Platinum!'),('SiN Episodes: Emergence Item 1',64,'The first item for SiN Episodes: Emergence'),('SiN Episodes: Emergence Item 2',64,'The second item'),('SiN Episodes: Emergence Item 3',64,'The third item for SiN Episodes: Emergence'),('SiN Item 1',88,'The first item for SiN'),('SiN Item 2',88,'The second item'),('SiN Item 3',88,'The third item for SiN'),('Source Filmmaker Item 1',59,'The first item for Source Filmmaker'),('Source Filmmaker Item 2',59,'The second item'),('Source Filmmaker Item 3',59,'The third item for Source Filmmaker'),('Space Empires V Item 1',58,'The first item for Space Empires V'),('Space Empires V Item 2',58,'The second item'),('Space Empires V Item 3',58,'The third item for Space Empires V'),('Team Fortress Classic Item 1',47,'The first item for Team Fortress Classic'),('Team Fortress Classic Item 2',47,'The second item'),('Team Fortress Classic Item 3',47,'The third item for Team Fortress Classic'),('The Ship Item 1',69,'The first item for The Ship'),('The Ship Item 2',69,'The second item'),('The Ship Item 3',69,'The third item for The Ship'),('The Ship Single Player Item 1',68,'The first item for The Ship Single Player'),('The Ship Single Player Item 2',68,'The second item'),('The Ship Single Player Item 3',68,'The third item for The Ship Single Player'),('The Ultimate DOOM Item 1',79,'The first item for The Ultimate DOOM'),('The Ultimate DOOM Item 2',79,'The second item'),('The Ultimate DOOM Item 3',79,'The third item for The Ultimate DOOM'),('ThreadSpace: Hyperbol Item 1',86,'The first item for ThreadSpace: Hyperbol'),('ThreadSpace: Hyperbol Item 2',86,'The second item'),('ThreadSpace: Hyperbol Item 3',86,'The third item for ThreadSpace: Hyperbol'),('Uplink Item 1',62,'The first item for Uplink'),('Uplink Item 2',62,'The second item'),('Uplink Item 3',62,'The third item for Uplink'),('Wolfenstein 3D Item 1',76,'The first item for Wolfenstein 3D'),('Wolfenstein 3D Item 2',76,'The second item'),('Wolfenstein 3D Item 3',76,'The third item for Wolfenstein 3D');
+/*!40000 ALTER TABLE `item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `item_unlock`
+--
+
+DROP TABLE IF EXISTS `item_unlock`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `item_unlock` (
+  `date` datetime DEFAULT NULL,
+  `item` varchar(255) NOT NULL DEFAULT '',
+  `game_id` int(50) NOT NULL DEFAULT '0',
+  `user` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`item`,`game_id`,`user`),
+  KEY `item_unlock_ibfk_2` (`game_id`),
+  KEY `item_unlock_ibfk_3` (`user`),
+  CONSTRAINT `item_unlock_ibfk_1` FOREIGN KEY (`item`) REFERENCES `item` (`title`),
+  CONSTRAINT `item_unlock_ibfk_2` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`),
+  CONSTRAINT `item_unlock_ibfk_3` FOREIGN KEY (`user`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `item_unlock`
+--
+
+LOCK TABLES `item_unlock` WRITE;
+/*!40000 ALTER TABLE `item_unlock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `item_unlock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `session`
+--
+
+DROP TABLE IF EXISTS `session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `session` (
+  `session_id` varchar(255) NOT NULL,
+  `user` varchar(255) NOT NULL,
+  PRIMARY KEY (`session_id`),
+  KEY `user` (`user`),
+  CONSTRAINT `session_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `session`
+--
+
+LOCK TABLES `session` WRITE;
+/*!40000 ALTER TABLE `session` DISABLE KEYS */;
+/*!40000 ALTER TABLE `session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `is_banned` tinyint(1) DEFAULT NULL,
+  `cc_num` varchar(255) DEFAULT NULL,
+  `join_date` datetime DEFAULT NULL,
+  `account_balance` int(10) DEFAULT NULL,
+  `billing_address` varchar(511) DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-11-22 13:58:46
