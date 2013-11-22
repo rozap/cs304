@@ -25,48 +25,65 @@
 		</a></li>
 		<li class="show_items"><a href="javascript:void(0)">Users with all Items</a></li>
 		</ul>
+		<% if(showGamesOnly) { %>
+			<h5>Users who own ALL Games</h5>
+			<ul class="nav nav-pills nav-stacked">
+				<% _.each(model.get('users_with_all_games'), function(user) { %>
+					<li>
+						<a href="#/user/<%- user.username %>">
+							<%- user.username %>
+						</a>
+					</li>
+				<% }); %>
+			</ul>
+		<% } %>
+		<% if(showAchievementsOnly) { %>
+			<h5>Users who own ALL achievements</h5>
+			<ul class="nav nav-pills nav-stacked">
+				<% _.each(model.get('users_with_all_achievements'), function(user) { %>
+					<li>
+						<a href="#/user/<%- user.username %>">
+							<%- user.username %>
+						</a>
+					</li>
+				<% }); %>
+			</ul>
+		<% } %>
+		<% if(showItemsOnly) {%>
+			<h5>Users who own ALL items</h5>
+			<ul class="nav nav-pills nav-stacked">
+				<% _.each(model.get('users_with_all_items'), function(user) { %>
+					<li>
+						<a href="#/user/<%- user.username %>">
+							<%- user.username %>
+						</a>
+					</li>
+				<% }); %>
+			</ul>
+		<% } %>
 	</div>
-	<% if(showGamesOnly) { %>
-	<div class="col-md-3">
-		<h5>Users who own ALL Games</h5>
-		<ul class="nav nav-pills nav-stacked">
-			<% _.each(model.get('users_with_all_games'), function(user) { %>
-				<li>
-					<a href="#/user/<%- user.username %>">
-						<%- user.username %>
-					</a>
-				</li>
-			<% }); %>
+	<div class="col-md-3 d3">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		Stats <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		<li class="show_min"><a href="javascript:void(0)">Min Stats</a></li>
+		<li class="show_max"><a href="javascript:void(0)">Max Stats
+		</a></li>
+		<li class="show_avg"><a href="javascript:void(0)">Avg Stats</a></li>
 		</ul>
+		<% if(showMinOnly) { %>
+			<h5>Minimum Stats Across Community</h5>
+			<div class="d3"></div>
+		<% } %>
+		<% if(showMaxOnly) { %>
+			<h5>Maximum Stats Across Community</h5>
+			<div class="d3"></div>
+		<% } %>
+		<% if(showAvgOnly) { %>
+			<h5>Average Stats Across Community</h5>
+			<div class="d3"></div>
+		<% } %>
 	</div>
-	<% } %>
-	<% if(showAchievementsOnly) { %>
-	<div class="col-md-3">
-		<h5>Users who own ALL achievements</h5>
-		<ul class="nav nav-pills nav-stacked">
-			<% _.each(model.get('users_with_all_achievements'), function(user) { %>
-				<li>
-					<a href="#/user/<%- user.username %>">
-						<%- user.username %>
-					</a>
-				</li>
-			<% }); %>
-		</ul>
-	</div>
-	<% } %>
-	<% if(showItemsOnly) {%>
-	<div class="col-md-3">
-		<h5>Users who own ALL items</h5>
-		<ul class="nav nav-pills nav-stacked">
-			<% _.each(model.get('users_with_all_items'), function(user) { %>
-				<li>
-					<a href="#/user/<%- user.username %>">
-						<%- user.username %>
-					</a>
-				</li>
-			<% }); %>
-		</ul>
-	</div>
-	<% } %>
 </div>
 
