@@ -19,7 +19,9 @@ define([
 		template: _.template(CommunityViewTemplate),
 
 		el: '#main',
-		data: [],
+		minData: [],
+		maxData: [],
+		avgData: [],
 
 		events: {
 			"click .show_games": "showGamesOnly",
@@ -47,50 +49,47 @@ define([
 			ctx.showMaxOnly = ctx.showMaxOnly;
 			ctx.showAvgOnly = ctx.showAvgOnly;
 			this.$el.html(this.template(ctx));
-			this.data = [ 
+			this.minData = [ 
 				this.model.get('game_purchase_min').community_min,
 				this.model.get('item_unlock_min').community_min,
 				this.model.get('achievement_unlock_min').community_min,
+			];
 
+			this.maxData = [
 				this.model.get('game_purchase_max').community_max,
 				this.model.get('item_unlock_max').community_max,
 				this.model.get('achievement_unlock_max').community_max,
+			];
 
+			this.avgData = [
 				this.model.get('game_purchase_avg').community_avg,
 				this.model.get('item_unlock_avg').community_avg,
 				this.model.get('achievement_unlock_avg').community_avg,
-				];
+			];
+		},
 
- 
-			console.log(this.data);
-			//Views.AbstractView.prototype.render.call(this, ctx);
+		drawGraphs: function(dataSet) {
+			console.log(dataSet);
+
+			var x = d3.scale.linear()
+				.domain([0, d3.max(dataSet)])
+				.range([0, 420]);
+
+			d3.select(".chart")
+				.selectAll("div")
+				.data(dataSet)
+				.enter().append("div")
+				.style("width", function(d) { return x(d) + "px"; })
+				.text(function(d) { return d; });
 		},
 
 		showMinOnly: function(event) {
 			this.render({
 				showMinOnly: true,
 				showMaxOnly: false,
-				showAvgOnly: false
+				showAvgOnly: false,
 			});
-
-			var svgContainer = d3.select(".d3").append("svg")
-				.attr("width", 500)
-				.attr("height", 500);
-
-			var circle = svgContainer.append("circle").style("fill", "red")
-				.attr("cx", 30)
-				.attr("cy", 30)
-				.attr("r", this.data[0]);
-
-			var circle = svgContainer.append("circle").style("fill", "steelblue")
-				.attr("cx", 30 + 30)
-				.attr("cy", 30 + 30)
-				.attr("r", this.data[1]);
-
-			var circle = svgContainer.append("circle").style("fill", "green")
-				.attr("cx", 30 + 30)
-				.attr("cy", 30 + 30)
-				.attr("r", this.data[2]);
+			this.drawGraphs(this.minData);
 		},
 
 		showMaxOnly: function(event) {
@@ -99,24 +98,7 @@ define([
 				showMaxOnly: true,
 				showAvgOnly: false
 			});
-			var svgContainer = d3.select(".d3").append("svg")
-				.attr("width", 500)
-				.attr("height", 500);
-
-			var circle = svgContainer.append("circle").style("fill", "red")
-				.attr("cx", 30)
-				.attr("cy", 30)
-				.attr("r", this.data[3]);
-
-			var circle = svgContainer.append("circle").style("fill", "steelblue")
-				.attr("cx", 30 + 30)
-				.attr("cy", 30 + 30)
-				.attr("r", this.data[4]);
-
-			var circle = svgContainer.append("circle").style("fill", "green")
-				.attr("cx", 30 + 30)
-				.attr("cy", 30 + 30)
-				.attr("r", this.data[5]);
+			this.drawGraphs(this.maxData);
 		},
 
 		showAvgOnly: function(event) {
@@ -125,24 +107,7 @@ define([
 				showMaxOnly: false,
 				showAvgOnly: true
 			});
-			var svgContainer = d3.select(".d3").append("svg")
-				.attr("width", 200)
-				.attr("height", 200);
-
-			var circle = svgContainer.append("circle").style("fill", "steelred")
-				.attr("cx", 30)
-				.attr("cy", 30)
-				.attr("r", this.data[6]);
-
-			var circle = svgContainer.append("circle").style("fill", "steelblue")
-				.attr("cx", 30 + 30)
-				.attr("cy", 30 + 30)
-				.attr("r", this.data[7]);
-
-			var circle = svgContainer.append("circle").style("fill", "steelgreen")
-				.attr("cx", 30 + 30)
-				.attr("cy", 30 + 30)
-				.attr("r", this.data[8]);
+			this.drawGraphs(this.avgData);
 		},
 
 		showGamesOnly: function(event) {

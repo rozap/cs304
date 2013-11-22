@@ -1,7 +1,18 @@
 <div class="page-header">
   <h1>Community Leader Boards <small>for bragging rights.</small></h1>
 </div>
+<style>
 
+.chart div {
+  font: 10px sans-serif;
+  background-color: #CCFF99;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: black;
+}
+
+</style>
 <div class="row">
 	<div class="col-md-3">
 		<h5>Users part of Vapour</h5>
@@ -16,15 +27,17 @@
 		</ul>
 	</div>
 	<div class="col-md-3">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-		Show <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-		<li class="show_games"><a href="javascript:void(0)">Users with all Games</a></li>
-		<li class="show_achievements"><a href="javascript:void(0)">Users with all Achievements
-		</a></li>
-		<li class="show_items"><a href="javascript:void(0)">Users with all Items</a></li>
-		</ul>
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			Show <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+			<li class="show_games"><a href="javascript:void(0)">Users with all Games</a></li>
+			<li class="show_achievements"><a href="javascript:void(0)">Users with all Achievements
+			</a></li>
+			<li class="show_items"><a href="javascript:void(0)">Users with all Items</a></li>
+			</ul>
+		</div>
 		<% if(showGamesOnly) { %>
 			<h5>Users who own ALL Games</h5>
 			<ul class="nav nav-pills nav-stacked">
@@ -62,27 +75,28 @@
 			</ul>
 		<% } %>
 	</div>
-	<div class="col-md-3 d3">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-		Stats <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-		<li class="show_min"><a href="javascript:void(0)">Min Stats</a></li>
-		<li class="show_max"><a href="javascript:void(0)">Max Stats
-		</a></li>
-		<li class="show_avg"><a href="javascript:void(0)">Avg Stats</a></li>
-		</ul>
+	<div class="col-md-4">
+		<div class="btn-group">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			Stats <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li class="show_min"><a href="javascript:void(0)">Min Stats</a></li>
+				<li class="show_max"><a href="javascript:void(0)">Max Stats</a></li>
+				<li class="show_avg"><a href="javascript:void(0)">Avg Stats</a></li>
+			</ul>
+		</div>
 		<% if(showMinOnly) { %>
 			<h5>Minimum Stats Across Community</h5>
-			<div class="d3"></div>
+			<div class="chart"></div>
 		<% } %>
 		<% if(showMaxOnly) { %>
 			<h5>Maximum Stats Across Community</h5>
-			<div class="d3"></div>
+			<div class="chart"></div>
 		<% } %>
 		<% if(showAvgOnly) { %>
 			<h5>Average Stats Across Community</h5>
-			<div class="d3"></div>
+			<div class="chart"></div>
 		<% } %>
 	</div>
 </div>
