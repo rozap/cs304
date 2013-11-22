@@ -312,3 +312,23 @@ class UserManager(Manager):
         """% table)
         results = cursor.fetchall()
         return cursor, results
+
+    @entity_single()
+    def check_for_users_not_owning(self,table):
+        # We have to also check for users not owning anything for the minimum stuff.
+        cursor = self.db.cursor()
+        cursor.execute("""
+            SELECT   
+                count(username) as num_of_users
+            FROM
+                user
+            WHERE username NOT IN 
+                (
+                    SELECT
+                        user
+                    FROM
+                        %s
+                )
+            """% table)
+        results = cursor.fetchall()
+        return cursor, results 

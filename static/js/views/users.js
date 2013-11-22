@@ -50,37 +50,72 @@ define([
 			ctx.showAvgOnly = ctx.showAvgOnly;
 			this.$el.html(this.template(ctx));
 			this.minData = [ 
-				this.model.get('game_purchase_min').community_min,
-				this.model.get('item_unlock_min').community_min,
-				this.model.get('achievement_unlock_min').community_min,
+				{
+					num : this.model.get('game_purchase_min').community_min,
+					name : 'Games purchased'
+				},
+				{
+					num : this.model.get('item_unlock_min').community_min,
+					name: 'Items unlocked'
+				},
+				{
+					num: this.model.get('achievement_unlock_min').community_min,
+					name: 'Achievements unlocked'
+				},
 			];
 
 			this.maxData = [
-				this.model.get('game_purchase_max').community_max,
-				this.model.get('item_unlock_max').community_max,
-				this.model.get('achievement_unlock_max').community_max,
+				{
+					num : this.model.get('game_purchase_max').community_max,
+					name: 'Games purchased'
+				},
+				{
+					num : this.model.get('item_unlock_max').community_max,
+					name: 'Items unlocked'
+				},
+				{
+					num : this.model.get('achievement_unlock_max').community_max,
+					name: 'Achievements unlocked'
+				}
 			];
 
 			this.avgData = [
-				this.model.get('game_purchase_avg').community_avg,
-				this.model.get('item_unlock_avg').community_avg,
-				this.model.get('achievement_unlock_avg').community_avg,
+				{
+					num : this.model.get('game_purchase_avg').community_avg,
+					name: 'Games purchased'
+				},
+				{
+					num : this.model.get('item_unlock_avg').community_avg,
+					name: 'Items unlocked'
+				},
+				{
+					num : this.model.get('achievement_unlock_avg').community_avg,
+					name: 'Achievements unlocked'
+				}
 			];
 		},
 
 		drawGraphs: function(dataSet) {
 			console.log(dataSet);
 
+			var yolo = [];
+			yolo[0] = dataSet[0].num;
+			yolo[1] = dataSet[1].num;
+			yolo[2] = dataSet[2].num;
 			var x = d3.scale.linear()
-				.domain([0, d3.max(dataSet)])
+				.domain([0, d3.max(yolo)])
 				.range([0, 420]);
 
 			d3.select(".chart")
 				.selectAll("div")
 				.data(dataSet)
 				.enter().append("div")
-				.style("width", function(d) { return x(d) + "px"; })
-				.text(function(d) { return d; });
+				.style("width", function(d) { 
+					if(d.num == null) { return 0 + "px";}
+					return x(d.num) + "px"; })
+				.text(function(d) { 
+					if(d.num == null) { return d.name + " " + 0; }
+					return d.name + " " +d.num; })
 		},
 
 		showMinOnly: function(event) {
@@ -96,7 +131,7 @@ define([
 			this.render({
 				showMinOnly: false,
 				showMaxOnly: true,
-				showAvgOnly: false
+				showAvgOnly: false,
 			});
 			this.drawGraphs(this.maxData);
 		},
@@ -105,7 +140,7 @@ define([
 			this.render({
 				showMinOnly: false,
 				showMaxOnly: false,
-				showAvgOnly: true
+				showAvgOnly: true,
 			});
 			this.drawGraphs(this.avgData);
 		},

@@ -16,17 +16,32 @@ def get_community():
     users['users_with_all_achievements'] = g.db.users.get_users_with_all_achievements()
     users['users_with_all_items'] = g.db.users.get_users_with_all_items()
 
-    users['game_purchase_avg'] = g.db.users.get_community_avg('game_purchase');
-    users['game_purchase_max'] = g.db.users.get_community_max('game_purchase');
-    users['game_purchase_min'] = g.db.users.get_community_min('game_purchase');
+    users['game_purchase_avg'] = g.db.users.get_community_avg('game_purchase')
+    users['game_purchase_max'] = g.db.users.get_community_max('game_purchase')
+    users['game_purchase_min'] = g.db.users.get_community_min('game_purchase')
 
-    users['item_unlock_avg'] = g.db.users.get_community_avg('item_unlock');
-    users['item_unlock_max'] = g.db.users.get_community_max('item_unlock');
-    users['item_unlock_min'] = g.db.users.get_community_min('item_unlock');
+    users['item_unlock_avg'] = g.db.users.get_community_avg('item_unlock')
+    users['item_unlock_max'] = g.db.users.get_community_max('item_unlock')
+    users['item_unlock_min'] = g.db.users.get_community_min('item_unlock')
 
-    users['achievement_unlock_avg'] = g.db.users.get_community_avg('achievement_unlock');
-    users['achievement_unlock_max'] = g.db.users.get_community_max('achievement_unlock');
-    users['achievement_unlock_min'] = g.db.users.get_community_min('achievement_unlock');
+    users['achievement_unlock_avg'] = g.db.users.get_community_avg('achievement_unlock')
+    users['achievement_unlock_max'] = g.db.users.get_community_max('achievement_unlock')
+    users['achievement_unlock_min'] = g.db.users.get_community_min('achievement_unlock')
+
+    num_of_users_with_no_games = g.db.users.check_for_users_not_owning('game_purchase')['num_of_users']
+    if num_of_users_with_no_games > 0:
+        users['game_purchase_min'] = 0
+    num_of_users_with_no_items = g.db.users.check_for_users_not_owning('item_unlock')['num_of_users']
+    if num_of_users_with_no_items > 0:
+        users['item_unlock_min'] = 0
+    num_of_users_with_no_achievements = g.db.users.check_for_users_not_owning('achievement_unlock')['num_of_users']
+    if num_of_users_with_no_achievements > 0:
+        users['achievement_unlock_min'] = 0
+
+    print users['game_purchase_min']
+    print users['achievement_unlock_min']
+    print users['item_unlock_min']
+
     return False, users
 
 @json_view

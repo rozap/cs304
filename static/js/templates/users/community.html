@@ -12,6 +12,19 @@
   color: black;
 }
 
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: 60px;                  
+  height: 28px;                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+
 </style>
 <div class="row">
 	<div class="col-md-3">
@@ -89,14 +102,17 @@
 		<% if(showMinOnly) { %>
 			<h5>Minimum Stats Across Community</h5>
 			<div class="chart"></div>
+			<div class="tooltip"></div>
 		<% } %>
 		<% if(showMaxOnly) { %>
 			<h5>Maximum Stats Across Community</h5>
 			<div class="chart"></div>
+			<div class="tooltip"></div>
 		<% } %>
 		<% if(showAvgOnly) { %>
 			<h5>Average Stats Across Community</h5>
 			<div class="chart"></div>
+			<div class="tooltip"></div>
 		<% } %>
 	</div>
 </div>
