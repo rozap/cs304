@@ -1,7 +1,7 @@
 from database import Database
 
 def get_games(db):
-    games = db.games.get_game(limit=100000)
+    games = db.games.get_games(limit=100000)
     return games
 
 
