@@ -131,7 +131,7 @@ CREATE TABLE `discussion` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `game_id` int(50) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
   `body` text DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`, `game_id`),

@@ -35,18 +35,27 @@ define([
 		save: function() {
 			var disc = new Models.Discussion(this.hydrate()),
 				that = this;
-			disc.sync('create', disc, {
-				wait: true,
-				success: function(resp) {
-					disc.set(resp);
-					that.parent.collection.add(disc);
-					that.cancel();
-					that.parent.render();
-				},
-				error: function() {
-
-				}
-			});
+			if(disc.get('title').length === 0){
+				that.parent.render({
+					error: 'You need a Title for your awesome Discussion!'
+				});
+			}
+			else {
+				disc.sync('create', disc, {
+					wait: true,
+					success: function(resp) {
+						disc.set(resp);
+						that.parent.collection.add(disc);
+						that.cancel();
+						that.parent.render();
+					},
+					error: function() {
+						that.parent.render({
+							error: 'You need a Title for your awesome Discussion!'
+						});
+					}
+				});
+			}
 		}
 	});
 
@@ -67,7 +76,11 @@ define([
 					that.cancel();
 					that.parent.render();
 				},
-				error: function() {}
+				error: function() {
+					that.parent.render({
+						error: 'You need a Title for your awesome Discussion!'
+					});
+				}
 			});
 
 		}
@@ -188,8 +201,9 @@ define([
 		},
 
 		render: function(ctx) {
+			ctx = this.context(ctx);
+			ctx.error = ctx.error;
 			var usernames = _.compact(_.uniq(this.collection.pluck('username')));
-
 			//VERY IMPORTANT
 			if (this.avatars.length && usernames.length) {
 				var that = this,

@@ -2,6 +2,13 @@
 <div class="row discussion-detail discussion-thing">
 	<div class="col-md-12">
 		<h2><%- model.get('title') %></h2>
+		<% if(error) {%>
+			<div class="row">
+			  <div class="alert alert-danger">
+			    <%- error %>
+			  </div>
+			</div>
+		<% } %>
 	</div>
 	<div class="col-md-12">
 		<h6>By 
