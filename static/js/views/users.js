@@ -72,12 +72,12 @@ define([
 				showMaxOnly: false,
 				showAvgOnly: false
 			});
-			
+
 			var svgContainer = d3.select(".d3").append("svg")
 				.attr("width", 500)
 				.attr("height", 500);
 
-			var circle = svgContainer.append("circle").style("fill", "steelred")
+			var circle = svgContainer.append("circle").style("fill", "red")
 				.attr("cx", 30)
 				.attr("cy", 30)
 				.attr("r", this.data[0]);
@@ -87,7 +87,7 @@ define([
 				.attr("cy", 30 + 30)
 				.attr("r", this.data[1]);
 
-			var circle = svgContainer.append("circle").style("fill", "steelgreen")
+			var circle = svgContainer.append("circle").style("fill", "green")
 				.attr("cx", 30 + 30)
 				.attr("cy", 30 + 30)
 				.attr("r", this.data[2]);
@@ -103,7 +103,7 @@ define([
 				.attr("width", 500)
 				.attr("height", 500);
 
-			var circle = svgContainer.append("circle").style("fill", "steelred")
+			var circle = svgContainer.append("circle").style("fill", "red")
 				.attr("cx", 30)
 				.attr("cy", 30)
 				.attr("r", this.data[3]);
@@ -113,7 +113,7 @@ define([
 				.attr("cy", 30 + 30)
 				.attr("r", this.data[4]);
 
-			var circle = svgContainer.append("circle").style("fill", "steelgreen")
+			var circle = svgContainer.append("circle").style("fill", "green")
 				.attr("cx", 30 + 30)
 				.attr("cy", 30 + 30)
 				.attr("r", this.data[5]);
