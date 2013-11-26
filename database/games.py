@@ -10,14 +10,26 @@ class GameManager(Manager):
     def get_games(self, limit = 40, page = 0, **kwargs):
         cursor = self.db.cursor()
 
+
+        text = kwargs.pop('text', False)
         where_args = self.create_filters(**kwargs)
+        text_args = ''
+        if text:
+            if len(where_args) > 3:
+                text_args = ' AND ('
+            else:
+                text_args = 'WHERE '
+            text_args = text_args + "title LIKE '%%" + text[0] + "%%' OR description LIKE '%%" + text[0] + "%%'"
+            if len(where_args) > 3:
+                text_args = text_args + ')'
+                    
 
         query = """
             SELECT 
                 id, title, price, description, developer, genre, image
             FROM
                 game 
-        """ +where_args+"""
+        """ +where_args+text_args+"""
             limit %s
             offset %s
         """

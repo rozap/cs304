@@ -80,16 +80,21 @@
 	.description {
 		opacity: 0;
 		transition:opacity .5s;
+		background:fadeout(lighten(@gray-lighter, 10%), 20%);
 		position: absolute;
-		top:98px;
+		top:38px;
+		bottom:0px;
+		margin:0px;
+		padding:4px @grid-gutter-width 4px @grid-gutter-width;
 
 		.description-text {
-			padding: 0px @line-height-computed/2;
-			background:fadeout(lighten(@gray-lighter, 10%), 20%);
 			height: 100px;
 			overflow: hidden;
 			text-overflow: ellipsis;
-
+			margin-bottom: 0px;
+		}
+		h6 {
+			font-weight: 800;
 		}
 	}
 

@@ -35,27 +35,21 @@ define([
 		save: function() {
 			var disc = new Models.Discussion(this.hydrate()),
 				that = this;
-			if(disc.get('title').length === 0){
-				that.parent.render({
-					error: 'You need a Title for your awesome Discussion!'
-				});
-			}
-			else {
-				disc.sync('create', disc, {
-					wait: true,
-					success: function(resp) {
-						disc.set(resp);
-						that.parent.collection.add(disc);
-						that.cancel();
-						that.parent.render();
-					},
-					error: function() {
-						that.parent.render({
-							error: 'You need a Title for your awesome Discussion!'
-						});
-					}
-				});
-			}
+			disc.sync('create', disc, {
+				wait: true,
+				success: function(resp) {
+					disc.set(resp);
+					that.parent.collection.add(disc);
+					that.cancel();
+					that.parent.render();
+				},
+				error: function(resp) {
+					var data = JSON.parse(resp.responseText);
+					that.parent.render({
+						error: data.error
+					});
+				}
+			});
 		}
 	});
 
@@ -70,15 +64,15 @@ define([
 		save: function() {
 			var that = this;
 			this.model.set(this.hydrate());
-			console.log(this.model.toJSON());
 			this.model.sync('update', this.model, {
 				success: function() {
 					that.cancel();
 					that.parent.render();
 				},
-				error: function() {
+				error: function(resp) {
+					var data = JSON.parse(resp.responseText);
 					that.parent.render({
-						error: 'You need a Title for your awesome Discussion!'
+						error: data.error
 					});
 				}
 			});

@@ -91,12 +91,56 @@ define([
 
 		el: '#main',
 
+		events: {
+			'click .filter': 'filter',
+			'keyup .filter-text': 'filterText'
+		},
+
 		initialize: function(app) {
 			Views.AbstractView.prototype.initialize.call(this, app);
 			this.collection = new Collections.Games([], app);
+			console.log(this.collection.model);
 			this.listenTo(this.collection, 'sync', this.render);
+
+			var that = this;
+			this.collection.fetch({
+				success: function() {
+					that.developers = _.uniq(that.collection.pluck('developer'));
+					that.genres = _.uniq(that.collection.pluck('genre'));
+				}
+			});
+		},
+
+		context: function(ctx) {
+			ctx = Views.AbstractView.prototype.context.call(this, ctx);
+			ctx.developers = this.developers;
+			ctx.genres = this.genres;
+			return ctx;
+		},
+
+
+		filter: function(e) {
+			//hack because there's a bug somewhere and i don't feel like finding it
+			this.collection.model = Models.Game;
+
+			var $t = $(e.currentTarget),
+				filter = $t.data('filter'),
+				value = $t.data('value');
+			if (!value) {
+				this.collection.removeFilter(filter);
+			} else {
+				this.collection.addFilter(filter, value);
+			}
 			this.collection.fetch();
 		},
+
+		filterText: _.debounce(function(e) {
+			this.collection.model = Models.Game;
+			var text = $(e.currentTarget).val();
+			this.collection.addFilter('text', text);
+
+			this.collection.fetch();
+		}, 500)
 
 
 	});

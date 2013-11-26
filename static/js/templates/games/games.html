@@ -1,24 +1,101 @@
 
 <h1>list of games</h1>
-<% collection.each(function(game) { %> 
-	<div class="col-md-4 game-item">
-		<div class="row">
-			<div class="col-md-12">
-				<h4>
-					<a href="#/games/<%- game.get('id') %>"><%- game.get('title') %></a>
-				</h4>
-			</div>
-
-			<div class="col-md-12 game-image">
-				<img src="<%- game.get('image') %>"/>	
-			</div>
-
-			<div class="description col-md-12">
-				<p class="description-text"><%- game.get('description') %></p>
-			</div>
-		</div>
+<div class="row">
+<div class="col-md-8">
+		<div class="input-group">
+			<span class="input-group-addon">Contains</span>
+			<input type="text" class="form-control filter-text" 
+			placeholder="search title and description"
+			<% if(collection.filters.text) { %>
+				value="<%- collection.filters.text %>"
+			<% } %>>
+ 		</div>
 
 	</div>
-<% }) %>
+	<div class="col-md-4">
+		<div class="dropdown" style="display:inline-block;">
+			<a href="javascript:void(0)" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				Developer<%- collection.filters.developer? ': ' + collection.filters.developer : '' %>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu">
+				<% _.each(developers, function(dev) { %>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="javascript:void(0)"
+							class="filter"
+							data-filter="developer"
+							data-value="<%- dev %>">
+							<%- dev %>
+						</a>
+					</li>
+				<% }) %>
+				<li class="divider"></li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="javascript:void(0)"
+						class="filter"
+						data-filter="developer">
+						All Developers
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="dropdown" style="display:inline-block;">
+			<a href="javascript:void(0)" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				Genre<%- collection.filters.genre? ': ' + collection.filters.genre : '' %>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu">
+				<% _.each(genres, function(genre) { %>
+
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="javascript:void(0)"
+							class="filter"
+							data-filter="genre"
+							data-value="<%- genre %>">
+							<%- genre %>
+						</a>
+					</li>
+
+				<% }) %>
+				<li class="divider"></li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="javascript:void(0)"
+						class="filter"
+						data-filter="genre">
+						All Genres
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<% collection.each(function(game) { %> 
+		<div class="col-md-4 game-item">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>
+						<a href="#/games/<%- game.get('id') %>"><%- game.get('title') %></a>
+					</h4>
+				</div>
+
+				<div class="col-md-12 game-image">
+					<img src="<%- game.get('image') %>"/>	
+				</div>
+
+				<div class="description col-md-12">
+					<p class="description-text"><%- game.get('description') %></p>
+					<h6>Developer: <%- game.get('developer') %></h6>
+					<h6>Price: $<%- game.get('price') %></h6>
+
+				</div>
+			</div>
+
+		</div>
+	<% }) %>
+</div>
+
 
 

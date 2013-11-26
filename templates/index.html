@@ -205,7 +205,6 @@
 		{% if user %}
 		var user = {{ user|tojson|safe }};
 		{% else %}
-		//yolo
 		var user = false;
 		{% endif %}
 	</script>
@@ -272,7 +271,7 @@
 		</nav>
 
 		<div class="container">
-			<div id="main" class="col-md-12">
+			<div id="main">
 			</div>
 		</div>
 

@@ -2,9 +2,22 @@ from flask import g, abort, request
 from api import json_view
 
 
+def validate_discussion(request):
+    #lololol here's our validator
+    title = request.json.get('title', '')
+    body = request.json.get('body', '')
+    if len(title) < 1 or len(body) < 1:
+        return False, {'error' : 'You need to include a title and a body!'}, 400
+    return False
+
+
 @json_view
 def list_discussions():
     if request.method == 'POST':
+        is_invalid = validate_discussion(request)
+        if is_invalid:
+            return is_invalid
+
         discussion_dict = request.json
         discussion_dict['username'] = g.user['username']
         discussion_id = g.db.discussions.insert_discussion(discussion_dict)
@@ -39,11 +52,9 @@ def list_discussions():
 @json_view
 def detail_discussion(discussion_id):
     if request.method == 'PUT':
-        #lololol here's our validator
-        title = request.json.get('title', '')
-        body = request.json.get('body', '')
-        if len(title) < 1 or len(body) < 1:
-            return 
+        is_invalid = validate_discussion(request)
+        if is_invalid:
+            return is_invalid
         g.db.discussions.update_discussion(request.json, discussion_id, g.user['username'])
     elif request.method == 'DELETE':
         g.db.discussions.delete_discussion(discussion_id)

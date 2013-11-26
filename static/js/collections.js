@@ -23,6 +23,14 @@ define([
 
 		},
 
+		addFilter: function(name, value) {
+			this.filters[name] = value;
+		},
+
+		removeFilter: function(name) {
+			delete this.filters[name];
+		},
+
 		parse: function(obj) {
 			return obj[this.objName]
 		},
@@ -33,7 +41,7 @@ define([
 				if (str !== '') {
 					str += '&';
 				}
-				str += key + '=' + obj[key];
+				str += key + '=' + encodeURIComponent(obj[key]);
 			}
 			if (str.length > 2) {
 				return '?' + str;
@@ -70,7 +78,7 @@ define([
 
 	var Games = AbstractCollection.extend({
 		_url: '/api/games',
-		objName: 'games'
+		objName: 'games',
 	});
 
 	var Discussions = AbstractCollection.extend({
