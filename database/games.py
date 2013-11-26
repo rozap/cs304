@@ -7,7 +7,7 @@ class GameManager(Manager):
 
 
     @entity_list()
-    def get_games(self, limit = 40, page = 0, **kwargs):
+    def get_games(self, limit = 4000, page = 0, **kwargs):
         cursor = self.db.cursor()
 
 

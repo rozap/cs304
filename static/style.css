@@ -5987,6 +5987,11 @@ body {
 .game-thumb img {
   max-width: 140px;
 }
+.game-filters {
+  border-bottom: 1px solid #eeeeee;
+  padding: 15px 0px;
+  margin-bottom: 15px;
+}
 .profile-item {
   border-top: 1px solid #eeeeee;
   margin-top: 7.5px;
